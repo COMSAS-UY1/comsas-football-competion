@@ -116,7 +116,7 @@ class Poule(models.Model):
     """" """
     name = models.CharField(max_length=50)
     add_date = models.DateField(auto_now_add=True)
-    edition = models.ForeignKey(Edition, on_delete=models.CASCADE, null=False)
+    edition = models.ForeignKey(Edition, on_delete=models.CASCADE, null=False, related_name='poules')
 
     def __str__(self):
         return self.name + "(" + self.edition.name + ")"
