@@ -133,3 +133,14 @@ class PouleTeam(models.Model):
 
     def __str__(self):
         return self.team.name + " " + self.poule.__str__()
+
+class ContactInfo(models.Model):
+    '''Manages the contact form/page'''
+    name = models.CharField(max_length = 150, null=False, blank=False, error_messages={'required': ("Veuillez entrer votre nom et prénom.")})
+    email = models.EmailField(null=True, blank=True, error_messages={'required': ("Veuillez entrer votre adresse email.")})
+    phone = models.CharField(max_length=9, null=False, blank=False, error_messages={'required': ("Veuillez entrer votre numéro de téléphone.")})
+    subject = models.CharField(max_length = 100, error_messages={'required': ("Veuillez entrer le titre de votre message.")})
+    message = models.TextField(null=False, blank=False, error_messages={'required': ("Veuillez entrer votre message.")})
+
+    def __str__(self):
+        return self.name + ' ' + self.subject

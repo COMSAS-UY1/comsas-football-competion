@@ -1,0 +1,176 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <title>
+      {% block title %}{% endblock title %}
+  </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+
+  <link rel="stylesheet" href=" {% static 'fonts/icomoon/style.css' %} ">
+
+  <link rel="stylesheet" href=" {% static 'css/bootstrap/bootstrap.css' %} ">
+  <link rel="stylesheet" href=" {% static 'css/jquery-ui.css' %} ">
+  <link rel="stylesheet" href=" {% static 'css/owl.carousel.min.css' %} ">
+  <link rel="stylesheet" href=" {% static 'css/owl.theme.default.min.css' %} ">
+  <link rel="stylesheet" href=" {% static 'css/owl.theme.default.min.css' %} ">
+
+  <link rel="stylesheet" href=" {% static 'css/jquery.fancybox.min.css' %} ">
+
+  <link rel="stylesheet" href=" {% static 'css/bootstrap-datepicker.css' %} ">
+
+  <link rel="stylesheet" href=" {% static 'fonts/flaticon/font/flaticon.css' %} ">
+
+  <link rel="stylesheet" href=" {% static 'css/aos.css' %} ">
+
+  <link rel="stylesheet" href=" {% static 'css/style.css' %} ">
+
+
+
+</head>
+<body>
+
+    <div class = "site-wrap">
+        <!-- Header-->
+        <div class="site-mobile-menu site-navbar-target">
+            <div class="site-mobile-menu-header">
+              <div class="site-mobile-menu-close">
+                <span class="icon-close2 js-menu-toggle"></span>
+              </div>
+            </div>
+            <div class="site-mobile-menu-body"></div>
+        </div>
+        
+        
+        <header class="site-navbar py-4" role="banner">
+    
+        <div class="container">
+            <div class="d-flex align-items-center">
+            <div class="site-logo">
+                <a href=" {% url 'core:home' %} ">
+                <span style="font-size: 17pt; font-weight: 100; letter-spacing: 0; position: absolute; left: 0px; top: 29px;">COM.S.AS</span>
+                <img src=" {% static 'images/logo.png' %} " alt="Logo">
+                </a>
+            </div>
+            <div class="ml-auto">
+                <nav class="site-navigation position-relative text-right" role="navigation">
+                <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                    <li class="{% if request.resolver_match.view_name == 'core:home' %} active {% endif %} "><a href="{% url 'core:home' %}" class="nav-link">Accueil</a></li>
+                    <li class="{% if request.resolver_match.view_name == 'core:match' %} active {% endif %}"><a href="{% url 'core:match' %}" class="nav-link">Matchs</a></li>
+                    <li class="{% if request.resolver_match.view_name == 'core:team' %} active {% endif %}"><a href="{% url 'core:team' %}" class="nav-link">Equipes</a></li>
+                    <li class="{% if request.resolver_match.view_name == 'core:blog' %} active {% endif %}"><a href="{% url 'core:blog' %}" class="nav-link">Blog</a></li>
+                    <li class="{% if request.resolver_match.view_name == 'core:contact' %} active {% endif %}"><a href="{% url 'core:contact' %}" class="nav-link">Contacts</a></li>
+                </ul>
+                </nav>
+    
+                <a href="#" class="d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black float-right text-white"><span
+                    class="icon-menu h3 text-white"></span></a>
+            </div>
+            </div>
+        </div>
+    
+        </header>
+    
+        {% block body %}
+        
+        {% endblock body %}
+
+        <!-- Footer -->
+        <footer class="footer-section">
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-3">
+                  <div class="widget mb-3">
+                    <h3>Infos</h3>
+                    <ul class="list-unstyled links">
+                      <li><a href="#">Tous</a></li>
+                      <li><a href="#">Info du COM.S.AS</a></li>
+                      <li><a href="#">Gallerie</a></li>
+                      <li><a href="#">Matchs</a></li>
+                      <li><a href="#">Contacts</a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-lg-3">
+                  <div class="widget mb-3">
+                    <h3>Tickets</h3>
+                    <ul class="list-unstyled links">
+                      <li><a href="#">Online Ticket</a></li>
+                      <li><a href="#">Payment and Prices</a></li>
+                      <li><a href="#">Contact &amp; Booking</a></li>
+                      <li><a href="#">Tickets</a></li>
+                      <li><a href="#">Coupon</a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-lg-3">
+                  <div class="widget mb-3">
+                    <h3>Matchs</h3>
+                    <ul class="list-unstyled links">
+                      <li><a href="#">Standings</a></li>
+                      <li><a href="#">World Cup</a></li>
+                      <li><a href="#">La Lega</a></li>
+                      <li><a href="#">Hyper Cup</a></li>
+                      <li><a href="#">World League</a></li>
+                    </ul>
+                  </div>
+                </div>
+          
+                <div class="col-lg-3">
+                  <div class="widget mb-3">
+                    <h3>Social</h3>
+                    <ul class="list-unstyled links">
+                      <li><a href="#"><i class="bi bi-twitter"></i> Twitter</a></li>
+                      <li><a href="#"><i class="bi bi-facebook"></i> Facebook</a></li>
+                      <li><a href="#"><i class="bi bi-instagram"></i> Instagram</a></li>
+                      <li><a href="#"><i class="bi bi-youtube"></i> Youtube</a></li>
+                    </ul>
+                  </div>
+                </div>
+          
+              </div>
+          
+              <div class="row text-center">
+                <div class="col-md-12">
+                  <div class=" pt-5">
+                    <p>
+                      Copyright &copy;
+                      <script>
+                        document.write(new Date().getFullYear());
+                      </script> 
+                      All rights reserved | The Computer Science Association - COM.S.AS
+                    </p>
+                  </div>
+                </div>
+          
+              </div>
+            </div>
+        </footer>
+
+        <!-- JS files -->
+        <script src=" {% static 'js/jquery-3.3.1.min.js' %} "></script>
+        <script src=" {% static 'js/jquery-migrate-3.0.1.min.js' %} "></script>
+        <script src=" {% static 'js/jquery-ui.js' %} "></script>
+        <script src=" {% static 'js/popper.min.js' %} "></script>
+        <script src=" {% static 'js/bootstrap.min.js' %} "></script>
+        <script src=" {% static 'js/owl.carousel.min.js' %} "></script>
+        <script src=" {% static 'js/jquery.stellar.min.js' %} "></script>
+        <script src=" {% static 'js/jquery.countdown.min.js' %} "></script>
+        <script src=" {% static 'js/bootstrap-datepicker.min.js' %} "></script>
+        <script src=" {% static 'js/jquery.easing.1.3.js' %} "></script>
+        <script src=" {% static 'js/aos.js' %} "></script>
+        <script src=" {% static 'js/jquery.fancybox.min.js' %} "></script>
+        <script src=" {% static 'js/jquery.sticky.js' %} "></script>
+        <script src=" {% static 'js/jquery.mb.YTPlayer.min.js' %} "></script>
+
+
+    <script src=" {% static 'js/main.js' %} "></script>
+    </div>
+</body>
+</html>
