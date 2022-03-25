@@ -1,0 +1,99 @@
+{% extends 'main.html' %}
+{% load static %}
+
+<!-- Page Title-->
+{% block title %}
+  Coupe du département Info &dash; Contacts
+{% endblock title %}
+
+<!-- Page Body -->
+{% block body %}
+<div class="hero overlay" style="background-image: url('../../static/images/contact.jpg');">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-9 mx-auto text-center">
+        <h1 class="text-white">Contactez Nous</h1>
+        <p>
+          Pour tous vos soucis, suggestions, question et imcomprehensions durant ce 
+          championnat veuillez remplir le formulaire suivant pour nous laisser un message, 
+          ou alors contactez-nous directement.
+        </p>
+        <!-- Output Message message (Bootstrap-v5 only) -->
+        {% comment %} {% for msg in messages %}
+        <div class="alert alert-{%if msg.level_tag == error %}danger{% else %}{{msg.level_tag}}{% endif %} alert-dismissible fade show" role="alert">
+          <i class="bi bi-{%if msg.level_tag == error %}exclamation-octagon-fill{% elif msg.level_tag == info %}info-circle-fill{% elif msg.level_tag == warning %}exclamation-triangle-fill{% else %}check-circle-fill{% endif %}"></i>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            {{msg.message}}
+        </div>
+        {% endfor %} {% endcomment %}
+
+        {% for msg in messages %}
+          <div class="alert alert-{%if msg.level_tag == error %}danger{% else %}{{msg.level_tag}}{% endif %} alert-dismissible fade show" role="alert">
+          <i class="bi bi-{%if msg.level_tag == error %}exclamation-octagon-fill{% elif msg.level_tag == info %}info-circle-fill{% elif msg.level_tag == warning %}exclamation-triangle-fill{% else %}check-circle-fill{% endif %}"></i>  
+            {{msg}}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="site-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-7">
+        <form action="{% url 'core:contact' %}" method="POST" role="form">
+          {% csrf_token %}
+          <div class="form-group">
+            <!-- <input type="text" class="form-control" placeholder="Name"> -->
+            {{modelform.name}}
+          </div>
+          <div class="form-group d-flex">
+            <!-- <input type="email" class="form-control" placeholder="Email"> -->
+            {{modelform.email}}
+            &ThickSpace;
+            <!-- <input type="number" class="form-control w-75" placeholder="Phone"> -->
+            {{modelform.phone}}
+          </div>
+          <div class="form-group">
+            <!-- <input type="text" class="form-control" placeholder="Subject"> -->
+            {{modelform.subject}}
+          </div>
+          <div class="form-group">
+            <!-- <textarea name="" class="form-control" id="" cols="30" rows="10" placeholder="Write something..."></textarea> -->
+            {{modelform.message}}
+          </div>
+          <div class="form-group">
+            <input type="submit" class="btn btn-primary py-3 px-5" value="Envoyer">
+          </div>
+        </form>  
+      </div>
+      <div class="col-lg-4 ml-auto">
+        
+        <ul class="list-unstyled">
+          <li class="mb-2">
+            <strong class="text-white d-block">Email</strong>
+            <a href="#">info@unslate.co</a>
+          </li>
+          <li class="mb-2">
+            <strong class="text-white d-block">
+              Téléphone
+            </strong>
+            <a href="#">+12 345 6789 012</a>
+          </li>
+          <li class="mb-2">
+            <strong class="text-white d-block">Adresse</strong>
+            Derrière l'Amphi 502 <br> Yaoundé, Cameroon
+          </li>
+        </ul>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3980.779097126594!2d11.496744414841578!3d3.8575241494649335!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x108bcfbcd74786bb%3A0x1c3486b01dabee36!2scomsas!5e0!3m2!1sen!2scm!4v1648149854296!5m2!1sen!2scm" width="100%" height="280" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock body %}
