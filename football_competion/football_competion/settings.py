@@ -132,3 +132,10 @@ EMAIL_HOST_USER = 'joelfah2003@gmail.com'
 EMAIL_HOST_PASSWORD = 'Ec@n@mics1@'
 EMAIL_PORT = 587
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+
+
+MEDIA_URL = 'media/'
+
+# Dossier où seront stockés les médias
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
