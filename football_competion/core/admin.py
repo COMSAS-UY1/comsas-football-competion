@@ -1,5 +1,5 @@
 from django.contrib import admin
-from core.models import Edition, Player, Poule, Match, PouleTeam, Team, Goal, News
+from core.models import Edition, Player, Poule, Match, PouleTeam, Team, Goal, News, GalleryFilter, Gallery
 
 
 class EditionAdmin(admin.ModelAdmin):

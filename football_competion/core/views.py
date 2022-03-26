@@ -3,7 +3,7 @@ from hashlib import new
 from django.shortcuts import redirect, render, HttpResponse
 from django.db.models import Count
 from django.views import View
-from core.models import Edition, Player, Goal, GoalType, PouleTeam, Team, MatchState, News
+from core.models import Edition, Player, Goal, GoalType, PouleTeam, Team, MatchState, News, Gallery
 from django.views.generic import TemplateView
 from .forms import ContactForm
 from django.core.mail.message import BadHeaderError
@@ -53,7 +53,6 @@ class IndexView(View):
             # get news
             newsLimit = 3
             news = News.objects.all().order_by('-id')[:newsLimit]
-            print("Actualites ", news)
 
             context = {
                 "current_edition": current_edition,
@@ -119,6 +118,14 @@ class InnerBlogView(TemplateView):
 
 class GalleryView(TemplateView):
     template_name = "gallery.html"
+
+    def getImages(self, request, *args, **kwargs):
+        images = Gallery.objects.all()
+
+        context = {
+            'images': images,
+        }
+        return render(request, self.template_name, context)
 
 
 # Contact form function

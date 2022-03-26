@@ -1,3 +1,6 @@
+from email.mime import image
+from pyexpat import model
+from turtle import title
 from django.db import models
 
 
@@ -152,3 +155,23 @@ class News(models.Model):
     
     def __str__(self):
         return self.title
+
+class GalleryFilter(models.Model):
+    pass
+    '''
+        Le model ci est lie au suivant. Ca sera en fonction d'un filtre qu'on affichera les images.
+        Il y aura au tout d'abord un premier filtre qui montrera toutes les images prises.
+        Les autres viendront apres un evenement (donc sera creer dans le admin dashboard). 
+        Voir gallery.html
+        Donc comme filtres on peut avoir Tous (au debut). Apres la premiere journee de matchs, 
+        on cree un nouveau filtre "match 1" ou "match + date" qui contiendra uniquement les images 
+        de cette journee.
+    '''
+    
+
+class Gallery(models.Model):
+    image =  models.ImageField(upload_to='gallerie/', null=False)
+    alt = models.CharField(max_length=20, blank=True, null=True)
+    title = models.CharField(max_length=300, blank=True, null=True)
+
+    

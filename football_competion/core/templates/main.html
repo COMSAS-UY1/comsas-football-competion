@@ -64,7 +64,7 @@
                     <li class="{% if request.resolver_match.view_name == 'core:home' %} active {% endif %} "><a href="{% url 'core:home' %}" class="nav-link"><i class="bi bi-house-door-fill"></i> Accueil</a></li>
                     <li class="{% if request.resolver_match.view_name == 'core:match' %} active {% endif %}"><a href="{% url 'core:match' %}" class="nav-link"><i class="bi bi-calendar-event-fill"></i> Matchs</a></li>
                     <li class="{% if request.resolver_match.view_name == 'core:team' %} active {% endif %}"><a href="{% url 'core:team' %}" class="nav-link"><i class="bi bi-people-fill"></i> Equipes</a></li>
-                    <li class="{% if request.resolver_match.view_name == 'core:blog' %} active {% endif %}"><a href="{% url 'core:blog' %}" class="nav-link"><i class="bi bi-newspaper"></i> Blog</a></li>
+                    <!-- <li class="{% if request.resolver_match.view_name == 'core:blog' %} active {% endif %}"><a href="{% url 'core:blog' %}" class="nav-link"><i class="bi bi-newspaper"></i> Blog</a></li> -->
                     <li class="{% if request.resolver_match.view_name == 'core:contact' %} active {% endif %}"><a href="{% url 'core:contact' %}" class="nav-link"><i class="bi bi-headset"></i> Contacts</a></li>
                     <li class="{% if request.resolver_match.view_name == 'core:gallery' %} active {% endif %}"><a href="{% url 'core:gallery' %}" class="nav-link"><i class="bi bi-images"></i> Gallerie</a></li>
                 </ul>
