@@ -24,7 +24,7 @@ SECRET_KEY = '4sm-vu(=nczp3@z7qylndxg#+vfar@hdp26q37&)6d953ow$w('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 

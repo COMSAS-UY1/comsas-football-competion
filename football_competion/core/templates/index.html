@@ -78,28 +78,26 @@
       </div>
     </div>
     <div class="row no-gutters">
+
+      {% for actu in news %}
       <div class="col-md-4">
         <div class="post-entry">
           <a href="#">
-            <img src=" {% static 'images/img_1.jpg' %} " alt="Image" class="img-fluid">
+            <img src=" {{actu.image}} " alt="Image" class="img-fluid">
           </a>
           <div class="caption">
             <div class="caption-inner">
-              <h3 class="mb-3">Romolu to stay at Real Nadrid?</h3>
-              <div class="author d-flex align-items-center">
-                <div class="img mb-2 mr-3">
-                  <img src=" {% static 'images/person_1.jpg' %} " alt="">
-                </div>
-                <div class="text">
-                  <h4>Mellissa Allison</h4>
-                  <span>May 19, 2020 &bullet; Sports</span>
-                </div>
-              </div>
+              <h3 class="mb-3 text-capitalize">{{actu.title}}</h3>
+              <p style="color: #e2e2e2;">
+                {{actu.description}}
+              </p>
             </div>
           </div> 
         </div>
       </div>
-      <div class="col-md-4">
+      {% endfor %}
+
+      {% comment %} <div class="col-md-4">
         <div class="post-entry">
           <a href="#">
             <img src=" {% static 'images/img_3.jpg' %} " alt="Image" class="img-fluid">
@@ -140,7 +138,8 @@
             </div>
           </div> 
         </div>
-      </div>
+      </div> {% endcomment %}
+
     </div>
 
   </div>

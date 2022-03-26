@@ -1,8 +1,9 @@
 # from nis import match
+from hashlib import new
 from django.shortcuts import redirect, render, HttpResponse
 from django.db.models import Count
 from django.views import View
-from core.models import Edition, Player, Goal, GoalType, PouleTeam, Team, MatchState
+from core.models import Edition, Player, Goal, GoalType, PouleTeam, Team, MatchState, News
 from django.views.generic import TemplateView
 from .forms import ContactForm
 from django.core.mail.message import BadHeaderError
@@ -48,6 +49,11 @@ class IndexView(View):
                 state=MatchState.finish).order_by("-date_to_play", "-id")
             all_match = current_edition.matches.all().order_by(
                 "date_to_play", "id")
+            
+            # get news
+            newsLimit = 3
+            news = News.objects.all().order_by('-id')[:newsLimit]
+            print("Actualites ", news)
 
             context = {
                 "current_edition": current_edition,
@@ -59,6 +65,7 @@ class IndexView(View):
                 "next_match": next_match,
                 "not_played": match_not_play,
                 "played": played_match,
+                "news" : news,
             }
         else:
             context = {}
@@ -109,6 +116,11 @@ class InnerBlogView(TemplateView):
         context = {}
         return render(request, self.template_name, context)
 
+
+class GalleryView(TemplateView):
+    template_name = "gallery.html"
+
+
 # Contact form function
 def getMessage(request):
         if request.method == 'POST':
@@ -143,7 +155,7 @@ def getMessage(request):
                     form.save()
                     message_out_success = format_html(
                         # f'Thanks for contacting us, <strong> {name} </strong> ! Your message has been sent successfully. You will be email a copy at <strong> {email} </strong> !'
-                        f'Cher(e) <b>{name}</b>, merci de nous avoir contacté. Votre essage a bien été envoyé. Vous allez recevoir une copie à l\'adresse <b>{email}</b> !'
+                        f'Cher(e) <b>{name}</b>, merci de nous avoir contacté. Votre message a bien été envoyé. Vous allez recevoir une copie à l\'adresse <b>{email}</b> !'
                     )
                     messages.success(
                         request,

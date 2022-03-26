@@ -1,5 +1,5 @@
 from django.contrib import admin
-from core.models import Edition, Player, Poule, Match, PouleTeam, Team, Goal
+from core.models import Edition, Player, Poule, Match, PouleTeam, Team, Goal, News
 
 
 class EditionAdmin(admin.ModelAdmin):
@@ -43,6 +43,10 @@ class MatchAdmin(admin.ModelAdmin):
 class GoalAdmin(admin.ModelAdmin):
     list_display = ["id", "player", "match", "goal_type"]
 
+class NewsAdmin(admin.ModelAdmin):
+    list_display = ['id', 'title', 'description']
+    search_fields = ['title']
+
 
 admin.site.register(Team, TeamAdmin)
 admin.site.register(Goal, GoalAdmin)
@@ -51,3 +55,4 @@ admin.site.register(Poule, PouleAdmin)
 admin.site.register(PouleTeam, PouleTeamAdmin)
 admin.site.register(Match, MatchAdmin)
 admin.site.register(Player, PlayerAdmin)
+admin.site.register(News, NewsAdmin)
