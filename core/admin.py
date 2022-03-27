@@ -1,11 +1,11 @@
+from pyexpat import model
 from django.contrib import admin
-from core.models import Edition, Player, Poule, Match, PouleTeam, Team, Goal
+from core.models import Edition, GalleryImage, Player, Poule, Match, PouleTeam, Team, Goal, News, Gallery
 
 
 class EditionAdmin(admin.ModelAdmin):
     list_display = [
-        "id", "name", "begin_date", "end_date", "programmed",
-        "active"
+        "id", "name", "begin_date", "end_date", "status"
     ]
 
 
@@ -44,6 +44,21 @@ class GoalAdmin(admin.ModelAdmin):
     list_display = ["id", "player", "match", "goal_type"]
 
 
+class NewsAdmin(admin.ModelAdmin):
+    list_display = ['id', 'title', 'edition']
+    search_fields = ['title']
+
+
+class GalleryImageInline(admin.TabularInline):
+    model = GalleryImage
+
+
+class GalleryAdmin(admin.ModelAdmin):
+    list_display = ['id', 'title', 'edition']
+    search_fields = ['title']
+    inlines = [GalleryImageInline]
+
+
 admin.site.register(Team, TeamAdmin)
 admin.site.register(Goal, GoalAdmin)
 admin.site.register(Edition, EditionAdmin)
@@ -51,3 +66,6 @@ admin.site.register(Poule, PouleAdmin)
 admin.site.register(PouleTeam, PouleTeamAdmin)
 admin.site.register(Match, MatchAdmin)
 admin.site.register(Player, PlayerAdmin)
+admin.site.register(News, NewsAdmin)
+admin.site.register(Gallery, GalleryAdmin)
+

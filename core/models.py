@@ -1,12 +1,14 @@
+import re
+from telnetlib import STATUS
 from django.db import models
-
+from django_tuieditor.models import MarkdownField
 
 class Edition(models.Model):
+    STATUS = (('programmed', 'programmed'), ('active', 'active'))
     name = models.CharField(max_length=50, null=False)
     begin_date = models.DateField(null=True, default=None)
     end_date = models.DateField(null=True, default=None)
-    programmed = models.BooleanField(default=False)
-    active = models.BooleanField(default=False)
+    status = models.CharField(max_length=15, choices=STATUS)
 
     def __str__(self):
         return self.name
@@ -46,7 +48,7 @@ class MatchState(models.TextChoices):
 class Match(models.Model):
     """A match between two teams."""
     add_date = models.DateField(auto_now_add=True)
-    date_to_play = models.DateField(null=True)
+    date_to_play = models.DateTimeField(null=True)
     state = models.CharField(choices=MatchState.choices,
                              default=MatchState.to_program,
                              max_length=50)
@@ -61,7 +63,7 @@ class Match(models.Model):
                               related_name="team2")
     goal_team1 = models.SmallIntegerField(default=0)
     goal_team2 = models.SmallIntegerField(default=0)
-    winner = models.SmallIntegerField(default=0)
+    #penalty = models.BooleanField(default=False, )  #vrai si les equipes sont allés au penalty
     edition = models.ForeignKey(Edition,
                                 null=False,
                                 on_delete=models.CASCADE,
@@ -78,6 +80,16 @@ class Match(models.Model):
     @property
     def next_match(self):
         pass
+
+    @property
+    def winner(self):
+        if self.goal_team1 > self.goal_team2:
+            return self.team1
+        elif self.goal_team1 < self.goal_team2:
+            return self.team2
+        else:
+            return None
+
 
 
 class Player(models.Model):
@@ -100,16 +112,21 @@ class Player(models.Model):
         return self.goals.all().count()
 
 
+# class PLayerTeam(models.Model):
+#     edition = models.ForeignKey(Edition, models.CASCADE)
+#     team = models.ForeignKey(Team, models.CASCADE)
+#     player = models.ForeignKey(Player, models.CASCADE)
+
 class Goal(models.Model):
     """Stores a goal scored in a match by a specific player."""
     player = models.ForeignKey(Player,
                                on_delete=models.DO_NOTHING,
                                related_name='goals')
-    match = models.ForeignKey(Match, on_delete=models.DO_NOTHING)
+    match = models.ForeignKey(Match, on_delete=models.DO_NOTHING, related_name='goals')
     goal_type = models.CharField(choices=GoalType.choices, max_length=50)
 
     def __str__(self):
-        return _("Goal by {} during {}").format(self.player, self.match)
+        return ("Goal by {} during {}").format(self.player, self.match)
 
 
 class Poule(models.Model):
@@ -144,3 +161,29 @@ class ContactInfo(models.Model):
 
     def __str__(self):
         return self.name + ' ' + self.subject
+
+class News(models.Model):
+    image = models.ImageField(upload_to='actualites/', default="news_placeholder.jpg",)
+    title = models.CharField(max_length = 50, null=False, blank=False,)
+    description = MarkdownField(max_length = 150, null=False, blank=False,)
+    edition = models.ForeignKey(Edition, models.CASCADE )
+    
+    def __str__(self):
+        return self.title
+  
+
+class Gallery(models.Model):
+    title = models.CharField(max_length=300, blank=True, null=True)
+    edition = models.ForeignKey(Edition, models.CASCADE, related_name='gallery')
+
+    def __str__(self) -> str:
+        return self.title
+
+class GalleryImage(models.Model):
+    gallery = models.ForeignKey(Gallery, models.CASCADE, related_name='images')
+    image =  models.ImageField(upload_to='galleries/', null=False)
+    alt = models.CharField(max_length=20, blank=True, null=True)
+
+    def __str__(self) -> str:
+        return f'photo de {self.gallery.title}'
+    
