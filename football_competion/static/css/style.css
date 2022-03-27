@@ -954,6 +954,10 @@ h1, h2, h3, h4, h5,
   font-size: 14px;
   color: rgba(255, 255, 255, 0.5);
   background: #1a1e25; }
+  .footer-section .widget img{
+    width: 75%;
+    float: left;
+  }
   .footer-section .widget h3 {
     color: #fff;
     font-size: 18px;
@@ -965,6 +969,12 @@ h1, h2, h3, h4, h5,
       .footer-section .widget .links li a:hover {
         content: '>';
         color: #ee1e46; }
+  
+  @media (max-width: 768px){
+    .footer-section .row{
+      display: flex;
+    }
+  }
 
 .custom-nav a {
   font-size: 30px;
@@ -1379,3 +1389,69 @@ h1, h2, h3, h4, h5,
   padding: 0;
 }
 
+/*---------------------
+  Speaker Section
+-----------------------*/
+
+.speaker-section {
+	padding-top: 0;
+}
+
+.speaker-item {
+	margin-bottom: 50px;
+}
+
+.speaker-item .si-pic img {
+	min-width: 100%;
+	border-radius: 2px;
+}
+
+.speaker-item .si-text .si-title {
+	margin-bottom: 28px;
+}
+
+.speaker-item .si-text .si-title h4 {
+	color: #fff;
+	font-weight: 600;
+	margin-bottom: 13px;
+}
+
+.speaker-item .si-text .si-title span {
+	color: #ee1e46;
+	font-size: 18px;
+	display: block;
+}
+
+.speaker-item .si-text .si-social {
+	margin-bottom: 24px;
+}
+
+.speaker-item .si-text .si-social a {
+	display: inline-block;
+	font-size: 25px;
+	color: #171822;
+	height: 40px;
+	width: 40px;
+	text-align: center;
+	line-height: 40px;
+	background: #ebebeb;
+	border-radius: 50%;
+	margin-right: 5px;
+}
+
+.speaker-item .si-text .si-social a:hover {
+	background: -o-linear-gradient(330deg, #ee8425, #f9488b);
+	background: linear-gradient(120deg, #ee8425, #f9488b);
+	color: #ffffff;
+}
+
+.speaker-item .si-text p {
+	color: #707070;
+	line-height: 26px;
+}
+
+@media only screen and (max-width: 991px) {
+  .speaker-item .si-text .si-title {
+		padding-top: 30px;
+	}
+}

@@ -1,5 +1,5 @@
 from django.urls import path, include
-from core.views import IndexView, MatchView, ContactView, TeamView, BlogView, InnerBlogView, GalleryView, getMessage
+from core.views import IndexView, MatchView, ContactView, TeamView, BlogView, InnerBlogView, GalleryView, ContributorsView, getMessage
 
 app_name = 'core'
 
@@ -12,4 +12,5 @@ urlpatterns = [
     # path('blog', BlogView.as_view(), name='blog'),
     path('post', InnerBlogView.as_view(), name='innerblog'),
     path('gallery', GalleryView.as_view(), name='gallery'),
+    path('contributors', ContributorsView.as_view(), name='contributors'),
 ]

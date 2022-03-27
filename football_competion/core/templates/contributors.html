@@ -1,0 +1,63 @@
+{% extends 'main.html' %}
+{% load static %}
+
+<!-- Block Title -->
+{% block title %}
+Coupe du département Info &dash; Tech Team
+{% endblock title %}
+
+<!-- Page Body -->
+{% block body %}
+<!-- ======= Hero Section ======= -->
+<section id="hero" class="d-flex flex-column justify-content-center align-items-center" style="background-image: url('../../static/images/gallery-bg.webp');">
+    <div class="hero-container" data-aos="fade-in">
+      <h1><span style="color: transparent; -webkit-text-stroke-width: 2px; -webkit-text-stroke-color: #ee1e46;">#</span> La T<span style="color: #ee1e46; border-bottom: 5px solid #ee1e46;">e</span>ch <span style="color: #ee1e46;"><\</span>Team<span style="color: #ee1e46;">></span></h1><span style="color: #ee1e46;"></span>
+      <br>
+      <small>We gave it a try, and we made it come true.</small>
+      <br>
+    </div>
+</section>
+<!-- End Hero -->
+
+<br>
+<br>
+
+<!-- Speaker Section Begin -->
+<section class="speaker-section spad">
+    <div class="container">
+        <div class="row">
+            {% for person in contributors %}
+            <div class="col-md-6">
+                <div class="speaker-item">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="si-pic">
+                                <img src=" {{person.image}} " alt="{{person.name}}">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="si-text text-capitalize">
+                                <div class="si-title">
+                                    <h4>{{person.name}}</h4>
+                                    <span class="text-capitalize">{{person.title}}</span>
+                                </div>
+                                <div class="si-social">
+                                    <a href="{{person.website}}"><i class="bi bi-globe2"></i></a>
+                                    <a href="{{person.twitter}}"><i class="bi bi-twitter"></i></a>
+                                    <a href="{{person.github}}"><i class="bi bi-github"></i></a>
+                                </div>
+                                <p>
+                                    {{person.description}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<!-- Speaker Section End -->
+    
+{% endblock body %}

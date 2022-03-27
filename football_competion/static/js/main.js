@@ -376,3 +376,7 @@ jQuery(document).ready(function($) {
       clickable: true
     }
   });
+
+  (function ($) {
+	  
+  })(jQuery);

@@ -3,7 +3,7 @@ from hashlib import new
 from django.shortcuts import redirect, render, HttpResponse
 from django.db.models import Count
 from django.views import View
-from core.models import Edition, Player, Goal, GoalType, PouleTeam, Team, MatchState, News, Gallery
+from core.models import Contributor, Edition, Player, Goal, GoalType, PouleTeam, Team, MatchState, News, Gallery
 from django.views.generic import TemplateView
 from .forms import ContactForm
 from django.core.mail.message import BadHeaderError
@@ -124,6 +124,16 @@ class GalleryView(TemplateView):
 
         context = {
             'images': images,
+        }
+        return render(request, self.template_name, context)
+
+class ContributorsView(TemplateView):
+    template_name = "contributors.html"
+
+    def getContributors(self, request, *args, **kwargs):
+        contributors = Contributor.objects.all()
+        context = {
+            'contributors': contributors,
         }
         return render(request, self.template_name, context)
 

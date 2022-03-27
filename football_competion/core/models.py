@@ -174,4 +174,13 @@ class Gallery(models.Model):
     alt = models.CharField(max_length=20, blank=True, null=True)
     title = models.CharField(max_length=300, blank=True, null=True)
 
+
+class Contributor(models.Model):
+    image =  models.ImageField(upload_to='contributors/', null=False)
+    name = models.CharField(max_length=300, blank=True, null=True)
+    title = models.CharField(max_length=300, blank=True, null=True)
+    website = models.URLField(max_length=300,)
+    twitter = models.URLField(max_length=300,)
+    github = models.URLField(max_length=300,)
+    description = models.TextField()
     
