@@ -1,12 +1,10 @@
+from pyexpat import model
 from django.contrib import admin
-from core.models import Edition, Player, Poule, Match, PouleTeam, Team, Goal, News, GalleryFilter, Gallery, Contributor
+from core.models import Edition, Player, Poule, Match, PouleTeam, Team, Goal, News, GalleryImage, Gallery, Contributor
 
 
 class EditionAdmin(admin.ModelAdmin):
-    list_display = [
-        "id", "name", "begin_date", "end_date", "programmed",
-        "active"
-    ]
+    list_display = ["id", "name", "begin_date", "end_date", "status"]
 
 
 class PlayerAdmin(admin.ModelAdmin):
@@ -43,14 +41,26 @@ class MatchAdmin(admin.ModelAdmin):
 class GoalAdmin(admin.ModelAdmin):
     list_display = ["id", "player", "match", "goal_type"]
 
+
 class NewsAdmin(admin.ModelAdmin):
-    list_display = ['id', 'title', 'description']
+    list_display = ['id', 'title', 'edition']
     search_fields = ['title']
+
 
 class ContributorAdmin(admin.ModelAdmin):
     list_display = ['id', 'name', 'title', 'website']
     list_filter = ['title']
     search_fields = ['name', 'title']
+
+
+class GalleryImageInline(admin.TabularInline):
+    model = GalleryImage
+
+
+class GalleryAdmin(admin.ModelAdmin):
+    list_display = ['id', 'title', 'edition']
+    search_fields = ['title']
+    inlines = [GalleryImageInline]
 
 
 admin.site.register(Team, TeamAdmin)
@@ -61,4 +71,5 @@ admin.site.register(PouleTeam, PouleTeamAdmin)
 admin.site.register(Match, MatchAdmin)
 admin.site.register(Player, PlayerAdmin)
 admin.site.register(News, NewsAdmin)
+admin.site.register(Gallery, GalleryAdmin)
 admin.site.register(Contributor, ContributorAdmin)

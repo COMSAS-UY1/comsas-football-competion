@@ -1,9 +1,8 @@
-# from nis import match
-from hashlib import new
+from telnetlib import STATUS
 from django.shortcuts import redirect, render, HttpResponse
 from django.db.models import Count
 from django.views import View
-from core.models import Contributor, Edition, Player, Goal, GoalType, PouleTeam, Team, MatchState, News, Gallery
+from core.models import Contributor, Edition, Player, Goal, GoalType, GalleryImage, PouleTeam, Team, MatchState, News, Gallery
 from django.views.generic import TemplateView
 from .forms import ContactForm
 from django.core.mail.message import BadHeaderError
@@ -18,7 +17,7 @@ class IndexView(View):
 
     def get(self, request, *args, **kwargs):
         # get current edition
-        current_edition = Edition.objects.filter(active=True).first()
+        current_edition = Edition.objects.filter(status='active').first()
         if current_edition:
             # get all scorers in the current edition
             goals = Goal.objects.exclude(
@@ -46,10 +45,10 @@ class IndexView(View):
             match_not_play = current_edition.matches.exclude(
                 state=MatchState.finish)
             played_match = current_edition.matches.filter(
-                state=MatchState.finish).order_by("-date_to_play", "-id")
+                state=MatchState.finish).order_by("-date_to_play")
             all_match = current_edition.matches.all().order_by(
                 "date_to_play", "id")
-            
+
             # get news
             newsLimit = 3
             news = News.objects.all().order_by('-id')[:newsLimit]
@@ -63,8 +62,9 @@ class IndexView(View):
                 "matchs": all_match,
                 "next_match": next_match,
                 "not_played": match_not_play,
-                "played": played_match,
-                "news" : news,
+                "played_match": played_match,
+                "last_match": played_match.first(),
+                "news": news,
             }
         else:
             context = {}
@@ -76,7 +76,7 @@ class MatchView(View):
 
     def get(self, request, *args, **kwargs):
         # get current edition
-        current_edition = Edition.objects.filter(active=True).first()
+        current_edition = Edition.objects.filter(status='active').first()
         match_not_play = current_edition.matches.exclude(
             state=MatchState.finish).order_by("date_to_play")
 
@@ -91,8 +91,10 @@ class MatchView(View):
         }
         return render(request, self.template_name, context)
 
+
 class ContactView(TemplateView):
     template_name = 'contact.html'
+
 
 class TeamView(TemplateView):
     template_name = "players.html"
@@ -101,29 +103,16 @@ class TeamView(TemplateView):
         context = {}
         return render(request, self.template_name, context)
 
-class BlogView(TemplateView):
-    template_name = 'blog.html'
 
-    def blog(self, request, *args, **kwargs):
-        context = {}
-        return render(request, self.template_name, context)
-
-class InnerBlogView(TemplateView):
-    template_name = 'single.html'
-
-    def innerBlog(self, request, *args, **kwargs):
-        context = {}
-        return render(request, self.template_name, context)
-
-
-class GalleryView(TemplateView):
+class GalleryView(View):
     template_name = "gallery.html"
 
-    def getImages(self, request, *args, **kwargs):
-        images = Gallery.objects.all()
-
+    def get(self, request, *args, **kwargs):
+        last_edition = Edition.objects.filter(status='programmed').order_by('-end_date').first()
+        last_edition_gallery = Gallery.objects.filter(edition=last_edition.id).first()
+        last_edition_images = GalleryImage.objects.filter(gallery=last_edition_gallery.id)
         context = {
-            'images': images,
+            'last_edition_images': last_edition_images,
         }
         return render(request, self.template_name, context)
 
@@ -140,59 +129,53 @@ class ContributorsView(TemplateView):
 
 # Contact form function
 def getMessage(request):
-        if request.method == 'POST':
-            form = ContactForm(request.POST)
-            if form.is_valid():
-                name = form.cleaned_data['name']
-                email = form.cleaned_data['email']
-                phone = form.cleaned_data['phone']
-                subject = form.cleaned_data['subject']
-                message = form.cleaned_data['message']
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            phone = form.cleaned_data['phone']
+            subject = form.cleaned_data['subject']
+            message = form.cleaned_data['message']
 
-                # Additional fields
-                msg = "Si vous recevez ce mail c'est que votre message a bien été envoyé et est en cours de traitement. Voici les détails de votre message:..." + "\n\nNom Complet: " + name + "\nNuméro de téléphone : " + str(phone) + "\n\nMessage Envoyé : " + message + "\n\n\nMerci de nous avoir contacté. Nous espérons vous revoir très bientôt.\n\nTel : [blank]\nEmail : [blank]\n\nEcrivez nous à propos de tout ce que vous voulez, a n'importe quel moment comme bon vous semble!"
-                subjectEmail = subject + " <" + f'{email}' + ">"
+            # Additional fields
+            msg = "Si vous recevez ce mail c'est que votre message a bien été envoyé et est en cours de traitement. Voici les détails de votre message:..." + "\n\nNom Complet: " + name + "\nNuméro de téléphone : " + str(
+                phone
+            ) + "\n\nMessage Envoyé : " + message + "\n\n\nMerci de nous avoir contacté. Nous espérons vous revoir très bientôt.\n\nTel : [blank]\nEmail : [blank]\n\nEcrivez nous à propos de tout ce que vous voulez, a n'importe quel moment comme bon vous semble!"
+            subjectEmail = subject + " <" + f'{email}' + ">"
 
-                # Uncomment this later to send email to required address
-                try:
-                    send_mail(
-                        subjectEmail, #subject
-                        msg, #message
-                        email, #from email
-                        ['joelfah2003@gmail.com', email], #to email
-                        )
-                except BadHeaderError:
-                    return HttpResponse('Invalid header found')
+            # Uncomment this later to send email to required address
+            try:
+                send_mail(
+                    subjectEmail,  #subject
+                    msg,  #message
+                    email,  #from email
+                    ['joelfah2003@gmail.com', email],  #to email
+                )
+            except BadHeaderError:
+                return HttpResponse('Invalid header found')
 
-                # Save message in Database
-                # form.save()
+            # Save message in Database
+            # form.save()
 
-                # Test if form data was saved and output corresponding flash message to confirm message placement or not.
-                try:
-                    form.save()
-                    message_out_success = format_html(
-                        # f'Thanks for contacting us, <strong> {name} </strong> ! Your message has been sent successfully. You will be email a copy at <strong> {email} </strong> !'
-                        f'Cher(e) <b>{name}</b>, merci de nous avoir contacté. Votre message a bien été envoyé. Vous allez recevoir une copie à l\'adresse <b>{email}</b> !'
-                    )
-                    messages.success(
-                        request,
-                        message_out_success
-                    )
-                except:
-                    message_out_error = format_html(
+            # Test if form data was saved and output corresponding flash message to confirm message placement or not.
+            try:
+                form.save()
+                message_out_success = format_html(
+                    # f'Thanks for contacting us, <strong> {name} </strong> ! Your message has been sent successfully. You will be email a copy at <strong> {email} </strong> !'
+                    f'Cher(e) <b>{name}</b>, merci de nous avoir contacté. Votre message a bien été envoyé. Vous allez recevoir une copie à l\'adresse <b>{email}</b> !'
+                )
+                messages.success(request, message_out_success)
+            except:
+                message_out_error = format_html(
                     f'Désolé, <b>{name}</b> ! Nous avons rencontré un problème lors de l\'envoi de votre reponse. Veuillez remplir à nouveau le formulaire.'
-                    )
-                    messages.error(
-                        request,
-                        message_out_error
-                    )
-                
-                # Redidrect to the same page with message output.
-                return redirect('core:contact')
-        else:
-            form = ContactForm()
+                )
+                messages.error(request, message_out_error)
 
-        context = {
-            'modelform': ContactForm
-        }
-        return render(request, 'contact.html', context)
+            # Redidrect to the same page with message output.
+            return redirect('core:contact')
+    else:
+        form = ContactForm()
+
+    context = {'modelform': ContactForm}
+    return render(request, 'contact.html', context)
