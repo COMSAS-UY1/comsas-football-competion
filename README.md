@@ -55,4 +55,4 @@ This repository aims at building a website for the Computer Science Department C
 
         python manage.py runserver
 
-7. Check the server is running by going to [localhost:8000](localhost:8000)
+7. Check the server is running by going to [localhost:8000](http://127.0.0.1:8000)
