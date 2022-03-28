@@ -1,4 +1,6 @@
 {% load static %}
+{% load i18n %}
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -61,13 +63,13 @@
             <div class="ml-auto">
                 <nav class="site-navigation position-relative text-right" role="navigation">
                 <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-                    <li class="{% if request.resolver_match.view_name == 'core:home' %} active {% endif %} "><a href="{% url 'core:home' %}" class="nav-link"><i class="bi bi-house-door-fill"></i> Accueil</a></li>
-                    <li class="{% if request.resolver_match.view_name == 'core:match' %} active {% endif %}"><a href="{% url 'core:match' %}" class="nav-link"><i class="bi bi-calendar-event-fill"></i> Matchs</a></li>
-                    <li class="{% if request.resolver_match.view_name == 'core:team' %} active {% endif %}"><a href="{% url 'core:team' %}" class="nav-link"><i class="bi bi-people-fill"></i> Equipes</a></li>
+                    <li class="{% if request.resolver_match.view_name == 'core:home' %} active {% endif %} "><a href="{% url 'core:home' %}" class="nav-link"><i class="bi bi-house-door-fill"></i> {% translate "Accueil" %} </a></li>
+                    <li class="{% if request.resolver_match.view_name == 'core:match' %} active {% endif %}"><a href="{% url 'core:match' %}" class="nav-link"><i class="bi bi-calendar-event-fill"></i> {% translate "Matchs" %} </a></li>
+                    <li class="{% if request.resolver_match.view_name == 'core:team' %} active {% endif %}"><a href="{% url 'core:team' %}" class="nav-link"><i class="bi bi-people-fill"></i> {% translate "Equipes" %} </a></li>
                     {% comment %} class="{% if request.resolver_match.view_name == 'core:blog' %} active {% endif %}"><a href="{% url 'core:blog' %}" class="nav-link"><i class="bi bi-newspaper"></i> Blog</a></li> {% endcomment %}
-                    <li class="{% if request.resolver_match.view_name == 'core:contact' %} active {% endif %}"><a href="{% url 'core:contact' %}" class="nav-link"><i class="bi bi-headset"></i> Contacts</a></li>
-                    <li class="{% if request.resolver_match.view_name == 'core:gallery' %} active {% endif %}"><a href="{% url 'core:gallery' %}" class="nav-link"><i class="bi bi-images"></i> Gallerie</a></li>
-                    <li class="{% if request.resolver_match.view_name == 'core:contributors' %} active {% endif %}"><a href="{% url 'core:contributors' %}" class="nav-link"><i class="bi bi-github"></i> Contributeurs</a></li>
+                    <li class="{% if request.resolver_match.view_name == 'core:contact' %} active {% endif %}"><a href="{% url 'core:contact' %}" class="nav-link"><i class="bi bi-headset"></i> {% translate "Contacts" %} </a></li>
+                    <li class="{% if request.resolver_match.view_name == 'core:gallery' %} active {% endif %}"><a href="{% url 'core:gallery' %}" class="nav-link"><i class="bi bi-images"></i> {% translate "Gallerie" %} </a></li>
+                    <li class="{% if request.resolver_match.view_name == 'core:contributors' %} active {% endif %}"><a href="{% url 'core:contributors' %}" class="nav-link"><i class="bi bi-github"></i> {% translate "Contributeurs" %} </a></li>
                     <li class=""><a href="" class="nav-link btn btn-primary"><i class="bi bi-globe"></i> Fr</a></li>
                 </ul>
                 </nav>
@@ -100,10 +102,10 @@
                   <div class="widget mb-3">
                     <h3>Briefing</h3>
                     <p class="text-justify">
-                      Pour la k-eme édition de la coupe du département, le COM.S.AS, 
+                      {% translate "Pour la coupe du département, le COM.S.AS, 
                       Computer Science Association, prend sur elle l'organisation de ce 
                       championnat et met à votre disposition ce site pour que vous soyez 
-                      à jour avec le déroulement de celle-ci.
+                      à jour avec le déroulement de celle-ci." %}
                     </p>
                   </div>
                 </div>
@@ -112,12 +114,12 @@
                   <div class="widget mb-3">
                     <h3>Liens Rapides</h3>
                     <ul class="list-unstyled links">
-                      <li><a href="{% if request.resolver_match.view_name == 'core:home' %} # {% else %} {% url 'core:home' %} {% endif %}"><i class="bi bi-house-door-fill"></i> Accueil</a></li>
-                      <li><a href="{% if request.resolver_match.view_name == 'core:match' %} # {% else %} {% url 'core:match' %} {% endif %}"><i class="bi bi-calendar-event-fill"></i> Matchs</a></li>
-                      <li><a href="{% if request.resolver_match.view_name == 'core:team' %} # {% else %} {% url 'core:team' %} {% endif %}"><i class="bi bi-people-fill"></i> Equipes</a></li>
-                      <li><a href="{% if request.resolver_match.view_name == 'core:contact' %} # {% else %} {% url 'core:contact' %} {% endif %}"><i class="bi bi-headset"></i> Contacts</a></li>
-                      <li><a href="{% if request.resolver_match.view_name == 'core:gallery' %} # {% else %} {% url 'core:gallery' %} {% endif %}"><i class="bi bi-images"></i> Gallerie</a></li>
-                      <li><a href="{% if request.resolver_match.view_name == 'core:contributors' %} # {% else %} {% url 'core:contributors' %} {% endif %}"><i class="bi bi-github"></i> Contributeurs</a></li>
+                      <li><a href="{% if request.resolver_match.view_name == 'core:home' %} # {% else %} {% url 'core:home' %} {% endif %}"><i class="bi bi-house-door-fill"></i>  {% translate "Accueil" %} </a></li>
+                      <li><a href="{% if request.resolver_match.view_name == 'core:match' %} # {% else %} {% url 'core:match' %} {% endif %}"><i class="bi bi-calendar-event-fill"></i>  {% translate "Matchs" %} </a></li>
+                      <li><a href="{% if request.resolver_match.view_name == 'core:team' %} # {% else %} {% url 'core:team' %} {% endif %}"><i class="bi bi-people-fill"></i>  {% translate "Equipes" %} </a></li>
+                      <li><a href="{% if request.resolver_match.view_name == 'core:contact' %} # {% else %} {% url 'core:contact' %} {% endif %}"><i class="bi bi-headset"></i>  {% translate "Contacts" %} </a></li>
+                      <li><a href="{% if request.resolver_match.view_name == 'core:gallery' %} # {% else %} {% url 'core:gallery' %} {% endif %}"><i class="bi bi-images"></i>  {% translate "Gallerie" %} </a></li>
+                      <li><a href="{% if request.resolver_match.view_name == 'core:contributors' %} # {% else %} {% url 'core:contributors' %} {% endif %}"><i class="bi bi-github"></i>  {% translate "Contributeurs" %} </a></li>
                     </ul>
                   </div>
                 </div>
@@ -140,11 +142,11 @@
                 <div class="col-md-12">
                   <div class=" pt-5">
                     <p>
-                      Copyright &copy;
+                      Copyrights &copy;
                       <script>
                         document.write(new Date().getFullYear());
                       </script> 
-                      All rights reserved | The Computer Science Association - COM.S.AS
+                      {% translate "Tous droits reservés" %} | The Computer Science Association - COM.S.AS
                     </p>
                   </div>
                 </div>
