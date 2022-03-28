@@ -52,12 +52,11 @@
         
         <header class="site-navbar py-4" role="banner">
     
-        <div class="container">
+        <div class="container-fluid">
             <div class="d-flex align-items-center">
             <div class="site-logo">
-                <a href=" {% url 'core:home' %} ">
-                <span style="font-size: 17pt; font-weight: 100; letter-spacing: 0; position: absolute; left: 0px; top: 29px;">COM.S.AS</span>
-                <img src=" {% static 'images/logo.png' %} " alt="Logo">
+                <a href="{% if request.resolver_match.view_name == 'core:home' %} # {% else %} {% url 'core:home' %} {% endif %}">
+                <img src=" {% static 'images/logo_coupe.png' %} " class="img-fluid" alt="Logo">
                 </a>
             </div>
             <div class="ml-auto">
@@ -69,7 +68,7 @@
                     {% comment %} class="{% if request.resolver_match.view_name == 'core:blog' %} active {% endif %}"><a href="{% url 'core:blog' %}" class="nav-link"><i class="bi bi-newspaper"></i> Blog</a></li> {% endcomment %}
                     <li class="{% if request.resolver_match.view_name == 'core:contact' %} active {% endif %}"><a href="{% url 'core:contact' %}" class="nav-link"><i class="bi bi-headset"></i> {% translate "Contacts" %} </a></li>
                     <li class="{% if request.resolver_match.view_name == 'core:gallery' %} active {% endif %}"><a href="{% url 'core:gallery' %}" class="nav-link"><i class="bi bi-images"></i> {% translate "Gallerie" %} </a></li>
-                    <li class="{% if request.resolver_match.view_name == 'core:contributors' %} active {% endif %}"><a href="{% url 'core:contributors' %}" class="nav-link"><i class="bi bi-github"></i> {% translate "Contributeurs" %} </a></li>
+                    <li class="{% if request.resolver_match.view_name == 'core:contributors' %} active {% endif %}"><a href="{% url 'core:contributors' %}" class="nav-link"><i class="bi bi-github"></i> {% translate "Contributors" %} </a></li>
                     <li class=""><a href="" class="nav-link btn btn-primary"><i class="bi bi-globe"></i> Fr</a></li>
                 </ul>
                 </nav>
