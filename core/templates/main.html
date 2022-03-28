@@ -64,8 +64,10 @@
                     <li class="{% if request.resolver_match.view_name == 'core:home' %} active {% endif %} "><a href="{% url 'core:home' %}" class="nav-link"><i class="bi bi-house-door-fill"></i> Accueil</a></li>
                     <li class="{% if request.resolver_match.view_name == 'core:match' %} active {% endif %}"><a href="{% url 'core:match' %}" class="nav-link"><i class="bi bi-calendar-event-fill"></i> Matchs</a></li>
                     <li class="{% if request.resolver_match.view_name == 'core:team' %} active {% endif %}"><a href="{% url 'core:team' %}" class="nav-link"><i class="bi bi-people-fill"></i> Equipes</a></li>
+                    {% comment %} class="{% if request.resolver_match.view_name == 'core:blog' %} active {% endif %}"><a href="{% url 'core:blog' %}" class="nav-link"><i class="bi bi-newspaper"></i> Blog</a></li> {% endcomment %}
                     <li class="{% if request.resolver_match.view_name == 'core:contact' %} active {% endif %}"><a href="{% url 'core:contact' %}" class="nav-link"><i class="bi bi-headset"></i> Contacts</a></li>
                     <li class="{% if request.resolver_match.view_name == 'core:gallery' %} active {% endif %}"><a href="{% url 'core:gallery' %}" class="nav-link"><i class="bi bi-images"></i> Gallerie</a></li>
+                    <li class="{% if request.resolver_match.view_name == 'core:contributors' %} active {% endif %}"><a href="{% url 'core:contributors' %}" class="nav-link"><i class="bi bi-github"></i> Contributeurs</a></li>
                 </ul>
                 </nav>
     
@@ -85,39 +87,36 @@
         <footer class="footer-section">
             <div class="container">
               <div class="row">
+                
                 <div class="col-lg-3">
                   <div class="widget mb-3">
-                    <h3>Infos</h3>
-                    <ul class="list-unstyled links">
-                      <li><a href="#">Tous</a></li>
-                      <li><a href="#">Info du COM.S.AS</a></li>
-                      <li><a href="#">Gallerie</a></li>
-                      <li><a href="#">Matchs</a></li>
-                      <li><a href="#">Contacts</a></li>
-                    </ul>
+                    <img src="{% static 'images/logo_comsas.png' %}" alt="logo comsas">
+                    <h6><span class="font-weight-bold">C</span>omputer <span class="font-weight-bold">S</span>cience <span class="font-weight-bold">As</span>sociation</h6>
                   </div>
                 </div>
+
                 <div class="col-lg-3">
                   <div class="widget mb-3">
-                    <h3>Tickets</h3>
-                    <ul class="list-unstyled links">
-                      <li><a href="#">Online Ticket</a></li>
-                      <li><a href="#">Payment and Prices</a></li>
-                      <li><a href="#">Contact &amp; Booking</a></li>
-                      <li><a href="#">Tickets</a></li>
-                      <li><a href="#">Coupon</a></li>
-                    </ul>
+                    <h3>Briefing</h3>
+                    <p class="text-justify">
+                      Pour la k-eme édition de la coupe du département, le COM.S.AS, 
+                      Computer Science Association, prend sur elle l'organisation de ce 
+                      championnat et met à votre disposition ce site pour que vous soyez 
+                      à jour avec le déroulement de celle-ci.
+                    </p>
                   </div>
                 </div>
+
                 <div class="col-lg-3">
                   <div class="widget mb-3">
-                    <h3>Matchs</h3>
+                    <h3>Liens Rapides</h3>
                     <ul class="list-unstyled links">
-                      <li><a href="#">Standings</a></li>
-                      <li><a href="#">World Cup</a></li>
-                      <li><a href="#">La Lega</a></li>
-                      <li><a href="#">Hyper Cup</a></li>
-                      <li><a href="#">World League</a></li>
+                      <li><a href="{% if request.resolver_match.view_name == 'core:home' %} # {% else %} {% url 'core:home' %} {% endif %}"><i class="bi bi-house-door-fill"></i> Accueil</a></li>
+                      <li><a href="{% if request.resolver_match.view_name == 'core:match' %} # {% else %} {% url 'core:match' %} {% endif %}"><i class="bi bi-calendar-event-fill"></i> Matchs</a></li>
+                      <li><a href="{% if request.resolver_match.view_name == 'core:team' %} # {% else %} {% url 'core:team' %} {% endif %}"><i class="bi bi-people-fill"></i> Equipes</a></li>
+                      <li><a href="{% if request.resolver_match.view_name == 'core:contact' %} # {% else %} {% url 'core:contact' %} {% endif %}"><i class="bi bi-headset"></i> Contacts</a></li>
+                      <li><a href="{% if request.resolver_match.view_name == 'core:gallery' %} # {% else %} {% url 'core:gallery' %} {% endif %}"><i class="bi bi-images"></i> Gallerie</a></li>
+                      <li><a href="{% if request.resolver_match.view_name == 'core:contributors' %} # {% else %} {% url 'core:contributors' %} {% endif %}"><i class="bi bi-github"></i> Contributeurs</a></li>
                     </ul>
                   </div>
                 </div>

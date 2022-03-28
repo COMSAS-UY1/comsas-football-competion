@@ -1,5 +1,3 @@
-import re
-from telnetlib import STATUS
 from django.db import models
 from django_tuieditor.models import MarkdownField
 
@@ -184,6 +182,18 @@ class GalleryImage(models.Model):
     image =  models.ImageField(upload_to='galleries/', null=False)
     alt = models.CharField(max_length=20, blank=True, null=True)
 
+
     def __str__(self) -> str:
         return f'photo de {self.gallery.title}'
+
+
+class Contributor(models.Model):
+    image =  models.ImageField(upload_to='contributors/', null=False)
+    name = models.CharField(max_length=300, blank=True, null=True)
+    title = models.CharField(max_length=300, blank=True, null=True)
+    website = models.URLField(max_length=300,)
+    twitter = models.URLField(max_length=300,)
+    github = models.URLField(max_length=300,)
+    description = models.TextField()
+
     

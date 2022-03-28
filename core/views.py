@@ -2,7 +2,7 @@ from telnetlib import STATUS
 from django.shortcuts import redirect, render, HttpResponse
 from django.db.models import Count
 from django.views import View
-from core.models import Edition, GalleryImage, Player, Goal, GoalType, PouleTeam, Team, MatchState, News, Gallery
+from core.models import Contributor, Edition, Player, Goal, GoalType, GalleryImage, PouleTeam, Team, MatchState, News, Gallery
 from django.views.generic import TemplateView
 from .forms import ContactForm
 from django.core.mail.message import BadHeaderError
@@ -113,6 +113,16 @@ class GalleryView(View):
         last_edition_images = GalleryImage.objects.filter(gallery=last_edition_gallery.id)
         context = {
             'last_edition_images': last_edition_images,
+        }
+        return render(request, self.template_name, context)
+
+class ContributorsView(TemplateView):
+    template_name = "contributors.html"
+
+    def getContributors(self, request, *args, **kwargs):
+        contributors = Contributor.objects.all()
+        context = {
+            'contributors': contributors,
         }
         return render(request, self.template_name, context)
 
