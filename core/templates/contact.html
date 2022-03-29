@@ -1,9 +1,10 @@
 {% extends 'main.html' %}
 {% load static %}
+{% load i18n %}
 
 <!-- Page Title-->
 {% block title %}
-  Coupe du département Info &dash; Contacts
+  {% translate "Coupe du département Informatique" %} &dash; {% translate "Contacts" %}
 {% endblock title %}
 
 <!-- Page Body -->
@@ -12,25 +13,17 @@
   <div class="container">
     <div class="row align-items-center">
       <div class="col-lg-9 mx-auto text-center">
-        <h1 class="text-white">Contactez Nous</h1>
+        <h1 class="text-white">{% translate "Contactez Nous" %}</h1>
         <p>
-          Pour tous vos soucis, suggestions, question et imcomprehensions durant ce 
+          {% translate "Pour tous vos soucis, suggestions, question et imcomprehensions durant ce 
           championnat veuillez remplir le formulaire suivant pour nous laisser un message, 
-          ou alors contactez-nous directement.
+          ou alors contactez-nous directement." %}
         </p>
-        <!-- Output Message message (Bootstrap-v5 only) -->
-        {% comment %} {% for msg in messages %}
-        <div class="alert alert-{%if msg.level_tag == error %}danger{% else %}{{msg.level_tag}}{% endif %} alert-dismissible fade show" role="alert">
-          <i class="bi bi-{%if msg.level_tag == error %}exclamation-octagon-fill{% elif msg.level_tag == info %}info-circle-fill{% elif msg.level_tag == warning %}exclamation-triangle-fill{% else %}check-circle-fill{% endif %}"></i>
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            {{msg.message}}
-        </div>
-        {% endfor %} {% endcomment %}
-
+        {% comment %} Output message according to criteria {% endcomment %}
         {% for msg in messages %}
           <div class="alert alert-{%if msg.level_tag == error %}danger{% else %}{{msg.level_tag}}{% endif %} alert-dismissible fade show" role="alert">
           <i class="bi bi-{%if msg.level_tag == error %}exclamation-octagon-fill{% elif msg.level_tag == info %}info-circle-fill{% elif msg.level_tag == warning %}exclamation-triangle-fill{% else %}check-circle-fill{% endif %}"></i>  
-            {{msg}}
+            {% blocktrans %} {{msg}} {% endblocktrans %}
               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
               </button>
@@ -49,23 +42,18 @@
         <form action="{% url 'core:contact' %}" method="POST" role="form">
           {% csrf_token %}
           <div class="form-group">
-            <!-- <input type="text" class="form-control" placeholder="Name"> -->
-            {{modelform.name}}
+            {% blocktrans %} {{modelform.name}} {% endblocktrans %}
           </div>
           <div class="form-group d-flex">
-            <!-- <input type="email" class="form-control" placeholder="Email"> -->
-            {{modelform.email}}
+            {% blocktrans %} {{modelform.email}} {% endblocktrans %}
             &ThickSpace;
-            <!-- <input type="number" class="form-control w-75" placeholder="Phone"> -->
-            {{modelform.phone}}
+            {% blocktrans %} {{modelform.phone}} {% endblocktrans %}
           </div>
           <div class="form-group">
-            <!-- <input type="text" class="form-control" placeholder="Subject"> -->
-            {{modelform.subject}}
+            {% blocktrans %} {{modelform.subject}} {% endblocktrans %}
           </div>
           <div class="form-group">
-            <!-- <textarea name="" class="form-control" id="" cols="30" rows="10" placeholder="Write something..."></textarea> -->
-            {{modelform.message}}
+            {% blocktrans %} {{modelform.message}} {% endblocktrans %}
           </div>
           <div class="form-group">
             <input type="submit" class="btn btn-primary py-3 px-5" value="Envoyer">
@@ -77,13 +65,13 @@
         <ul class="list-unstyled">
           <li class="mb-2">
             <strong class="text-white d-block">Email</strong>
-            <a href="#">info@unslate.co</a>
+            <a href="mailto: info@comsas.club">info@comsas.club</a>
           </li>
           <li class="mb-2">
             <strong class="text-white d-block">
-              Téléphone
+              {% translate "Téléphone" %}
             </strong>
-            <a href="#">+12 345 6789 012</a>
+            <a href="#">+(237) 699016727 / 658085308</a>
           </li>
           <li class="mb-2">
             <strong class="text-white d-block">Adresse</strong>

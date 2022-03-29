@@ -1,9 +1,10 @@
 {% extends 'main.html' %}
 {% load static %}
+{% load i18n %}
 
 <!-- Page Title-->
 {% block title %}
-Coupe du département Info &dash; Equipes
+  {% translate "Coupe du département Informatique" %} &dash; {% translate "Equipes" %}
 {% endblock title %}
 
 <!-- Page Body-->
@@ -13,11 +14,11 @@ Coupe du département Info &dash; Equipes
   <div class="container">
     <div class="row align-items-center">
       <div class="col-lg-7 mx-auto text-center">
-        <h1 class="text-white">Equipe<span style="color: #ee1e46;">s</span></h1>
+        <h1 class="text-white">{% translate "Equipe" %}<span style="color: #ee1e46;">s</span></h1>
         <p>
-          Vous avez ici à votre disposition la liste complète des équipes 
+          {% translate "Vous avez ici à votre disposition la liste complète des équipes 
           et des joueurs des différents niveux qui participent à la coupe du 
-          département informatique.
+          département informatique." %}
         </p>
       </div>
     </div>
@@ -30,7 +31,7 @@ Coupe du département Info &dash; Equipes
   <div class="container">
     <div class="row">
       <div class="col-6 title-section">
-        <h2 class="heading text-capitalize">Meilleur joueurs</h2>
+        <h2 class="heading text-capitalize">{% translate "Meilleur joueurs" %}</h2>
       </div>
       <div class="col-6 text-right">
         <div class="custom-nav">
@@ -46,7 +47,7 @@ Coupe du département Info &dash; Equipes
       <div class="item">
         <div class="video-media">
           <img src=" {% static 'images/img_1.jpg' %} " alt="Image" class="img-fluid">
-          <a href="https://vimeo.com/139714818" class="d-flex play-button align-items-center" data-fancybox>
+          <a href="" class="d-flex play-button align-items-center" data-fancybox>
             <span class="icon mr-3">
               <span class="icon-play"></span>
             </span>
@@ -60,7 +61,7 @@ Coupe du département Info &dash; Equipes
       <div class="item">
         <div class="video-media">
           <img src=" {% static 'images/img_2.jpg' %} " alt="Image" class="img-fluid">
-          <a href="https://vimeo.com/139714818" class="d-flex play-button align-items-center" data-fancybox>
+          <a href="" class="d-flex play-button align-items-center" data-fancybox>
             <span class="icon mr-3">
               <span class="icon-play"></span>
             </span>
@@ -74,7 +75,7 @@ Coupe du département Info &dash; Equipes
       <div class="item">
         <div class="video-media">
           <img src=" {% static 'images/img_3.jpg' %} " alt="Image" class="img-fluid">
-          <a href="https://vimeo.com/139714818" class="d-flex play-button align-items-center" data-fancybox>
+          <a href="" class="d-flex play-button align-items-center" data-fancybox>
             <span class="icon mr-3">
               <span class="icon-play"></span>
             </span>
@@ -89,7 +90,7 @@ Coupe du département Info &dash; Equipes
       <div class="item">
         <div class="video-media">
           <img src=" {% static 'images/img_1.jpg' %} " alt="Image" class="img-fluid">
-          <a href="https://vimeo.com/139714818" class="d-flex play-button align-items-center" data-fancybox>
+          <a href="" class="d-flex play-button align-items-center" data-fancybox>
             <span class="icon mr-3">
               <span class="icon-play"></span>
             </span>
@@ -103,7 +104,7 @@ Coupe du département Info &dash; Equipes
       <div class="item">
         <div class="video-media">
           <img src=" {% static 'images/img_2.jpg' %} " alt="Image" class="img-fluid">
-          <a href="https://vimeo.com/139714818" class="d-flex play-button align-items-center" data-fancybox>
+          <a href="" class="d-flex play-button align-items-center" data-fancybox>
             <span class="icon mr-3">
               <span class="icon-play"></span>
             </span>
@@ -117,7 +118,7 @@ Coupe du département Info &dash; Equipes
       <div class="item">
         <div class="video-media">
           <img src=" {% static 'images/img_3.jpg' %} " alt="Image" class="img-fluid">
-          <a href="https://vimeo.com/139714818" class="d-flex play-button align-items-center" data-fancybox>
+          <a href="" class="d-flex play-button align-items-center" data-fancybox>
             <span class="icon mr-3">
               <span class="icon-play"></span>
             </span>
@@ -138,8 +139,10 @@ Coupe du département Info &dash; Equipes
 <div class="container">
   <div class="row">
     <div class="col-12 title-section">
-      <h2 class="heading">Equipes</h2>
+      <h2 class="heading">{% translate "Equipes" %}</h2>
     </div>
+
+    {% comment %} for loop sur toute la <div class="col-lg-6 mb-4"> ci dessous pour afficher les differentes equipes {% endcomment %}
     <div class="col-lg-6 mb-4">
       <div class="bg-light p-4 rounded">
         <div class="widget-body">
@@ -148,477 +151,51 @@ Coupe du département Info &dash; Equipes
                 <div class="team-1 text-center">
                   <img src=" {% static 'images/logo_1.png' %} " alt="Image">
                   <h3 class="text-capitalize">Info l1 FONDA</h3>
-                  <small class="text-muted see-names">Posez le curseur sur l'image pour voir le nom du joueur.</small>
+                  <small class="text-muted see-names">{% translate "Posez le curseur sur l'image pour voir le nom du joueur." %}</small>
                 </div>
               </div>
               <br>
-              <h3 class="text-muted">Titulaires</h3>
+              <h3 class="text-muted">{% translate "Titulaires" %}</h3>
               <div class="d-flex">
+
+                {% comment %} for loop sur le bloc ci dessous pour afficher les titulaires {% endcomment %}
                 <div class="author d-flex align-items-center">
                   <div class="img mb-2 mr-3 d-flex">
-                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="Mellissa Allison">
+                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="">
                   </div>
                 </div>
-                <div class="author d-flex align-items-center">
-                  <div class="img mb-2 mr-3 d-flex">
-                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="Mellissa Allison">
-                  </div>
-                </div>
-                <div class="author d-flex align-items-center">
-                  <div class="img mb-2 mr-3 d-flex">
-                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="Mellissa Allison">
-                  </div>
-                </div>
-                <div class="author d-flex align-items-center">
-                  <div class="img mb-2 mr-3 d-flex">
-                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="Mellissa Allison">
-                  </div>
-                </div>
-                <div class="author d-flex align-items-center">
-                  <div class="img mb-2 mr-3 d-flex">
-                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="Mellissa Allison">
-                  </div>
-                </div>
-                <div class="author d-flex align-items-center">
-                  <div class="img mb-2 mr-3 d-flex">
-                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="Mellissa Allison">
-                  </div>
-                </div>
-                <div class="author d-flex align-items-center">
-                  <div class="img mb-2 mr-3 d-flex">
-                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="Mellissa Allison">
-                  </div>
-                </div>
-                <div class="author d-flex align-items-center">
-                  <div class="img mb-2 mr-3 d-flex">
-                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="Mellissa Allison">
-                  </div>
-                </div>
-                <div class="author d-flex align-items-center">
-                  <div class="img mb-2 mr-3 d-flex">
-                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="Mellissa Allison">
-                  </div>
-                </div>
-                <div class="author d-flex align-items-center">
-                  <div class="img mb-2 mr-3 d-flex">
-                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="Mellissa Allison">
-                  </div>
-                </div>
-                <div class="author d-flex align-items-center">
-                  <div class="img mb-2 mr-3 d-flex">
-                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="Mellissa Allison">
-                  </div>
-                </div>
+
               </div>
+
               <br>
-              <h3 class="text-muted">Remplaçants</h3>
+
+              <h3 class="text-muted">{% translate "Remplaçants" %}</h3>
               <div class="d-flex">
+
+                {% comment %} for loop sur le bloc ci dessous pour afficher les remplacants {% endcomment %}
                 <div class="author d-flex align-items-center">
                   <div class="img mb-2 mr-3 d-flex">
-                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="Mellissa Allison">
+                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="">
                   </div>
                 </div>
-                <div class="author d-flex align-items-center">
-                  <div class="img mb-2 mr-3 d-flex">
-                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="Mellissa Allison">
-                  </div>
-                </div>
-                <div class="author d-flex align-items-center">
-                  <div class="img mb-2 mr-3 d-flex">
-                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="Mellissa Allison">
-                  </div>
-                </div>
-                <div class="author d-flex align-items-center">
-                  <div class="img mb-2 mr-3 d-flex">
-                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="Mellissa Allison">
-                  </div>
-                </div>
-                <div class="author d-flex align-items-center">
-                  <div class="img mb-2 mr-3 d-flex">
-                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="Mellissa Allison">
-                  </div>
-                </div>
+
               </div>
             </div>
           </div>
 
           <div class="text-center widget-vs-contents mb-4">
-            <h4>Statisqtiques de l'équipe</h4>
+            <h4 class="text-capitalize">{% translate "Statisqtiques de l'équipe" %}</h4>
             <div class="d-flex">
               <p class="mb-5 text-left">
-                <span class="d-block"><i class="bi bi-people-fill" style="font-size: 18pt; color: #e93a5d;"></i> 16 joueurs enregistrés</span>
-                <span class="d-block"><i class="bi bi-balloon-fill" style="font-size: 18pt; color: #e93a5d;"></i> 0 buts inscris</span>
-                <span class="d-block"><i class="bi bi-calendar2-check-fill" style="font-size: 18pt; color: #e93a5d;"></i> 0 matchs joués</span>
+                <span class="d-block"><i class="bi bi-people-fill" style="font-size: 18pt; color: #e93a5d;"></i> 16 {% translate "joueurs enregistrés" %}</span>
+                <span class="d-block"><i class="bi bi-balloon-fill" style="font-size: 18pt; color: #e93a5d;"></i> 0 {% translate "buts inscris" %}</span>
+                <span class="d-block"><i class="bi bi-calendar2-check-fill" style="font-size: 18pt; color: #e93a5d;"></i> 0 {% translate "matchs joués" %}</span>
              </p>
              <div class="w-25"></div>
              <p class="mb-5 text-left">
               <span class="d-block"><i class="bi bi-table" style="font-size: 18pt; color: #e93a5d;"></i> 1er au class.</span>
-               <span class="d-block"><i class="bi bi-file-fill" style="font-size: 18pt; color: #fffb00;"></i> 0 cartons jaunes</span>
-                <span class="d-block"><i class="bi bi-file-fill" style="font-size: 18pt; color: #ff0000;"></i> 0 cartons rouges</span>
-             </p>
-            </div>
-          </div>
-        
-      </div>
-    </div>
-    <div class="col-lg-6 mb-4">
-      <div class="bg-light p-4 rounded">
-        <div class="widget-body">
-            <div class="widget-vs">
-              <div class="d-flex align-items-center justify-content-around justify-content-between w-100">
-                <div class="team-1 text-center">
-                  <img src=" {% static 'images/logo_1.png' %} " alt="Image">
-                  <h3 class="text-capitalize">Info l2 FONDA</h3>
-                  <small class="text-muted see-names">Posez le curseur sur l'image pour voir le nom du joueur.</small>
-                </div>
-              </div>
-              <br>
-              <h3 class="text-muted">Titulaires</h3>
-              <div class="d-flex">
-                <div class="author d-flex align-items-center">
-                  <div class="img mb-2 mr-3 d-flex">
-                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="Mellissa Allison">
-                  </div>
-                </div>
-                <div class="author d-flex align-items-center">
-                  <div class="img mb-2 mr-3 d-flex">
-                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="Mellissa Allison">
-                  </div>
-                </div>
-                <div class="author d-flex align-items-center">
-                  <div class="img mb-2 mr-3 d-flex">
-                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="Mellissa Allison">
-                  </div>
-                </div>
-                <div class="author d-flex align-items-center">
-                  <div class="img mb-2 mr-3 d-flex">
-                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="Mellissa Allison">
-                  </div>
-                </div>
-                <div class="author d-flex align-items-center">
-                  <div class="img mb-2 mr-3 d-flex">
-                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="Mellissa Allison">
-                  </div>
-                </div>
-                <div class="author d-flex align-items-center">
-                  <div class="img mb-2 mr-3 d-flex">
-                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="Mellissa Allison">
-                  </div>
-                </div>
-                <div class="author d-flex align-items-center">
-                  <div class="img mb-2 mr-3 d-flex">
-                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="Mellissa Allison">
-                  </div>
-                </div>
-                <div class="author d-flex align-items-center">
-                  <div class="img mb-2 mr-3 d-flex">
-                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="Mellissa Allison">
-                  </div>
-                </div>
-                <div class="author d-flex align-items-center">
-                  <div class="img mb-2 mr-3 d-flex">
-                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="Mellissa Allison">
-                  </div>
-                </div>
-                <div class="author d-flex align-items-center">
-                  <div class="img mb-2 mr-3 d-flex">
-                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="Mellissa Allison">
-                  </div>
-                </div>
-                <div class="author d-flex align-items-center">
-                  <div class="img mb-2 mr-3 d-flex">
-                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="Mellissa Allison">
-                  </div>
-                </div>
-              </div>
-              <br>
-              <h3 class="text-muted">Remplaçants</h3>
-              <div class="d-flex">
-                <div class="author d-flex align-items-center">
-                  <div class="img mb-2 mr-3 d-flex">
-                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="Mellissa Allison">
-                  </div>
-                </div>
-                <div class="author d-flex align-items-center">
-                  <div class="img mb-2 mr-3 d-flex">
-                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="Mellissa Allison">
-                  </div>
-                </div>
-                <div class="author d-flex align-items-center">
-                  <div class="img mb-2 mr-3 d-flex">
-                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="Mellissa Allison">
-                  </div>
-                </div>
-                <div class="author d-flex align-items-center">
-                  <div class="img mb-2 mr-3 d-flex">
-                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="Mellissa Allison">
-                  </div>
-                </div>
-                <div class="author d-flex align-items-center">
-                  <div class="img mb-2 mr-3 d-flex">
-                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="Mellissa Allison">
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="text-center widget-vs-contents mb-4">
-            <h4>Statisqtiques de l'équipe</h4>
-            <div class="d-flex">
-              <p class="mb-5 text-left">
-                <span class="d-block"><i class="bi bi-people-fill" style="font-size: 18pt; color: #e93a5d;"></i> 16 joueurs enregistrés</span>
-                <span class="d-block"><i class="bi bi-balloon-fill" style="font-size: 18pt; color: #e93a5d;"></i> 0 buts inscris</span>
-                <span class="d-block"><i class="bi bi-calendar2-check-fill" style="font-size: 18pt; color: #e93a5d;"></i> 0 matchs joués</span>
-             </p>
-             <div class="w-25"></div>
-             <p class="mb-5 text-left">
-              <span class="d-block"><i class="bi bi-table" style="font-size: 18pt; color: #e93a5d;"></i> 1er au class.</span>
-               <span class="d-block"><i class="bi bi-file-fill" style="font-size: 18pt; color: #fffb00;"></i> 0 cartons jaunes</span>
-                <span class="d-block"><i class="bi bi-file-fill" style="font-size: 18pt; color: #ff0000;"></i> 0 cartons rouges</span>
-             </p>
-            </div>
-          </div>
-        
-      </div>
-    </div>
-
-    <div class="col-lg-6 mb-4">
-      <div class="bg-light p-4 rounded">
-        <div class="widget-body">
-            <div class="widget-vs">
-              <div class="d-flex align-items-center justify-content-around justify-content-between w-100">
-                <div class="team-1 text-center">
-                  <img src=" {% static 'images/logo_1.png' %} " alt="Image">
-                  <h3 class="text-capitalize">Info l3 FONDA</h3>
-                  <small class="text-muted see-names">Posez le curseur sur l'image pour voir le nom du joueur.</small>
-                </div>
-              </div>
-              <br>
-              <h3 class="text-muted">Titulaires</h3>
-              <div class="d-flex">
-                <div class="author d-flex align-items-center">
-                  <div class="img mb-2 mr-3 d-flex">
-                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="Mellissa Allison">
-                  </div>
-                </div>
-                <div class="author d-flex align-items-center">
-                  <div class="img mb-2 mr-3 d-flex">
-                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="Mellissa Allison">
-                  </div>
-                </div>
-                <div class="author d-flex align-items-center">
-                  <div class="img mb-2 mr-3 d-flex">
-                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="Mellissa Allison">
-                  </div>
-                </div>
-                <div class="author d-flex align-items-center">
-                  <div class="img mb-2 mr-3 d-flex">
-                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="Mellissa Allison">
-                  </div>
-                </div>
-                <div class="author d-flex align-items-center">
-                  <div class="img mb-2 mr-3 d-flex">
-                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="Mellissa Allison">
-                  </div>
-                </div>
-                <div class="author d-flex align-items-center">
-                  <div class="img mb-2 mr-3 d-flex">
-                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="Mellissa Allison">
-                  </div>
-                </div>
-                <div class="author d-flex align-items-center">
-                  <div class="img mb-2 mr-3 d-flex">
-                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="Mellissa Allison">
-                  </div>
-                </div>
-                <div class="author d-flex align-items-center">
-                  <div class="img mb-2 mr-3 d-flex">
-                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="Mellissa Allison">
-                  </div>
-                </div>
-                <div class="author d-flex align-items-center">
-                  <div class="img mb-2 mr-3 d-flex">
-                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="Mellissa Allison">
-                  </div>
-                </div>
-                <div class="author d-flex align-items-center">
-                  <div class="img mb-2 mr-3 d-flex">
-                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="Mellissa Allison">
-                  </div>
-                </div>
-                <div class="author d-flex align-items-center">
-                  <div class="img mb-2 mr-3 d-flex">
-                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="Mellissa Allison">
-                  </div>
-                </div>
-              </div>
-              <br>
-              <h3 class="text-muted">Remplaçants</h3>
-              <div class="d-flex">
-                <div class="author d-flex align-items-center">
-                  <div class="img mb-2 mr-3 d-flex">
-                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="Mellissa Allison">
-                  </div>
-                </div>
-                <div class="author d-flex align-items-center">
-                  <div class="img mb-2 mr-3 d-flex">
-                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="Mellissa Allison">
-                  </div>
-                </div>
-                <div class="author d-flex align-items-center">
-                  <div class="img mb-2 mr-3 d-flex">
-                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="Mellissa Allison">
-                  </div>
-                </div>
-                <div class="author d-flex align-items-center">
-                  <div class="img mb-2 mr-3 d-flex">
-                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="Mellissa Allison">
-                  </div>
-                </div>
-                <div class="author d-flex align-items-center">
-                  <div class="img mb-2 mr-3 d-flex">
-                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="Mellissa Allison">
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="text-center widget-vs-contents mb-4">
-            <h4>Statisqtiques de l'équipe</h4>
-            <div class="d-flex">
-              <p class="mb-5 text-left">
-                <span class="d-block"><i class="bi bi-people-fill" style="font-size: 18pt; color: #e93a5d;"></i> 16 joueurs enregistrés</span>
-                <span class="d-block"><i class="bi bi-balloon-fill" style="font-size: 18pt; color: #e93a5d;"></i> 0 buts inscris</span>
-                <span class="d-block"><i class="bi bi-calendar2-check-fill" style="font-size: 18pt; color: #e93a5d;"></i> 0 matchs joués</span>
-             </p>
-             <div class="w-25"></div>
-             <p class="mb-5 text-left">
-              <span class="d-block"><i class="bi bi-table" style="font-size: 18pt; color: #e93a5d;"></i> 1er au class.</span>
-               <span class="d-block"><i class="bi bi-file-fill" style="font-size: 18pt; color: #fffb00;"></i> 0 cartons jaunes</span>
-                <span class="d-block"><i class="bi bi-file-fill" style="font-size: 18pt; color: #ff0000;"></i> 0 cartons rouges</span>
-             </p>
-            </div>
-          </div>
-        
-      </div>
-    </div>
-    <div class="col-lg-6 mb-4">
-      <div class="bg-light p-4 rounded">
-        <div class="widget-body">
-            <div class="widget-vs">
-              <div class="d-flex align-items-center justify-content-around justify-content-between w-100">
-                <div class="team-1 text-center">
-                  <img src=" {% static 'images/logo_1.png' %} " alt="Image">
-                  <h3 class="text-capitalize">ICT4DEV 1</h3>
-                  <small class="text-muted see-names">Posez le curseur sur l'image pour voir le nom du joueur.</small>
-                </div>
-              </div>
-              <br>
-              <h3 class="text-muted">Titulaires</h3>
-              <div class="d-flex">
-                <div class="author d-flex align-items-center">
-                  <div class="img mb-2 mr-3 d-flex">
-                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="Mellissa Allison">
-                  </div>
-                </div>
-                <div class="author d-flex align-items-center">
-                  <div class="img mb-2 mr-3 d-flex">
-                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="Mellissa Allison">
-                  </div>
-                </div>
-                <div class="author d-flex align-items-center">
-                  <div class="img mb-2 mr-3 d-flex">
-                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="Mellissa Allison">
-                  </div>
-                </div>
-                <div class="author d-flex align-items-center">
-                  <div class="img mb-2 mr-3 d-flex">
-                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="Mellissa Allison">
-                  </div>
-                </div>
-                <div class="author d-flex align-items-center">
-                  <div class="img mb-2 mr-3 d-flex">
-                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="Mellissa Allison">
-                  </div>
-                </div>
-                <div class="author d-flex align-items-center">
-                  <div class="img mb-2 mr-3 d-flex">
-                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="Mellissa Allison">
-                  </div>
-                </div>
-                <div class="author d-flex align-items-center">
-                  <div class="img mb-2 mr-3 d-flex">
-                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="Mellissa Allison">
-                  </div>
-                </div>
-                <div class="author d-flex align-items-center">
-                  <div class="img mb-2 mr-3 d-flex">
-                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="Mellissa Allison">
-                  </div>
-                </div>
-                <div class="author d-flex align-items-center">
-                  <div class="img mb-2 mr-3 d-flex">
-                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="Mellissa Allison">
-                  </div>
-                </div>
-                <div class="author d-flex align-items-center">
-                  <div class="img mb-2 mr-3 d-flex">
-                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="Mellissa Allison">
-                  </div>
-                </div>
-                <div class="author d-flex align-items-center">
-                  <div class="img mb-2 mr-3 d-flex">
-                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="Mellissa Allison">
-                  </div>
-                </div>
-              </div>
-              <br>
-              <h3 class="text-muted">Remplaçants</h3>
-              <div class="d-flex">
-                <div class="author d-flex align-items-center">
-                  <div class="img mb-2 mr-3 d-flex">
-                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="Mellissa Allison">
-                  </div>
-                </div>
-                <div class="author d-flex align-items-center">
-                  <div class="img mb-2 mr-3 d-flex">
-                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="Mellissa Allison">
-                  </div>
-                </div>
-                <div class="author d-flex align-items-center">
-                  <div class="img mb-2 mr-3 d-flex">
-                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="Mellissa Allison">
-                  </div>
-                </div>
-                <div class="author d-flex align-items-center">
-                  <div class="img mb-2 mr-3 d-flex">
-                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="Mellissa Allison">
-                  </div>
-                </div>
-                <div class="author d-flex align-items-center">
-                  <div class="img mb-2 mr-3 d-flex">
-                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="Mellissa Allison">
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="text-center widget-vs-contents mb-4">
-            <h4>Statisqtiques de l'équipe</h4>
-            <div class="d-flex">
-              <p class="mb-5 text-left">
-                <span class="d-block"><i class="bi bi-people-fill" style="font-size: 18pt; color: #e93a5d;"></i> 16 joueurs enregistrés</span>
-                <span class="d-block"><i class="bi bi-balloon-fill" style="font-size: 18pt; color: #e93a5d;"></i> 0 buts inscris</span>
-                <span class="d-block"><i class="bi bi-calendar2-check-fill" style="font-size: 18pt; color: #e93a5d;"></i> 0 matchs joués</span>
-             </p>
-             <div class="w-25"></div>
-             <p class="mb-5 text-left">
-              <span class="d-block"><i class="bi bi-table" style="font-size: 18pt; color: #e93a5d;"></i> 1er au class.</span>
-               <span class="d-block"><i class="bi bi-file-fill" style="font-size: 18pt; color: #fffb00;"></i> 0 cartons jaunes</span>
-                <span class="d-block"><i class="bi bi-file-fill" style="font-size: 18pt; color: #ff0000;"></i> 0 cartons rouges</span>
+               <span class="d-block"><i class="bi bi-file-fill" style="font-size: 18pt; color: #fffb00;"></i> 0 {% translate "cartons jaunes" %}</span>
+                <span class="d-block"><i class="bi bi-file-fill" style="font-size: 18pt; color: #ff0000;"></i> 0 {% translate "cartons rouges" %}</span>
              </p>
             </div>
           </div>
@@ -630,7 +207,7 @@ Coupe du département Info &dash; Equipes
 </div>
 
 
-<div class="container site-section">
+{% comment %} <div class="container site-section">
   <div class="row">
     <div class="col-6 title-section">
       <h2 class="heading">Blog</h2>
@@ -664,6 +241,6 @@ Coupe du département Info &dash; Equipes
       </div>
     </div>
   </div>
-</div>
+</div> {% endcomment %}
 
 {% endblock body %}

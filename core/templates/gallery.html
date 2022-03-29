@@ -1,9 +1,11 @@
-                                                                                                                                                                {% extends 'main.html' %}
+{% extends 'main.html' %}
 {% load static %}
+{% load i18n %}
+
 
 <!-- Block Title -->
 {% block title %}
-Coupe du département Info &dash; Gallerie
+  {% translate "Coupe du département Informatique" %} &dash; {% translate "Gallerie" %}
 {% endblock title %}
 
 <!-- Page Body -->
@@ -11,10 +13,10 @@ Coupe du département Info &dash; Gallerie
 <!-- ======= Hero Section ======= -->
 <section id="hero" class="d-flex flex-column justify-content-center align-items-center" style="background-image: url('../../static/images/gallery-bg.webp');">
     <div class="hero-container" data-aos="fade-in">
-      <h1>Captiver l'instant | Gallerie</h1>
-      <small>We gave it a try, and we made it come true.</small>
+      <h1>{% trans "Captivez l'instant | Gallerie" %}</h1>
+      <small>{% translate "Nous l'avons fait et nous pouvons le témoigner." %}</small>
       <br>
-      <small>Un condensé de souvenirs...</small>
+      <small>{% translate "Un condensé de souvenirs..." %}</small>
     </div>
    </section>
   <!-- End Hero -->
@@ -38,20 +40,17 @@ Coupe du département Info &dash; Gallerie
 
         <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="100">
 
-          {% for gallery in last_edition_images %}
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <div class="portfolio-wrap">
-             
-                <img src=" {{gallery.image.url}} " class="img-fluid" alt="">
-                <div class="portfolio-links">
-                  <a href=" {{gallery.image.url}} " data-gallery="portfolioGallery" class="portfolio-lightbox" title="Image shooted"><i class="bi bi-eye"></i></a>
-                  <a href=" {{gallery.image.url}} " title="Download" download=""><i class="bi bi-download"></i></a>
-                </div>
-             
-            </div>
+          {% comment %} Le bloc ci dessous sera a l'interieur du for loop, qui va afficher les images de differentes editions {% endcomment %}
+          <div class="col-md-3">
+            <img src=" {% static 'images/person_1.jpg' %} " class="img-fluid" alt="">
           </div>
-          {% endfor %}
-          
+
+          {% comment %}
+            Puis apres l'affichage de l'element dont l'indice est multiple de 4 (ou 3 si l'on commence a compter a 0)
+            on y insere un break tag (<br>)
+          {% endcomment %}
+
+        </div>
       </div>
     </section>
     <!-- End Portfolio Section -->

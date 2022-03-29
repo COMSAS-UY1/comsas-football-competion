@@ -1,9 +1,10 @@
 {% extends 'main.html' %}
 {% load static %}
+{% load i18n %}
 
 <!-- Block Title -->
 {% block title %}
-Coupe du département Info &dash; Tech Team
+    {% translate "Coupe du département Informatique" %} &dash; {% translate "Contributeurs" %}
 {% endblock title %}
 
 <!-- Page Body -->
@@ -13,7 +14,9 @@ Coupe du département Info &dash; Tech Team
     <div class="hero-container" data-aos="fade-in">
       <h1><span style="color: transparent; -webkit-text-stroke-width: 2px; -webkit-text-stroke-color: #ee1e46;">#</span> La T<span style="color: #ee1e46; border-bottom: 5px solid #ee1e46;">e</span>ch <span style="color: #ee1e46;"><\</span>Team<span style="color: #ee1e46;">></span></h1><span style="color: #ee1e46;"></span>
       <br>
-      <small>We gave it a try, and we made it come true.</small>
+      <small>
+          {% translate "Nous l'avons essayé, et nous l'avons réalisé." %}
+        </small>
       <br>
     </div>
 </section>
@@ -22,7 +25,7 @@ Coupe du département Info &dash; Tech Team
 <br>
 <br>
 
-<!-- Speaker Section Begin -->
+<!-- Contributor Section Begin -->
 <section class="speaker-section spad">
     <div class="container">
         <div class="row">
@@ -39,7 +42,9 @@ Coupe du département Info &dash; Tech Team
                             <div class="si-text text-capitalize">
                                 <div class="si-title">
                                     <h4>{{person.name}}</h4>
-                                    <span class="text-capitalize">{{person.title}}</span>
+                                    <span class="text-capitalize">
+                                        {% blocktrans %} {{person.title}} {% endblocktrans %}
+                                    </span>
                                 </div>
                                 <div class="si-social">
                                     <a href="{{person.website}}"><i class="bi bi-globe2"></i></a>
@@ -47,7 +52,7 @@ Coupe du département Info &dash; Tech Team
                                     <a href="{{person.github}}"><i class="bi bi-github"></i></a>
                                 </div>
                                 <p>
-                                    {{person.description}}
+                                    {% blocktrans %} {{person.description}} {% endblocktrans %}
                                 </p>
                             </div>
                         </div>
@@ -58,6 +63,6 @@ Coupe du département Info &dash; Tech Team
         </div>
     </div>
 </section>
-<!-- Speaker Section End -->
+<!-- Contributor Section End -->
     
 {% endblock body %}

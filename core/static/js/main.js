@@ -253,7 +253,7 @@ jQuery(document).ready(function($) {
 
 	var siteCountDown = function() {
 
-		$('#date-countdown, #date-countdown2').countdown('2022/04/04', function(event) {
+		$('#date-countdown').countdown('2022/04/04', function(event) {
 		  var $this = $(this).html(event.strftime(''
 		    + '<span class="countdown-block"><span class="label">%w</span> weeks </span>'
 		    + '<span class="countdown-block"><span class="label">%d</span> days </span>'
@@ -264,6 +264,20 @@ jQuery(document).ready(function($) {
 				
 	};
 	siteCountDown();
+
+	var siteCountDownNextMatch = function() {
+
+		$('#date-countdown2').countdown('2022/09/02', function(event) {
+		  var $this = $(this).html(event.strftime(''
+		    + '<span class="countdown-block"><span class="label">%w</span> weeks </span>'
+		    + '<span class="countdown-block"><span class="label">%d</span> days </span>'
+		    + '<span class="countdown-block"><span class="label">%H</span> hr </span>'
+		    + '<span class="countdown-block"><span class="label">%M</span> min </span>'
+		    + '<span class="countdown-block"><span class="label">%S</span> sec</span>'));
+		});
+				
+	};
+	siteCountDownNextMatch();
 
 	var siteDatePicker = function() {
 
