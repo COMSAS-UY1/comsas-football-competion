@@ -1,4 +1,4 @@
-{% extends 'main.html' %}
+{% extends 'core/main.html' %}
 {% load static %}
 {% load i18n %}
 
@@ -42,18 +42,18 @@
         <form action="{% url 'core:contact' %}" method="POST" role="form">
           {% csrf_token %}
           <div class="form-group">
-            {% blocktrans %} {{modelform.name}} {% endblocktrans %}
+            {% blocktrans %} {{form.name}} {% endblocktrans %}
           </div>
           <div class="form-group d-flex">
-            {% blocktrans %} {{modelform.email}} {% endblocktrans %}
+            {% blocktrans %} {{form.email}} {% endblocktrans %}
             &ThickSpace;
-            {% blocktrans %} {{modelform.phone}} {% endblocktrans %}
+            {% blocktrans %} {{form.phone}} {% endblocktrans %}
           </div>
           <div class="form-group">
-            {% blocktrans %} {{modelform.subject}} {% endblocktrans %}
+            {% blocktrans %} {{form.subject}} {% endblocktrans %}
           </div>
           <div class="form-group">
-            {% blocktrans %} {{modelform.message}} {% endblocktrans %}
+            {% blocktrans %} {{form.message}} {% endblocktrans %}
           </div>
           <div class="form-group">
             <input type="submit" class="btn btn-primary py-3 px-5" value="Envoyer">

@@ -1,4 +1,4 @@
-{% extends 'main.html' %}
+{% extends 'core/main.html' %}
 
 <!-- load some element -->
 {% load static %}
@@ -27,7 +27,7 @@
         </p>
         <p>
           <a href="#latest-news" class="btn btn-primary py-3 px-4 mr-3">{% translate "Découverte" %}</a>
-          <a href="{% url 'core:match' %}" class="btn more light">{% translate "Statistiques" %}</a>
+          <a href="{% url 'tournoi:match' %}" class="btn more light">{% translate "Statistiques" %}</a>
         </p>  
       </div>
     </div>
@@ -82,7 +82,7 @@
       <div class="col-md-4">
         <div class="post-entry">
           <a href="#">
-            <img src=" {{actu.image}} " alt="Image" class="img-fluid">
+            <img src="{{actu.image.url}}" alt="Image" class="img-fluid">
           </a>
           <div class="caption">
             <div class="caption-inner">

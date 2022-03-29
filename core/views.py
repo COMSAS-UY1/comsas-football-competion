@@ -1,136 +1,27 @@
-from telnetlib import STATUS
+from pprint import pp, pprint
 from django.shortcuts import redirect, render, HttpResponse
 from django.db.models import Count
 from django.views import View
-from core.models import Contributor, Edition, Player, Goal, GoalType, GalleryImage, PouleTeam, Team, MatchState, News, Gallery
-from django.views.generic import TemplateView
+from core.models import Contributor, GalleryImage, News, Gallery
+from django.views.generic import ListView
 from .forms import ContactForm
 from django.core.mail.message import BadHeaderError
 from django.core.mail import send_mail
 from django.contrib import messages
 from django.utils.html import format_html
+from tournoi.models import Edition
 
 
-class IndexView(View):
-    """ Class view for home page """
-    template_name = 'index.html'
-
-    def get(self, request, *args, **kwargs):
-        # get current edition
-        current_edition = Edition.objects.filter(status='active').first()
-        if current_edition:
-            # get all scorers in the current edition
-            goals = Goal.objects.exclude(
-                goal_type=GoalType.CSC,
-                match__edition__active=False).values("player").annotate(
-                    nbgoal=Count("id"),
-                    nbmatch=Count("match")).order_by("-nbgoal", "match")
-            for i, elt in enumerate(goals):
-                goals[i]["player"] = Player.objects.filter(
-                    id=goals[i]["player"]).first()
-            # get stats
-            poules = current_edition.poules.all()
-            classements = {}
-            for poule in poules:
-                poule_teams = PouleTeam.objects.filter(poule=poule).order_by(
-                    "-points", "-goals_average")
-                classements[poule.name] = poule_teams
-
-            teams = Team.objects.all()
-
-            next_match = current_edition.matches.filter(
-                state=MatchState.to_program).order_by("date_to_play",
-                                                      "id").first()
-
-            match_not_play = current_edition.matches.exclude(
-                state=MatchState.finish)
-            played_match = current_edition.matches.filter(
-                state=MatchState.finish).order_by("-date_to_play")
-            all_match = current_edition.matches.all().order_by(
-                "date_to_play", "id")
-
-            # get news
-            newsLimit = 3
-            news = News.objects.all().order_by('-id')[:newsLimit]
-
-            context = {
-                "current_edition": current_edition,
-                "poules": poules,
-                "standing": classements,
-                "goals": goals,
-                "teams": teams,
-                "matchs": all_match,
-                "next_match": next_match,
-                "not_played": match_not_play,
-                "played_match": played_match,
-                "last_match": played_match.first(),
-                "news": news,
-            }
-        else:
-            context = {}
-        return render(request, self.template_name, context)
-
-
-class MatchView(View):
-    template_name = 'matches.html'
+class ContactView(View):
+    template_name = 'core/contact.html'
+    form_class = ContactForm
 
     def get(self, request, *args, **kwargs):
-        # get current edition
-        current_edition = Edition.objects.filter(status='active').first()
-        match_not_play = current_edition.matches.exclude(
-            state=MatchState.finish).order_by("date_to_play")
+        form = self.form_class()
+        return render(request, self.template_name, {'form': form})
 
-        played_match = current_edition.matches.filter(
-            state=MatchState.finish).order_by("-date_to_play")
-        all_match = current_edition.matches.all().order_by("date_to_play")
-        context = {
-            "nbar": "match",
-            "to_plays": match_not_play,
-            "played_matchs": played_match,
-            "all_match": match_not_play
-        }
-        return render(request, self.template_name, context)
-
-
-class ContactView(TemplateView):
-    template_name = 'contact.html'
-
-
-class TeamView(TemplateView):
-    template_name = "players.html"
-
-    def teams(self, request, *args, **kwargs):
-        context = {}
-        return render(request, self.template_name, context)
-
-
-class GalleryView(View):
-    template_name = "gallery.html"
-
-    def get(self, request, *args, **kwargs):
-        last_edition = Edition.objects.filter(status='programmed').order_by('-end_date').first()
-        last_edition_gallery = Gallery.objects.filter(edition=last_edition.id).first()
-        last_edition_images = GalleryImage.objects.filter(gallery=last_edition_gallery.id)
-        context = {
-            'last_edition_images': last_edition_images,
-        }
-        return render(request, self.template_name, context)
-
-class ContributorsView(TemplateView):
-    template_name = "contributors.html"
-
-    def getContributors(self, request, *args, **kwargs):
-        contributors = Contributor.objects.all()
-        context = {
-            'contributors': contributors,
-        }
-        return render(request, self.template_name, context)
-
-
-# Contact form function
-def getMessage(request):
-    if request.method == 'POST':
-        form = ContactForm(request.POST)
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST)
         if form.is_valid():
             name = form.cleaned_data['name']
             email = form.cleaned_data['email']
@@ -174,8 +65,35 @@ def getMessage(request):
 
             # Redidrect to the same page with message output.
             return redirect('core:contact')
-    else:
-        form = ContactForm()
+        else:
+            return render(request, self.template_name, {'form': form})
 
-    context = {'modelform': ContactForm}
-    return render(request, 'contact.html', context)
+
+class GalleryView(View):
+    template_name = "core/gallery.html"
+
+    def get(self, request, *args, **kwargs):
+        last_edition = Edition.objects.filter(
+            status='programmed').order_by('-end_date').first()
+        last_edition_gallery = Gallery.objects.filter(
+            edition=last_edition.id).first()
+        last_edition_images = GalleryImage.objects.filter(
+            gallery=last_edition_gallery.id)
+        context = {
+            'last_edition_images': last_edition_images,
+        }
+        return render(request, self.template_name, context)
+
+
+class ContributorsView(ListView):
+    template_name = "core/contributors.html"
+    queryset = Contributor.objects.all()
+
+
+class NewsView(View):
+    template_name = "core/index.html"
+
+    def get(self, request, *args, **kwargs):
+        queryset = News.objects.filter(edition__status='active')
+        context = {'news': queryset}
+        return render(request, self.template_name, context)

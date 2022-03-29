@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core',
+    'tournoi',
     "django_tuieditor",
 ]
 
@@ -121,9 +122,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'core/static')
-]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'core/static')]
 
 # Email configuration for gmail smtp
 EMAIL_USE_TLS = True
@@ -133,8 +132,6 @@ EMAIL_HOST_USER = ''
 EMAIL_HOST_PASSWORD = ''
 EMAIL_PORT = 587
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-
-
 
 MEDIA_URL = 'media/'
 
