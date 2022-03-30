@@ -1,3 +1,4 @@
+from pipes import Template
 from pprint import pp, pprint
 from django.shortcuts import redirect, render, HttpResponse
 from django.db.models import Count
@@ -10,6 +11,7 @@ from django.core.mail import send_mail
 from django.contrib import messages
 from django.utils.html import format_html
 from tournoi.models import Edition
+from django.views.generic import TemplateView
 
 
 class ContactView(View):
@@ -97,3 +99,6 @@ class NewsView(View):
         queryset = News.objects.filter(edition__status='active')
         context = {'news': queryset}
         return render(request, self.template_name, context)
+
+class BlogView(TemplateView):
+    template_name = "core/blog.html"
