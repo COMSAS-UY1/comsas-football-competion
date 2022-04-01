@@ -33,86 +33,29 @@
       </div>
     </div>
     <div class="row">
+     {% for new in news %}
       <div class="col-lg-4 mb-4">
         <div class="custom-media d-block">
-          <div class="img mb-4">
-            <a href="single.html"><img src=" {% static 'images/img_1.jpg' %} " alt="Image" class="img-fluid"></a>
+          <div style="height: 60vh;">
+            <a href="#">
+              <img src="{{new.image.url}}" alt="Image" class="img-fluid" style="object-fit: cover; height: 100%; width: 100%;">
+            </a>
           </div>
           <div class="text">
-            <span class="meta">May 20, 2020</span>
-            <h3 class="mb-4"><a href="#">Romolu to stay at Real Nadrid?</a></h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus deserunt saepe tempora dolorem.</p>
-            <p><a href="#">Read more</a></p>
+            <span class="meta">{{new.add_on|date:"D d M Y"}}</span>
+            <h3 class="mb-4"><a href="{#% url 'core:news_detail' new.title|slugify new.id%}#">{{new.title|title|slice:'30'}}</a></h3>
+            <p>{{new.description|title|slice:'65'}}</p>
+            <p><a href="{#% url 'core:news_detail' new.title|slugify new.id%#}">Read more</a></p>
           </div>
         </div>
       </div>
-      <div class="col-lg-4 mb-4">
-        <div class="custom-media d-block">
-          <div class="img mb-4">
-            <a href="single.html"><img src=" {% static 'images/img_3.jpg' %} " alt="Image" class="img-fluid"></a>
-          </div>
-          <div class="text">
-            <span class="meta">May 20, 2020</span>
-            <h3 class="mb-4"><a href="#">Romolu to stay at Real Nadrid?</a></h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus deserunt saepe tempora dolorem.</p>
-            <p><a href="#">Read more</a></p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-4 mb-4">
-        <div class="custom-media d-block">
-          <div class="img mb-4">
-            <a href="single.html"><img src=" {% static 'images/img_1.jpg' %} " alt="Image" class="img-fluid"></a>
-          </div>
-          <div class="text">
-            <span class="meta">May 20, 2020</span>
-            <h3 class="mb-4"><a href="#">Romolu to stay at Real Nadrid?</a></h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus deserunt saepe tempora dolorem.</p>
-            <p><a href="#">Read more</a></p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 mb-4">
-        <div class="custom-media d-block">
-          <div class="img mb-4">
-            <a href="single.html"><img src=" {% static 'images/img_3.jpg' %} " alt="Image" class="img-fluid"></a>
-          </div>
-          <div class="text">
-            <span class="meta">May 20, 2020</span>
-            <h3 class="mb-4"><a href="#">Romolu to stay at Real Nadrid?</a></h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus deserunt saepe tempora dolorem.</p>
-            <p><a href="#">Read more</a></p>
-          </div>
-        </div>
-      </div>
+      {% endfor %} 
       
-      <div class="col-lg-4 mb-4">
-        <div class="custom-media d-block">
-          <div class="img mb-4">
-            <a href="single.html"><img src=" {% static 'images/img_1.jpg' %} " alt="Image" class="img-fluid"></a>
-          </div>
-          <div class="text">
-            <span class="meta">May 20, 2020</span>
-            <h3 class="mb-4"><a href="#">Romolu to stay at Real Nadrid?</a></h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus deserunt saepe tempora dolorem.</p>
-            <p><a href="#">Read more</a></p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 mb-4">
-        <div class="custom-media d-block">
-          <div class="img mb-4">
-            <a href="single.html"><img src=" {% static 'images/img_3.jpg' %} " alt="Image" class="img-fluid"></a>
-          </div>
-          <div class="text">
-            <span class="meta">May 20, 2020</span>
-            <h3 class="mb-4"><a href="#">Romolu to stay at Real Nadrid?</a></h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus deserunt saepe tempora dolorem.</p>
-            <p><a href="#">Read more</a></p>
-          </div>
-        </div>
-      </div>
+
+     
+      
+     
+     
     </div>
 
     <div class="row justify-content-center">

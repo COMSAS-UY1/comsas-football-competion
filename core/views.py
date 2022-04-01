@@ -93,12 +93,10 @@ class ContributorsView(ListView):
 
 
 class NewsView(View):
-    template_name = "core/index.html"
+    template_name = "core/blog.html"
 
     def get(self, request, *args, **kwargs):
         queryset = News.objects.filter(edition__status='active')
         context = {'news': queryset}
         return render(request, self.template_name, context)
 
-class BlogView(TemplateView):
-    template_name = "core/blog.html"

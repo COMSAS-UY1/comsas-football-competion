@@ -1,4 +1,4 @@
-from django.utils.translation import ugettext_lazy as _
+
 import os
 import environ  # Initialise environment variables
 
@@ -102,8 +102,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 LANGUAGES = (
-    ('en', _('English')),
-    ('fr', _('French')),
+    ('en', ('English')),
+    ('fr', ('French')),
 )
 LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale')]
 TIME_ZONE = 'Africa/Douala'
