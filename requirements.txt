@@ -1,6 +1,13 @@
 asgiref==3.5.0
 backports.zoneinfo==0.2.1
+cffi==1.15.0
+cmarkgfm==0.8.0
 Django==4.0.3
+django-environ==0.8.1
+django-gunicorn==0.1.1
+django-tuieditor==0.2.0
+gunicorn==20.1.0
 Pillow==9.0.1
+pycparser==2.21
 sqlparse==0.4.2
 yapf==0.32.0
