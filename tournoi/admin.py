@@ -17,10 +17,10 @@ class PouleAdmin(admin.ModelAdmin):
 
 class PouleTeamAdmin(admin.ModelAdmin):
     list_display = [
-        "id", "team", "poule", "points", "goals", "conceded_goals",
-        "goals_average"
+        "id", "team", "poule", "points", "victory", "defeat",
+        "null"
     ]
-    search_fields = ["team", "poule", "goals_average"]
+    search_fields = ["team", "poule", "victotry"]
     list_filter = ["team", "poule"]
 
 

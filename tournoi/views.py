@@ -24,13 +24,13 @@ class IndexView(View):
                 goals[i]["player"] = Player.objects.filter(
                     id=goals[i]["player"]).first()
             # get stats
-            poules = current_edition.poules.all()
-            classements = {}
-            for poule in poules:
-                poule_teams = PouleTeam.objects.filter(poule=poule).order_by(
-                    "-points", "-goals_average")
-                classements[poule.name] = poule_teams
-
+            pouleA = current_edition.poules.filter(name='Poule A')
+            pouleB = current_edition.poules.filter(name='Poule B')
+            classement_A = PouleTeam.objects.filter(poule=pouleA).order_by(
+                    "-points")
+            classement_B = PouleTeam.objects.filter(poule=pouleB).order_by(
+                    "-points")
+            
             teams = Team.objects.all()
 
             next_match = current_edition.matches.filter(
@@ -47,8 +47,10 @@ class IndexView(View):
             news = News.objects.filter(edition__status='active')
             context = {
                 "current_edition": current_edition,
-                "poules": poules,
-                "standing": classements,
+                "pouleA": pouleA,
+                "pouleB": pouleB,
+                'classement_A':classement_A,
+                'classement_B':classement_B,
                 "goals": goals,
                 "teams": teams,
                 "matchs": all_match,

@@ -151,10 +151,10 @@ class PouleTeam(models.Model):
     """ Stocke chaque ligne dans le tableau de statisque"""
     team = models.ForeignKey(Team, on_delete=models.CASCADE, null=False)
     poule = models.ForeignKey(Poule, on_delete=models.CASCADE, null=False)
-    goals = models.SmallIntegerField(default=0)
+    victory = models.SmallIntegerField(default=0)
     points = models.SmallIntegerField(default=0)
-    conceded_goals = models.SmallIntegerField(default=0)
-    goals_average = models.SmallIntegerField(default=0)
+    defeat = models.SmallIntegerField(default=0)
+    null = models.SmallIntegerField(default=0)
 
     def __str__(self):
         return self.team.name + " " + self.poule.__str__()
