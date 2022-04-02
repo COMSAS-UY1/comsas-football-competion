@@ -17,11 +17,13 @@ class PouleAdmin(admin.ModelAdmin):
 
 class PouleTeamAdmin(admin.ModelAdmin):
     list_display = [
-        "id", "team", "poule", "points", "victory", "defeat",
-        "null"
+        "id", "team", "poule", "points", "victory", "defeat", "null"
     ]
     search_fields = ["team", "poule", "victotry"]
     list_filter = ["team", "poule"]
+
+
+populated_fields = ['']
 
 
 class TeamAdmin(admin.ModelAdmin):
@@ -32,8 +34,8 @@ class TeamAdmin(admin.ModelAdmin):
 
 class MatchAdmin(admin.ModelAdmin):
     list_display = [
-        "id", "team1", "team2", "date_to_play", "goal_team1", "goal_team2",
-        "edition"
+        "id", "team1", "team2", "date_to_play", "stade_name", "goal_team1",
+        "goal_team2", "edition"
     ]
 
 

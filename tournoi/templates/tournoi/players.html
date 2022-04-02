@@ -44,91 +44,23 @@
 
 
     <div class="owl-4-slider owl-carousel">
-      <div class="item">
-        <div class="video-media">
-          <img src=" {% static 'images/img_1.jpg' %} " alt="Image" class="img-fluid">
-          <a href="" class="d-flex play-button align-items-center" data-fancybox>
-            <span class="icon mr-3">
-              <span class="icon-play"></span>
-            </span>
-            <div class="caption">
-              <span class="meta">#10 / Forward</span>
-              <h3 class="m-0">Phillip Hobbs</h3>
-            </div>
-          </a>
+      {% for player in top_players %}
+        <div class="item">
+          <div class="video-media">
+            <img src=" {{player.photo.url}} " alt="Image" class="img-fluid">
+            <a href="" class="d-flex play-button align-items-center" data-fancybox>
+              <span class="icon mr-3">
+                <span class="icon-play"></span>
+              </span>
+              <div class="caption">
+                <h3 class="m-0">{{player.name|title}}</h3>
+              </div>
+            </a>
+          </div>
         </div>
-      </div>
-      <div class="item">
-        <div class="video-media">
-          <img src=" {% static 'images/img_2.jpg' %} " alt="Image" class="img-fluid">
-          <a href="" class="d-flex play-button align-items-center" data-fancybox>
-            <span class="icon mr-3">
-              <span class="icon-play"></span>
-            </span>
-            <div class="caption">
-              <span class="meta">#7 / Forward</span>
-              <h3 class="m-0">Garry Norris</h3>
-            </div>
-          </a>
-        </div>
-      </div>
-      <div class="item">
-        <div class="video-media">
-          <img src=" {% static 'images/img_3.jpg' %} " alt="Image" class="img-fluid">
-          <a href="" class="d-flex play-button align-items-center" data-fancybox>
-            <span class="icon mr-3">
-              <span class="icon-play"></span>
-            </span>
-            <div class="caption">
-              <span class="meta">#4 / Forward</span>
-              <h3 class="m-0">Romolu Harper</h3>
-            </div>
-          </a>
-        </div>
-      </div>
+       {% endfor %}
+      
 
-      <div class="item">
-        <div class="video-media">
-          <img src=" {% static 'images/img_1.jpg' %} " alt="Image" class="img-fluid">
-          <a href="" class="d-flex play-button align-items-center" data-fancybox>
-            <span class="icon mr-3">
-              <span class="icon-play"></span>
-            </span>
-            <div class="caption">
-              <span class="meta">#4 / Forward</span>
-              <h3 class="m-0">Phillip Hobbs</h3>
-            </div>
-          </a>
-        </div>
-      </div>
-      <div class="item">
-        <div class="video-media">
-          <img src=" {% static 'images/img_2.jpg' %} " alt="Image" class="img-fluid">
-          <a href="" class="d-flex play-button align-items-center" data-fancybox>
-            <span class="icon mr-3">
-              <span class="icon-play"></span>
-            </span>
-            <div class="caption">
-              <span class="meta">#1 / GoalKeeper</span>
-              <h3 class="m-0">Garry Norris</h3>
-            </div>
-          </a>
-        </div>
-      </div>
-      <div class="item">
-        <div class="video-media">
-          <img src=" {% static 'images/img_3.jpg' %} " alt="Image" class="img-fluid">
-          <a href="" class="d-flex play-button align-items-center" data-fancybox>
-            <span class="icon mr-3">
-              <span class="icon-play"></span>
-            </span>
-            <div class="caption">
-              <span class="meta">#8 / Forward</span>
-              <h3 class="m-0">Romolu Harper</h3>
-            </div>
-          </a>
-        </div>
-      </div>
     </div>
 
   </div>

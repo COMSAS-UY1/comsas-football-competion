@@ -108,42 +108,9 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-6">
-        <div class="widget-next-match">
-          <div class="widget-title">
-            <h3 class="text-capitalize">{% translate "Prochain Match" %}</h3>
-          </div>
-          <div class="widget-body mb-3">
-            <div class="widget-vs">
-              <div class="d-flex align-items-center justify-content-around justify-content-between w-100">
-                <div class="team-1 text-center">
-                  <img src=" {{next_match.team1.logo.url}} " alt="{{next_match.team1.name}}">
-                  <h3 class="text-capitalize">{{next_match.team1.name}}</h3>
-                </div>
-                <div>
-                  <span class="vs"><span>VS</span></span>
-                </div>
-                <div class="team-2 text-center">
-                  <img src=" {{next_match.team2.logo.url}} " alt="{{next_match.team2.name}}">
-                  <h3 class="text-capitalize">{{next_match.team2.name}}</h3>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="text-center widget-vs-contents mb-4">
-            <h4 class="text-capitalize">{% translate "Coupe du département" %}</h4>
-            <p class="mb-5">
-              <span class="d-block">{{ next_match.date_to_play }}</span>
-              <!-- span class="d-block">15:30 (GMT+1)</span   !-->
-              <strong class="text-primary">Stade Mateco</strong>
-            </p>
-
-            <div id="date-countdown2" class="pb-1"></div>
-          </div>
+        <div class="col-12 title-section">
+          <h2 class="heading" id="latest-news">{% translate "Poule A" %}</h2>
         </div>
-      </div>
-      <div class="col-lg-6">
-        
         <div class="widget-next-match">
           <table class="table custom-table">
             <thead>
@@ -169,23 +136,101 @@
               </tr>
             </thead>
             <tbody>
-              {% for elt in classements_A %}
+              {% for elt in classement_A %}
                 <tr>
                   <td>{{ forloop.counter }}</td>
-                  <td><strong class="text-white">{{elt.team.name}}</strong></td>
+                  <td><strong class="text-white">{{elt.team.abreviation}}</strong></td>
                   
-                  <td>{{elt.team.victory}}</td>
-                  <td>{{elt.team.defeat}}t</td>
-                  <td>{{elt.team.nul}}l</td>
-                  <td>{{elt.team.points}}</td>
+                  <td>{{elt.victory}}</td>
+                  <td>{{elt.defeat}}</td>
+                  <td>{{elt.null}}</td>
+                  <td>{{elt.points}}</td>
                 </tr>
               {% endfor %}
             </tbody>
           </table>
         </div>
-        
       </div>
-      
+
+      <div class="col-lg-6">
+        <div class="col-12 title-section">
+          <h2 class="heading" id="latest-news">{% translate "Poule B" %}</h2>
+        </div>
+        <div class="widget-next-match">
+          <table class="table custom-table">
+            <thead>
+              <tr>
+                {% comment %} 
+                  Normalement la traduction en anglais devrait aussi changer les lettres ci dessous comme suit.
+                  Fr ------ En
+                  R  =====> R
+                  J  =====> P
+                  V  =====> W
+                  N  =====> D
+                  D  =====> L
+                  PTS  =====> PTS
+                {% endcomment %}
+
+                <th>R</th>
+                <th>{% translate "Équipe" %}</th>
+                
+                <th>V</th>
+                <th>N</th>
+                <th>D</th>
+                <th>PTS</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for elt in classement_B %}
+                <tr>
+                  <td>{{ forloop.counter }}</td>
+                  <td><strong class="text-white">{{elt.team.abreviation}}</strong></td>
+                  
+                  <td>{{elt.victory}}</td>
+                  <td>{{elt.defeat}}</td>
+                  <td>{{elt.null}}</td>
+                  <td>{{elt.points}}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="widget-next-match">
+        <div class="widget-title">
+          <h3 class="text-capitalize">{% translate "Prochain Match" %}</h3>
+        </div>
+        <div class="widget-body mb-3">
+          <div class="widget-vs">
+            <div class="d-flex align-items-center justify-content-around justify-content-between w-100">
+              <div class="team-1 text-center">
+                <img src=" {{next_match.team1.logo.url}} " alt="{{next_match.team1.name}}">
+                <h3 class="text-capitalize">{{next_match.team1.name}}</h3>
+              </div>
+              <div>
+                <span class="vs"><span>VS</span></span>
+              </div>
+              <div class="team-2 text-center">
+                <img src=" {{next_match.team2.logo.url}} " alt="{{next_match.team2.name}}">
+                <h3 class="text-capitalize">{{next_match.team2.name}}</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center widget-vs-contents mb-4">
+          <h4 class="text-capitalize">{% translate "Coupe du département" %}</h4>
+          <p class="mb-5">
+            <span class="d-block">{{ next_match.date_to_play }}</span>
+            <!-- span class="d-block">15:30 (GMT+1)</span   !-->
+            <strong class="text-primary">{{next_match.stade_name|title}}</strong>
+          </p>
+
+          <!--div id="date-countdown2" class="pb-1"></div!-->
+        </div>
+      </div>
     </div>
   </div>
 </div> <!-- .site-section -->
@@ -194,7 +239,7 @@
   <div class="container">
     <div class="row">
       <div class="col-6 title-section">
-        <h2 class="heading text-capitalize">{% translate "Vidéos | Temps Forts" %}</h2>
+        <h2 class="heading text-capitalize">{% translate "Top players" %}</h2>
       </div>
       <div class="col-6 text-right">
         <div class="custom-nav">
@@ -207,85 +252,22 @@
 
 
     <div class="owl-4-slider owl-carousel">
-      <div class="item">
-        <div class="video-media">
-          <img src=" {% static 'images/img_1.jpg' %} " alt="Image" class="img-fluid">
-          <a href="" class="d-flex play-button align-items-center" data-fancybox>
-            <span class="icon mr-3">
-              <span class="icon-play"></span>
-            </span>
-            <div class="caption">
-              <h3 class="m-0">Dogba set for Juvendu return?</h3>
-            </div>
-          </a>
+      {% for player in top_players %}
+        <div class="item">
+          <div class="video-media">
+            <img src=" {{player.photo.url}} " alt="Image" class="img-fluid">
+            <a href="" class="d-flex play-button align-items-center" data-fancybox>
+              <span class="icon mr-3">
+                <span class="icon-play"></span>
+              </span>
+              <div class="caption">
+                <h3 class="m-0">{{player.name|title}}</h3>
+              </div>
+            </a>
+          </div>
         </div>
-      </div>
-      <div class="item">
-        <div class="video-media">
-          <img src=" {% static 'images/img_2.jpg' %} " alt="Image" class="img-fluid">
-          <a href="" class="d-flex play-button align-items-center" data-fancybox>
-            <span class="icon mr-3">
-              <span class="icon-play"></span>
-            </span>
-            <div class="caption">
-              <h3 class="m-0">Kai Nets Double To Secure Comfortable Away Win</h3>
-            </div>
-          </a>
-        </div>
-      </div>
-      <div class="item">
-        <div class="video-media">
-          <img src=" {% static 'images/img_3.jpg' %} " alt="Image" class="img-fluid">
-          <a href="" class="d-flex play-button align-items-center" data-fancybox>
-            <span class="icon mr-3">
-              <span class="icon-play"></span>
-            </span>
-            <div class="caption">
-              <h3 class="m-0">Romolu to stay at Real Nadrid?</h3>
-            </div>
-          </a>
-        </div>
-      </div>
-
-      <div class="item">
-        <div class="video-media">
-          <img src=" {% static 'images/img_1.jpg' %} " alt="Image" class="img-fluid">
-          <a href="" class="d-flex play-button align-items-center" data-fancybox>
-            <span class="icon mr-3">
-              <span class="icon-play"></span>
-            </span>
-            <div class="caption">
-              <h3 class="m-0">Dogba set for Juvendu return?</h3>
-            </div>
-          </a>
-        </div>
-      </div>
-      <div class="item">
-        <div class="video-media">
-          <img src=" {% static 'images/img_2.jpg' %} " alt="Image" class="img-fluid">
-          <a href="" class="d-flex play-button align-items-center" data-fancybox>
-            <span class="icon mr-3">
-              <span class="icon-play"></span>
-            </span>
-            <div class="caption">
-              <h3 class="m-0">Kai Nets Double To Secure Comfortable Away Win</h3>
-            </div>
-          </a>
-        </div>
-      </div>
-      <div class="item">
-        <div class="video-media">
-          <img src=" {% static 'images/img_3.jpg' %} " alt="Image" class="img-fluid">
-          <a href="" class="d-flex play-button align-items-center" data-fancybox>
-            <span class="icon mr-3">
-              <span class="icon-play"></span>
-            </span>
-            <div class="caption">
-              <h3 class="m-0">Romolu to stay at Real Nadrid?</h3>
-            </div>
-          </a>
-        </div>
-      </div>
+       {% endfor %}
+      
 
     </div>
 

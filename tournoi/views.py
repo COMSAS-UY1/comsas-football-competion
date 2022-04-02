@@ -1,3 +1,4 @@
+from pprint import pprint
 from django.shortcuts import render
 from django.db.models import Count
 from django.views import View
@@ -24,13 +25,13 @@ class IndexView(View):
                 goals[i]["player"] = Player.objects.filter(
                     id=goals[i]["player"]).first()
             # get stats
-            pouleA = current_edition.poules.filter(name='Poule A')
-            pouleB = current_edition.poules.filter(name='Poule B')
-            classement_A = PouleTeam.objects.filter(poule=pouleA).order_by(
-                    "-points")
-            classement_B = PouleTeam.objects.filter(poule=pouleB).order_by(
-                    "-points")
-            
+            pouleA = current_edition.poules.filter(name='Poule A').first()
+            pouleB = current_edition.poules.filter(name='Poule B').first()
+            classement_A = PouleTeam.objects.filter(
+                poule=pouleA).order_by("-points")
+            classement_B = PouleTeam.objects.filter(
+                poule=pouleB).order_by("-points")
+
             teams = Team.objects.all()
 
             next_match = current_edition.matches.filter(
@@ -49,8 +50,8 @@ class IndexView(View):
                 "current_edition": current_edition,
                 "pouleA": pouleA,
                 "pouleB": pouleB,
-                'classement_A':classement_A,
-                'classement_B':classement_B,
+                'classement_A': classement_A,
+                'classement_B': classement_B,
                 "goals": goals,
                 "teams": teams,
                 "matchs": all_match,
@@ -71,17 +72,16 @@ class MatchView(View):
     def get(self, request, *args, **kwargs):
         # get current edition
         current_edition = Edition.objects.filter(status='active').first()
-        next_macthes = current_edition.matches.exclude(
+        next_matchs = current_edition.matches.exclude(
             state=MatchState.finish).order_by("date_to_play")
 
         played_matches = current_edition.matches.filter(
             state=MatchState.finish).order_by("-date_to_play")
-        
-        
+
         context = {
-            "next_macthes": next_macthes,
+            "next_matchs": next_matchs,
             "played_matches": played_matches,
-            "next_macth": next_macthes.first(),
+            "next_match": next_matchs.first(),
             "last_macth": played_matches.first(),
         }
         return render(request, self.template_name, context)

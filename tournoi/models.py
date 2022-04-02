@@ -50,6 +50,7 @@ class Match(models.Model):
     """A match between two teams."""
     add_date = models.DateField(auto_now_add=True)
     date_to_play = models.DateTimeField(null=True)
+    stade_name = models.CharField(max_length=200, default='Stade Mateco')
     state = models.CharField(choices=MatchState.choices,
                              default=MatchState.to_program,
                              max_length=50)
