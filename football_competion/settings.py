@@ -1,4 +1,4 @@
-from django.utils.translation import ugettext_lazy as _
+# from django.utils.translation import ugettext_lazy as _
 import os
 import environ  # Initialise environment variables
 
@@ -101,10 +101,10 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
-LANGUAGES = (
-    ('en', _('English')),
-    ('fr', _('French')),
-)
+# LANGUAGES = (
+#     ('en', _('English')),
+#     ('fr', _('French')),
+# )
 LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale')]
 TIME_ZONE = 'Africa/Douala'
 
@@ -118,7 +118,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'staticfiles')]
+# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'staticfiles')]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 # Email configuration for gmail smtp
 EMAIL_USE_TLS = True
