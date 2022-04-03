@@ -52,7 +52,7 @@
         
         <header class="site-navbar py-4" role="banner">
     
-        <div class="container-fluid">
+        <div class="container">
             <div class="d-flex align-items-center">
             <div class="site-logo">
                 <a href="{% if request.resolver_match.view_name == 'tournoi:home' %} # {% else %} {% url 'tournoi:home' %} {% endif %}">
@@ -66,10 +66,21 @@
                     <li class="{% if request.resolver_match.view_name == 'tournoi:match' %} active {% endif %}"><a href="{% url 'tournoi:match' %}" class="nav-link"><i class="bi bi-calendar-event-fill"></i> {% translate "Matchs" %} </a></li>
                     <li class="{% if request.resolver_match.view_name == 'tournoi:team' %} active {% endif %}"><a href="{% url 'tournoi:team' %}" class="nav-link"><i class="bi bi-people-fill"></i> {% translate "Equipes" %} </a></li>
                     <li class="{% if request.resolver_match.view_name == 'core:news' %} active {% endif %}"><a href="{% url 'core:news' %}" class="nav-link"><i class="bi bi-newspaper"></i> {% translate "Blog" %}</a></li>
-                    <li class="{% if request.resolver_match.view_name == 'core:contact' %} active {% endif %}"><a href="{% url 'core:contact' %}" class="nav-link"><i class="bi bi-headset"></i> {% translate "Contacts" %} </a></li>
-                    <li class="{% if request.resolver_match.view_name == 'core:gallery' %} active {% endif %}"><a href="{% url 'core:gallery' %}" class="nav-link"><i class="bi bi-images"></i> {% translate "Gallerie" %} </a></li>
-                    <li class="{% if request.resolver_match.view_name == 'core:contributors' %} active {% endif %}"><a href="{% url 'core:contributors' %}" class="nav-link"><i class="bi bi-github"></i> {% translate "Contributors" %} </a></li>
-                    <li class=""><a href="" class="nav-link btn btn-primary"><i class="bi bi-globe"></i> Fr</a></li>
+                    {% comment %} <li class="{% if request.resolver_match.view_name == 'core:contact' %} active {% endif %}"><a href="{% url 'core:contact' %}" class="nav-link"><i class="bi bi-headset"></i> {% translate "Contacts" %} </a></li> {% endcomment %}
+                    {% comment %} <li class="{% if request.resolver_match.view_name == 'core:gallery' %} active {% endif %}"><a href="{% url 'core:gallery' %}" class="nav-link"><i class="bi bi-images"></i> {% translate "Gallerie" %} </a></li> {% endcomment %}
+                    {% comment %} <li class="{% if request.resolver_match.view_name == 'core:contributors' %} active {% endif %}"><a href="{% url 'core:contributors' %}" class="nav-link"><i class="bi bi-github"></i> {% translate "Contributors" %} </a></li> {% endcomment %}
+                    <li class="dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
+                        Autres
+                      </a>
+                    
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a href="{% url 'core:gallery' %}" class="nav-link"><i class="bi bi-images"></i> {% translate "Gallerie" %} </a>
+                        <a href="{% url 'core:contact' %}" class="nav-link"><i class="bi bi-headset"></i> {% translate "Contacts" %} </a>
+                        <a href="{% url 'core:contributors' %}" class="nav-link"><i class="bi bi-github"></i> {% translate "Contributors" %} </a>
+                      </div>
+                    </li>
+                    <li class=""><a href="" class="nav-link btn btn-primary disabled"><i class="bi bi-globe"></i> Fr</a></li>
                 </ul>
                 </nav>
     
@@ -92,8 +103,8 @@
                 
                 <div class="col-lg-3">
                   <div class="widget mb-3">
-                    <img src="{% static 'images/logo_comsas.png' %}" alt="logo comsas">
-                    <h6><span class="font-weight-bold">C</span>omputer <span class="font-weight-bold">S</span>cience <span class="font-weight-bold">As</span>sociation</h6>
+                    <img src="{% static 'images/logo_comsas.png' %}" alt="logo comsas"> <br>
+                    <h6><span class="font-weight-bold">Com</span>puter <span class="font-weight-bold">S</span>cience <span class="font-weight-bold">As</span>sociation</h6>
                   </div>
                 </div>
 

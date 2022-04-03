@@ -73,7 +73,7 @@
             <div class="widget-vs">
               <div class="d-flex align-items-center justify-content-around justify-content-between w-100">
                 <div class="team-1 text-center">
-                  <img src=" {{next_match.team1.logo.url}} " alt="{{next_match.team1.name">
+                  <img src=" {{next_match.team1.logo.url}} " alt="{{next_match.team1.name}}">
                   <h3 class="text-capitalize">{{next_match.team1.name}}</h3>
                 </div>
                 <div>
@@ -101,111 +101,94 @@
     </div>
 
     <div class="row">
-      <div class="col-12 title-section">
-        <h2 class="heading">{% translate "Classement Actuel" %}</h2>
-      </div>
-      <div class="col-lg-12">
-        
+      <div class="col-lg-6">
+        <div class="col-12 title-section">
+          <h2 class="heading" id="latest-news">{% translate "Poule A" %}</h2>
+        </div>
         <div class="widget-next-match">
           <table class="table custom-table">
             <thead>
               <tr>
-                {% comment %} Voir index.html {% endcomment %}
+                {% comment %} 
+                  Normalement la traduction en anglais devrait aussi changer les lettres ci dessous comme suit.
+                  Fr ------ En
+                  R  =====> R
+                  J  =====> P
+                  V  =====> W
+                  N  =====> D
+                  D  =====> L
+                  PTS  =====> PTS
+                {% endcomment %}
+
                 <th>R</th>
-                <th>Équipe</th>
-                <th>J</th>
+                <th>{% translate "Équipe" %}</th>
+                
                 <th>V</th>
                 <th>N</th>
                 <th>D</th>
                 <th>PTS</th>
-                <th style="border-left: 1px solid #ffff;">DIFF</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1</td>
-                <td><strong class="text-white">Football League</strong></td>
-                <td>2</td>
-                <td>22</td>
-                <td>3</td>
-                <td>2</td>
-                <td>140</td>
-                <td style="border-left: 1px solid #343a40;">0</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td><strong class="text-white">Soccer</strong></td>
-                <td>2</td>
-                <td>22</td>
-                <td>3</td>
-                <td>2</td>
-                <td>140</td>
-                <td style="border-left: 1px solid #343a40;">0</td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td><strong class="text-white">Juvendo</strong></td>
-                <td>2</td>
-                <td>22</td>
-                <td>3</td>
-                <td>2</td>
-                <td>140</td>
-                <td style="border-left: 1px solid #343a40;">0</td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td><strong class="text-white">French Football League</strong></td>
-                <td>2</td>
-                <td>22</td>
-                <td>3</td>
-                <td>2</td>
-                <td>140</td>
-                <td style="border-left: 1px solid #343a40;">0</td>
-              </tr>
-              <tr>
-                <td>5</td>
-                <td><strong class="text-white">Legia Abante</strong></td>
-                <td>2</td>
-                <td>22</td>
-                <td>3</td>
-                <td>2</td>
-                <td>140</td>
-                <td style="border-left: 1px solid #343a40;">0</td>
-              </tr>
-              <tr style="background-color: #751d2e;">
-                <td>6</td>
-                <td><strong class="text-white">Gliwice League</strong></td>
-                <td>2</td>
-                <td>22</td>
-                <td>3</td>
-                <td>2</td>
-                <td>140</td>
-                <td style="border-left: 1px solid #343a40;">0</td>
-              </tr>
-              <tr style="background-color: #751d2e;">
-                <td>7</td>
-                <td><strong class="text-white">Cornika</strong></td>
-                <td>2</td>
-                <td>22</td>
-                <td>3</td>
-                <td>2</td>
-                <td>140</td>
-                <td style="border-left: 1px solid #343a40;">0</td>
-              </tr>
-              <tr style="background-color: #751d2e;">
-                <td>8</td>
-                <td><strong class="text-white">Gravity Smash</strong></td>
-                <td>2</td>
-                <td>22</td>
-                <td>3</td>
-                <td>2</td>
-                <td>140</td>
-                <td style="border-left: 1px solid #343a40;">0</td>
-              </tr>
+              {% for elt in classement_A %}
+                <tr>
+                  <td>{{ forloop.counter }}</td>
+                  <td><strong class="text-white">{{elt.team.abreviation}}</strong></td>
+                  
+                  <td>{{elt.victory}}</td>
+                  <td>{{elt.defeat}}</td>
+                  <td>{{elt.null}}</td>
+                  <td>{{elt.points}}</td>
+                </tr>
+              {% endfor %}
             </tbody>
           </table>
         </div>
+      </div>
 
+      <div class="col-lg-6">
+        <div class="col-12 title-section">
+          <h2 class="heading" id="latest-news">{% translate "Poule B" %}</h2>
+        </div>
+        <div class="widget-next-match">
+          <table class="table custom-table">
+            <thead>
+              <tr>
+                {% comment %} 
+                  Normalement la traduction en anglais devrait aussi changer les lettres ci dessous comme suit.
+                  Fr ------ En
+                  R  =====> R
+                  J  =====> P
+                  V  =====> W
+                  N  =====> D
+                  D  =====> L
+                  PTS  =====> PTS
+                {% endcomment %}
+
+                <th>R</th>
+                <th>{% translate "Équipe" %}</th>
+                
+                <th>V</th>
+                <th>N</th>
+                <th>D</th>
+                <th>PTS</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for elt in classement_B %}
+                <tr>
+                  <td>{{ forloop.counter }}</td>
+                  <td><strong class="text-white">{{elt.team.abreviation}}</strong></td>
+                  
+                  <td>{{elt.victory}}</td>
+                  <td>{{elt.defeat}}</td>
+                  <td>{{elt.null}}</td>
+                  <td>{{elt.points}}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
     
@@ -230,7 +213,7 @@
                       <span class="vs"><span>VS</span></span>
                     </div>
                     <div class="team-2 text-center">
-                      <img src=" {{match.team2.logo.url}} " alt="{{match.team2.logo.url}}">
+                      <img src=" {{match.team2.logo.url}} " alt="{{match.team2.name}}">
                       <h3>{{match.team2.name}}</h3>
                     </div>
                   </div>
@@ -256,11 +239,12 @@
   </div>
 </div> <!-- .site-section -->
 
+
 <div class="site-section">
   <div class="container">
     <div class="row">
       <div class="col-6 title-section">
-        <h2 class="heading">{% translate "Vidéos | Temps Forts" %}</h2>
+        <h2 class="heading text-capitalize">{% translate "Meilleurs Joueurs" %}</h2>
       </div>
       <div class="col-6 text-right">
         <div class="custom-nav">
@@ -273,85 +257,22 @@
 
 
     <div class="owl-4-slider owl-carousel">
-      <div class="item">
-        <div class="video-media">
-          <img src=" {% static 'images/img_1.jpg' %} " alt="Image" class="img-fluid">
-          <a href="https://vimeo.com/139714818" class="d-flex play-button align-items-center" data-fancybox>
-            <span class="icon mr-3">
-              <span class="icon-play"></span>
-            </span>
-            <div class="caption">
-              <h3 class="m-0">Dogba set for Juvendu return?</h3>
-            </div>
-          </a>
+      {% for player in top_players %}
+        <div class="item">
+          <div class="video-media">
+            <img src=" {{player.photo.url}} " alt="{{player.name}}" class="img-fluid">
+            {% comment %} <a href="" class="d-flex play-button align-items-center" data-fancybox>
+              <span class="icon mr-3">
+                <span class="icon-play"></span>
+              </span>
+              <div class="caption">
+                <h3 class="m-0">{{player.name|title}}</h3>
+              </div>
+            </a> {% endcomment %}
+          </div>
         </div>
-      </div>
-      <div class="item">
-        <div class="video-media">
-          <img src=" {% static 'images/img_2.jpg' %} " alt="Image" class="img-fluid">
-          <a href="https://vimeo.com/139714818" class="d-flex play-button align-items-center" data-fancybox>
-            <span class="icon mr-3">
-              <span class="icon-play"></span>
-            </span>
-            <div class="caption">
-              <h3 class="m-0">Kai Nets Double To Secure Comfortable Away Win</h3>
-            </div>
-          </a>
-        </div>
-      </div>
-      <div class="item">
-        <div class="video-media">
-          <img src=" {% static 'images/img_3.jpg' %} " alt="Image" class="img-fluid">
-          <a href="https://vimeo.com/139714818" class="d-flex play-button align-items-center" data-fancybox>
-            <span class="icon mr-3">
-              <span class="icon-play"></span>
-            </span>
-            <div class="caption">
-              <h3 class="m-0">Romolu to stay at Real Nadrid?</h3>
-            </div>
-          </a>
-        </div>
-      </div>
-
-      <div class="item">
-        <div class="video-media">
-          <img src=" {% static 'images/img_1.jpg' %} " alt="Image" class="img-fluid">
-          <a href="https://vimeo.com/139714818" class="d-flex play-button align-items-center" data-fancybox>
-            <span class="icon mr-3">
-              <span class="icon-play"></span>
-            </span>
-            <div class="caption">
-              <h3 class="m-0">Dogba set for Juvendu return?</h3>
-            </div>
-          </a>
-        </div>
-      </div>
-      <div class="item">
-        <div class="video-media">
-          <img src=" {% static 'images/img_2.jpg' %} " alt="Image" class="img-fluid">
-          <a href="https://vimeo.com/139714818" class="d-flex play-button align-items-center" data-fancybox>
-            <span class="icon mr-3">
-              <span class="icon-play"></span>
-            </span>
-            <div class="caption">
-              <h3 class="m-0">Kai Nets Double To Secure Comfortable Away Win</h3>
-            </div>
-          </a>
-        </div>
-      </div>
-      <div class="item">
-        <div class="video-media">
-          <img src=" {% static 'images/img_3.jpg' %} " alt="Image" class="img-fluid">
-          <a href="https://vimeo.com/139714818" class="d-flex play-button align-items-center" data-fancybox>
-            <span class="icon mr-3">
-              <span class="icon-play"></span>
-            </span>
-            <div class="caption">
-              <h3 class="m-0">Romolu to stay at Real Nadrid?</h3>
-            </div>
-          </a>
-        </div>
-      </div>
+       {% endfor %}
+      
 
     </div>
 
