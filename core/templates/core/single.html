@@ -1,18 +1,19 @@
-{% extends 'main.html' %}
+{% extends 'core/main.html' %}
 {% load static %}
+{% load i18n %}
 
 <!-- Page Title-->
 {% block title %}
-Coupe du département Info &dash; Inner Blog
+  {% translate "Coupe du département Informatique" %} &dash; {% translate "Blog Posts" %}
 {% endblock title %}
 
 {% block body %}
-<div class="hero overlay" style="background-image: url('../../static/images/bg_3.jpg');">
+<div class="hero overlay" style="background-image: url('../../static/images/bg_5.jpg');">
   <div class="container">
     <div class="row align-items-center">
       <div class="col-lg-9 mx-auto text-center">
-        <h1 class="text-white">Romolu to stay at Real Nadrid?</h1>
-        <p><span>May 20, 2020</span> <span class="mx-3">&bullet;</span> <span>by Admin</span></p>
+        <h1 class="text-white">{% translate "Quoi de neuf" %} <span style="color: #ee1e46;">!</span></h1>
+        <p>{% translate "Nous donnons le meilleur de nous pour vous offrir l'information de qualité." %}</p>
       </div>
     </div>
   </div>
