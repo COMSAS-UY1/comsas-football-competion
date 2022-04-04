@@ -86,3 +86,6 @@ class Contributor(models.Model):
     twitter = models.URLField(max_length=300, )
     github = models.URLField(max_length=300, )
     description = models.TextField()
+
+    def __str__(self):
+        return self.name

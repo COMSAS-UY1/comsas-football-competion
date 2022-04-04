@@ -25,7 +25,82 @@
   </div>
 </div>
 
+<br>
+<br>
 
+<div class="container">
+  <div class="row">
+    <div class="col-12 title-section">
+      <h2 class="heading">{% translate "Equipes" %}</h2>
+    </div>
+
+   
+    {% for poule_team in  poule_teams %}
+    <div class="col-lg-6 mb-4">
+      <div class="bg-light p-4 rounded">
+        <div class="widget-body">
+            <div class="widget-vs">
+              <div class="d-flex align-items-center justify-content-around justify-content-between w-100">
+                <div class="team-1 text-center">
+                  <img src="{{poule_team.team.image.url}}" alt="Image">
+                  <h3 class="text-capitalize">{{poule_team.team.name}}</h3>
+                  
+                </div>
+              </div>
+              <br>
+              <!--h3 class="text-muted">{% translate "Titulaires" %}</h3>
+              <div class="d-flex">
+
+                {% comment %} for loop sur le bloc ci dessous pour afficher les titulaires {% endcomment %}
+                
+                <div class="author d-flex align-items-center">
+                  <div class="img mb-2 mr-3 d-flex">
+                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="">
+                  </div>
+                </div>
+
+              </div>
+
+              <br>
+
+              <h3 class="text-muted">{% translate "Remplaçants" %}</h3>
+              <div class="d-flex">
+
+                {% comment %} for loop sur le bloc ci dessous pour afficher les remplacants {% endcomment %}
+                <div class="author d-flex align-items-center">
+                  <div class="img mb-2 mr-3 d-flex">
+                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="">
+                  </div>
+                </div>
+
+              </div!-->
+            </div>
+          </div>
+
+          <div class="text-center widget-vs-contents mb-4">
+            <h4 class="text-capitalize">{% translate "Statisqtiques de l'équipe" %}</h4>
+            <div class="d-flex">
+              <p class="mb-5 text-left">
+                <span class="d-block"><i class="bi bi-people-fill" style="font-size: 18pt; color: #e93a5d;"></i> {{poule_team.team.nb_players}} {% translate "joueurs enregistrés" %}</span>
+                <span class="d-block"><i class="bi bi-balloon-fill" style="font-size: 18pt; color: #e93a5d;"></i>  {% translate "buts inscris" %}</span>
+                <span class="d-block"><i class="bi bi-calendar2-check-fill" style="font-size: 18pt; color: #e93a5d;"></i> 0 {% translate "matchs joués" %}</span>
+             </p>
+             <div class="w-25"></div>
+             <p class="mb-5 text-left">
+              <span class="d-block"><i class="bi bi-table" style="font-size: 18pt; color: #e93a5d;">{{poule_team.get_poule_rank}}</i> {{poule_team.team.get_rang}}</span>
+               <span class="d-block"><i class="bi bi-file-fill" style="font-size: 18pt; color: #fffb00;"></i> {{poule_team.yellow_cart}} {% translate "cartons jaunes" %}</span>
+                <span class="d-block"><i class="bi bi-file-fill" style="font-size: 18pt; color: #ff0000;"></i> {{poule_team.red_cart}} {% translate "cartons rouges" %}</span>
+             </p>
+            </div>
+          </div>
+        
+      </div>
+    </div>
+  {% endfor %}
+   
+    
+  </div>
+</div>
 
 <div class="site-section">
   <div class="container">
@@ -63,78 +138,6 @@
 
     </div>
 
-  </div>
-</div>
-
-<br>
-
-<div class="container">
-  <div class="row">
-    <div class="col-12 title-section">
-      <h2 class="heading">{% translate "Equipes" %}</h2>
-    </div>
-
-    {% comment %} for loop sur toute la <div class="col-lg-6 mb-4"> ci dessous pour afficher les differentes equipes {% endcomment %}
-    <div class="col-lg-6 mb-4">
-      <div class="bg-light p-4 rounded">
-        <div class="widget-body">
-            <div class="widget-vs">
-              <div class="d-flex align-items-center justify-content-around justify-content-between w-100">
-                <div class="team-1 text-center">
-                  <img src=" {% static 'images/logo_1.png' %} " alt="Image">
-                  <h3 class="text-capitalize">Info l1 FONDA</h3>
-                  <small class="text-muted see-names">{% translate "Posez le curseur sur l'image pour voir le nom du joueur." %}</small>
-                </div>
-              </div>
-              <br>
-              <h3 class="text-muted">{% translate "Titulaires" %}</h3>
-              <div class="d-flex">
-
-                {% comment %} for loop sur le bloc ci dessous pour afficher les titulaires {% endcomment %}
-                <div class="author d-flex align-items-center">
-                  <div class="img mb-2 mr-3 d-flex">
-                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="">
-                  </div>
-                </div>
-
-              </div>
-
-              <br>
-
-              <h3 class="text-muted">{% translate "Remplaçants" %}</h3>
-              <div class="d-flex">
-
-                {% comment %} for loop sur le bloc ci dessous pour afficher les remplacants {% endcomment %}
-                <div class="author d-flex align-items-center">
-                  <div class="img mb-2 mr-3 d-flex">
-                    <img src=" {% static 'images/person_1.jpg' %} " alt="" title="">
-                  </div>
-                </div>
-
-              </div>
-            </div>
-          </div>
-
-          <div class="text-center widget-vs-contents mb-4">
-            <h4 class="text-capitalize">{% translate "Statisqtiques de l'équipe" %}</h4>
-            <div class="d-flex">
-              <p class="mb-5 text-left">
-                <span class="d-block"><i class="bi bi-people-fill" style="font-size: 18pt; color: #e93a5d;"></i> 16 {% translate "joueurs enregistrés" %}</span>
-                <span class="d-block"><i class="bi bi-balloon-fill" style="font-size: 18pt; color: #e93a5d;"></i> 0 {% translate "buts inscris" %}</span>
-                <span class="d-block"><i class="bi bi-calendar2-check-fill" style="font-size: 18pt; color: #e93a5d;"></i> 0 {% translate "matchs joués" %}</span>
-             </p>
-             <div class="w-25"></div>
-             <p class="mb-5 text-left">
-              <span class="d-block"><i class="bi bi-table" style="font-size: 18pt; color: #e93a5d;"></i> 1er au class.</span>
-               <span class="d-block"><i class="bi bi-file-fill" style="font-size: 18pt; color: #fffb00;"></i> 0 {% translate "cartons jaunes" %}</span>
-                <span class="d-block"><i class="bi bi-file-fill" style="font-size: 18pt; color: #ff0000;"></i> 0 {% translate "cartons rouges" %}</span>
-             </p>
-            </div>
-          </div>
-        
-      </div>
-    </div>
-    
   </div>
 </div>
 

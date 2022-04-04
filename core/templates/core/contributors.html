@@ -29,13 +29,13 @@
 <section class="speaker-section spad">
     <div class="container">
         <div class="row">
-            {% for person in contributors %}
+            {% for person in contributor_list %}
             <div class="col-md-6">
                 <div class="speaker-item">
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="si-pic">
-                                <img src=" {{person.image}} " alt="{{person.name}}">
+                                <img src=" {{person.image.url}} " alt="{{person.name}}">
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -43,7 +43,7 @@
                                 <div class="si-title">
                                     <h4>{{person.name}}</h4>
                                     <span class="text-capitalize">
-                                        {% blocktrans %} {{person.title}} {% endblocktrans %}
+                                        {{person.title}}
                                     </span>
                                 </div>
                                 <div class="si-social">

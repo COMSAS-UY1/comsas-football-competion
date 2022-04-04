@@ -100,3 +100,6 @@ class NewsView(View):
         context = {'news': queryset}
         return render(request, self.template_name, context)
 
+
+class InnerBlog(TemplateView):
+    template_name = "core/single.html"
