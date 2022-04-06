@@ -1244,6 +1244,36 @@ h1, h2, h3, h4, h5,
 }
 
 /*--------------------------------------------------------------
+# Inner Blog Post
+--------------------------------------------------------------*/
+.first-section{
+  -webkit-overflow-scrolling: inherit;
+}
+
+.first-section p.lead{
+  font-size: x-large;
+  font-weight: bold;
+}
+
+.first-section p{
+  text-align: justify;
+}
+
+.first-section p > a > img{
+  height: 50vh; 
+  width: 100%; 
+  object-fit: cover;
+  transition: transform 0.3s ease-in;
+}
+
+.first-section p > a > img:hover{
+  transform: scale(1.019);
+}
+
+.first-section .sidebar-box{
+  text-align: center;
+}
+/*--------------------------------------------------------------
 # Portfolio
 --------------------------------------------------------------*/
 .portfolio .portfolio-item {
@@ -1420,9 +1450,20 @@ h1, h2, h3, h4, h5,
 	margin-bottom: 50px;
 }
 
+.speaker-item .si-pic {
+  width:100%;
+}
+
 .speaker-item .si-pic img {
+  width: 100%;
 	min-width: 100%;
 	border-radius: 2px;
+  transition: all 0.3s ease-in;
+}
+
+.speaker-item .si-pic img:hover{
+  transform: scale(1.1);
+  box-shadow: -5px 5px 15px rgb(238, 30, 70, 0.5);
 }
 
 .speaker-item .si-text .si-title {
