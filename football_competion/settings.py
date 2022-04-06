@@ -1,3 +1,4 @@
+# from django.utils.translation import ugettext_lazy as _
 import os
 import environ  # Initialise environment variables
 
@@ -105,6 +106,7 @@ LANGUAGES = (
     ('fr', ('French')),
 )
 LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale')]
+
 TIME_ZONE = 'Africa/Douala'
 
 USE_I18N = True

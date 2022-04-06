@@ -1,10 +1,8 @@
-from pprint import pprint
 from django.shortcuts import render
 from django.db.models import Count
 from django.views import View
 from tournoi.models import Edition, Player, Goal, GoalType, PouleTeam, Team, MatchState
 from core.models import News
-from django.views.generic import TemplateView
 
 
 class IndexView(View):
@@ -100,5 +98,18 @@ class MatchView(View):
         return render(request, self.template_name, context)
 
 
-class TeamView(TemplateView):
+class TeamView(View):
     template_name = "tournoi/players.html"
+
+    def get(self, request, *args, **kwargs):
+        # get current edition
+        current_edition = Edition.objects.filter(status='active').first()
+        poule_teams = PouleTeam.objects.all()
+
+        top_players = current_edition.players.filter(top_player=True).order_by("-add_date")
+
+        context = {
+            "poule_teams": poule_teams,
+            "top_players": top_players,
+        }
+        return render(request, self.template_name, context)

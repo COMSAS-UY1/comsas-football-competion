@@ -16,6 +16,7 @@ class Team(models.Model):
     name = models.CharField(max_length=50, null=False)
     abreviation = models.CharField(max_length=50, null=False, default="team")
     add_date = models.DateField(auto_now_add=True)
+    nb_players = models.IntegerField(default=11)
     logo = models.ImageField(
         upload_to='team/logos/',
         default="default.png",
@@ -23,6 +24,13 @@ class Team(models.Model):
 
     def __str__(self):
         return self.abreviation
+
+    def get_rang(self):
+        """obtenir le classement de cette equipe dans sa poule"""
+        current_edition = Edition.objects.filter(status='active').first()
+        poule_team = PouleTeam.objects.filter(poule__edition=current_edition,
+                                              team=self.id).first()
+        return f'{poule_team.poule.name}'
 
 
 class GoalType(models.TextChoices):
@@ -105,6 +113,12 @@ class Player(models.Model):
                               null=True,
                               blank=True)
     add_date = models.DateField(auto_now_add=True)
+    top_player = models.BooleanField(default=False)
+
+    edition = models.ForeignKey(Edition,
+                                null=False,
+                                on_delete=models.CASCADE,
+                                related_name='players')
 
     def __str__(self):
         return self.name + "(" + self.surname + ")(" + self.matricule + ")"
@@ -113,12 +127,6 @@ class Player(models.Model):
     def total_goals(self):
         """return number of scored goals"""
         return self.goals.all().count()
-
-
-# class PLayerTeam(models.Model):
-#     edition = models.ForeignKey(Edition, models.CASCADE)
-#     team = models.ForeignKey(Team, models.CASCADE)
-#     player = models.ForeignKey(Player, models.CASCADE)
 
 
 class Goal(models.Model):
@@ -150,12 +158,22 @@ class Poule(models.Model):
 
 class PouleTeam(models.Model):
     """ Stocke chaque ligne dans le tableau de statisque"""
-    team = models.ForeignKey(Team, on_delete=models.CASCADE, null=False)
-    poule = models.ForeignKey(Poule, on_delete=models.CASCADE, null=False)
+    team = models.ForeignKey(Team,
+                             on_delete=models.CASCADE,
+                             null=False,
+                             related_name='poule_team')
+    poule = models.ForeignKey(Poule,
+                              on_delete=models.CASCADE,
+                              null=False,
+                              related_name='poule_teams')
     victory = models.SmallIntegerField(default=0)
     points = models.SmallIntegerField(default=0)
     defeat = models.SmallIntegerField(default=0)
     null = models.SmallIntegerField(default=0)
+    red_cart = models.SmallIntegerField(default=0)
+    yellow_cart = models.SmallIntegerField(default=0)
 
     def __str__(self):
         return self.team.name + " " + self.poule.__str__()
+
+    

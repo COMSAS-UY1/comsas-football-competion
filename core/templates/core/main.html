@@ -62,7 +62,7 @@
             <div class="ml-auto">
                 <nav class="site-navigation position-relative text-right" role="navigation">
                 <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-                    <li class="{% if request.resolver_match.view_name == 'tournoi:home' %} active {% endif %} "><a href="{% url 'tournoi:home' %}" class="nav-link"><i class="bi bi-house-door-fill"></i> {% translate "Accueil" %} </a></li>
+                    <li class="{% if request.resolver_match.view_name == 'tournoi:home' %} active {% endif %}"><a href="{% url 'tournoi:home' %}" class="nav-link"><i class="bi bi-house-door-fill"></i> {% translate "Accueil" %} </a></li>
                     <li class="{% if request.resolver_match.view_name == 'tournoi:match' %} active {% endif %}"><a href="{% url 'tournoi:match' %}" class="nav-link"><i class="bi bi-calendar-event-fill"></i> {% translate "Matchs" %} </a></li>
                     <li class="{% if request.resolver_match.view_name == 'tournoi:team' %} active {% endif %}"><a href="{% url 'tournoi:team' %}" class="nav-link"><i class="bi bi-people-fill"></i> {% translate "Equipes" %} </a></li>
                     <li class="{% if request.resolver_match.view_name == 'core:news' %} active {% endif %}"><a href="{% url 'core:news' %}" class="nav-link"><i class="bi bi-newspaper"></i> {% translate "Blog" %}</a></li>
