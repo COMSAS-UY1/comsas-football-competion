@@ -990,9 +990,9 @@ h1, h2, h3, h4, h5,
       width: 50%;
       margin-bottom: 10%;
     }
-    .footer-section .widget h6{
-      /* display: none; */
-    }
+    /* .footer-section .widget h6{
+      display: none;
+    } */
   }
 
 .custom-nav a {
