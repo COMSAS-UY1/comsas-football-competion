@@ -36,6 +36,15 @@
           <a href="{% static '../../static/images/flyer_lancement.jpeg' %}" title="Cliquez pour voir l'image">
             <img src=" {% static '../../static/images/flyer_lancement.jpeg' %} " alt="Image" class="img-fluid">
           </a>
+          <div class="bottom-left" style="display: flex;">
+            <div class="author-img">
+              <img src="{% static 'images/avatar.png' %}" alt="" >
+            </div>
+            <div class="author-text">
+              <h5>Dejon Fah Joel Xavier</h5>
+              <small class="">Lorem ipsum dolor sit amet consectetur adipisicing elit.</small>
+            </div>
+          </div>
         </p>
 
         <blockquote>
@@ -49,21 +58,7 @@
         <p>{% translate "Accusamus, temporibus, ullam. Voluptate consectetur laborum totam sunt culpa repellat, dolore voluptas. Quaerat cum ducimus aut distinctio sit, facilis corporis ab vel alias, voluptas aliquam, expedita molestias quisquam sequi eligendi nobis ea error omnis consequatur iste deleniti ill" %}</p>
 
         <hr style="background-color: rgba(255, 255, 255, 0.3);">
-
-        <p class="lead" id="content2">
-          {% translate " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda nihil aspernatur nemo sunt, qui, harum repudiandae quisquam eaque dolore itaque quod tenetur quo quos labore?" %}
-        </p>
-        <p>
-          <a href="{% static 'images/placeholder-img.png' %}" title="Cliquez pour voir l'image">
-            <img src=" {% static 'images/placeholder-img.png' %} " alt="Image" class="img-fluid">
-          </a>
-        </p>
-        <p>{% translate "Amet sint explicabo maxime accusantium qui dicta enim quia, nostrum id libero voluptates quae suscipit dolor quam tenetur dolores inventore illo laborum, corporis non ex, debitis quidem obcaecati! Praesentium maiores illo atque error! Earum, et, fugit. Sint, delectus molestiae. Totam." %} </p>
-
-        <p>{% translate "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa iste, repudiandae facere aperiam sapiente, officia delectus soluta molestiae nihil corporis animi quos ratione qui labore? Sint eaque perspiciatis minus illum." %} </p>
-        <p>{% translate "Consectetur porro odio quod iure quaerat cupiditate similique, dolor reprehenderit molestias provident, esse dolorum omnis architecto magni amet corrupti neque ratione sunt beatae perspiciatis? Iste pariatur omnis sed ut itaque." %} </p>
-        <p>{% translate "Id similique, rem ipsam accusantium iusto dolores sit velit ex quas ea atque, molestiae. Sint, sed. Quisquam, suscipit! Quisquam quibusdam maiores fugiat eligendi eius consequuntur, molestiae saepe commodi expedita nemo!" %} </p>
-
+        
       </div>
       <div class="col-md-4 sidebar">
         <!-- <div class="sidebar-box">
@@ -74,10 +69,11 @@
             </div>
           </form>
         </div> -->
+
+        <!-- Cette section sera pour afficher les titres des differentes sections a venir. -->
         <h2 class="font-weight-bold">{% translate "Tous Les postes" %}</h2>
         <ol>
           <li><a href="#content1">{% translate "Poste 1" %}</a></li>
-          <li><a href="#content2">{% translate "Poste 2" %}</a></li>
         </ol>
         <div style="height: 10vh;"></div>
         <div class="sidebar-box">
