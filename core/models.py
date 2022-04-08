@@ -62,7 +62,7 @@ class News(models.Model):
     )
     edition = models.ForeignKey(Edition, models.CASCADE)
     add_on = models.DateField(auto_now=True)
-    author = models.ForeignKey(Author, models.CASCADE)
+    #author = models.ForeignKey(Author, models.CASCADE)
 
     def __str__(self):
         return self.title
