@@ -42,18 +42,18 @@
         <form action="{% url 'core:contact' %}" method="POST" role="form">
           {% csrf_token %}
           <div class="form-group">
-            {% blocktrans %} {{form.name}} {% endblocktrans %}
+            {{form.name}}
           </div>
           <div class="form-group d-flex">
-            {% blocktrans %} {{form.email}} {% endblocktrans %}
+            {{form.email}}
             &ThickSpace;
-            {% blocktrans %} {{form.phone}} {% endblocktrans %}
+            {{form.phone}}
           </div>
           <div class="form-group">
-            {% blocktrans %} {{form.subject}} {% endblocktrans %}
+            {{form.subject}}
           </div>
           <div class="form-group">
-            {% blocktrans %} {{form.message}} {% endblocktrans %}
+            {{form.message}}
           </div>
           <div class="form-group">
             <input type="submit" class="btn btn-primary py-3 px-5" value="Envoyer">
