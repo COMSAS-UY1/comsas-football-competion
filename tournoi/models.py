@@ -1,42 +1,6 @@
+from nis import match
+from django.db.models import Q
 from django.db import models
-
-
-class Edition(models.Model):
-    STATUS = (('programmed', 'programmed'), ('active', 'active'))
-    name = models.CharField(max_length=50, null=False)
-    begin_date = models.DateField(null=True, default=None)
-    end_date = models.DateField(null=True, default=None)
-    status = models.CharField(max_length=15, choices=STATUS)
-
-    def __str__(self):
-        return self.name
-
-
-class Team(models.Model):
-    name = models.CharField(max_length=50, null=False)
-    abreviation = models.CharField(max_length=50, null=False, default="team")
-    add_date = models.DateField(auto_now_add=True)
-    nb_players = models.IntegerField(default=11)
-    logo = models.ImageField(
-        upload_to='team/logos/',
-        default="default.png",
-    )
-
-    def __str__(self):
-        return self.abreviation
-
-    def get_rang(self):
-        """obtenir le classement de cette equipe dans sa poule"""
-        current_edition = Edition.objects.filter(status='active').first()
-        poule_team = PouleTeam.objects.filter(poule__edition=current_edition,
-                                              team=self.id).first()
-        return f'{poule_team.poule.name}'
-
-
-class GoalType(models.TextChoices):
-    CSC = "CSC"
-    SP = "SP"
-    N = "N"
 
 
 class MatchType(models.TextChoices):
@@ -54,6 +18,70 @@ class MatchState(models.TextChoices):
     to_program = "a programmé"
 
 
+class Edition(models.Model):
+    STATUS = (('programmed', 'programmed'), ('active', 'active'))
+    name = models.CharField(max_length=50, null=False)
+    begin_date = models.DateField(null=True, default=None)
+    end_date = models.DateField(null=True, default=None)
+    status = models.CharField(max_length=15, choices=STATUS)
+
+    def __str__(self):
+        return self.name
+
+
+class Poule(models.Model):
+    """" """
+    name = models.CharField(max_length=50)
+    add_date = models.DateField(auto_now_add=True)
+    edition = models.ForeignKey(Edition,
+                                on_delete=models.CASCADE,
+                                null=False,
+                                related_name='poules')
+
+    def __str__(self):
+        return self.name + "(" + self.edition.name + ")"
+
+
+class Team(models.Model):
+    name = models.CharField(max_length=50, null=False)
+    abreviation = models.CharField(max_length=50, null=False, default="team")
+    add_date = models.DateField(auto_now_add=True)
+    logo = models.ImageField(
+        upload_to='team/logos/',
+        default="default.png",
+    )
+    poule = models.ForeignKey(Poule,
+                              models.DO_NOTHING,
+                              null=True,
+                              blank=True,
+                              related_name='teams')
+    victory = models.SmallIntegerField(default=0)
+    points = models.SmallIntegerField(default=0)
+    defeat = models.SmallIntegerField(default=0)
+    null = models.SmallIntegerField(default=0)
+    red_cart = models.SmallIntegerField(default=0)
+    yellow_cart = models.SmallIntegerField(default=0)
+
+    def __str__(self):
+        return self.abreviation
+
+    def get_rang(self):
+        """obtenir le classement de cette equipe dans sa poule"""
+
+        return self.poule.teams.filter(points__gt=self.points).count() + 1
+
+    def get_num_players(self):
+        return self.players.count()
+
+    def get_num_played_matchs(self):
+        return TeamMatch.objects.filter(
+            Q(team1__id=self.id) | Q(team2__id=self.id)
+            & Q(match__state=MatchState.finish)).count()
+
+    def get_num_scored_goals(self):
+        return Goal.objects.filter(player__team=self.id).count()
+
+
 class Match(models.Model):
     """A match between two teams."""
     add_date = models.DateField(auto_now_add=True)
@@ -65,15 +93,8 @@ class Match(models.Model):
     match_type = models.CharField(choices=MatchType.choices,
                                   default=MatchType.POULE,
                                   max_length=50)
-    team1 = models.ForeignKey(Team,
-                              on_delete=models.CASCADE,
-                              related_name="team1")
-    team2 = models.ForeignKey(Team,
-                              on_delete=models.CASCADE,
-                              related_name="team2")
     goal_team1 = models.SmallIntegerField(default=0)
     goal_team2 = models.SmallIntegerField(default=0)
-    #penalty = models.BooleanField(default=False, )  #vrai si les equipes sont allés au penalty
     edition = models.ForeignKey(Edition,
                                 null=False,
                                 on_delete=models.CASCADE,
@@ -81,7 +102,7 @@ class Match(models.Model):
     title = models.CharField(max_length=50, default=None, null=True)
 
     def __str__(self):
-        return self.team1.name + " vs " + self.team2.name + "(" + self.edition.name + ")" + "(" + self.state + ")"
+        return "(" + self.edition.name + ")" + "(" + self.state + ")"
 
     @property
     def score(self):
@@ -99,6 +120,30 @@ class Match(models.Model):
             return self.team2
         else:
             return None
+
+
+class TeamMatch(models.Model):
+    team1 = models.ForeignKey(Team,
+                              on_delete=models.CASCADE,
+                              related_name='team1')
+    team2 = models.ForeignKey(Team,
+                              on_delete=models.CASCADE,
+                              related_name='team2')
+    edition = models.ForeignKey(Edition,
+                                null=False,
+                                on_delete=models.CASCADE,
+                                related_name='team_matchs')
+    match = models.ForeignKey(Match, null=False, on_delete=models.CASCADE)
+
+    # @property
+    def winner(self):
+        if self.match.state == MatchState.finish:
+            if self.match.goal_team1 > self.match.goal_team2:
+                return self.team1
+            elif self.match.goal_team1 < self.match.goal_team2:
+                return self.team2
+            else:
+                return None
 
 
 class Player(models.Model):
@@ -119,6 +164,10 @@ class Player(models.Model):
                                 null=False,
                                 on_delete=models.CASCADE,
                                 related_name='players')
+    team = models.ForeignKey(Team,
+                             null=False,
+                             on_delete=models.CASCADE,
+                             related_name='players')
 
     def __str__(self):
         return self.name + "(" + self.surname + ")(" + self.matricule + ")"
@@ -127,6 +176,12 @@ class Player(models.Model):
     def total_goals(self):
         """return number of scored goals"""
         return self.goals.all().count()
+
+
+class GoalType(models.TextChoices):
+    CSC = "CSC"
+    SP = "SP"
+    N = "N"
 
 
 class Goal(models.Model):
@@ -141,39 +196,3 @@ class Goal(models.Model):
 
     def __str__(self):
         return ("Goal by {} during {}").format(self.player, self.match)
-
-
-class Poule(models.Model):
-    """" """
-    name = models.CharField(max_length=50)
-    add_date = models.DateField(auto_now_add=True)
-    edition = models.ForeignKey(Edition,
-                                on_delete=models.CASCADE,
-                                null=False,
-                                related_name='poules')
-
-    def __str__(self):
-        return self.name + "(" + self.edition.name + ")"
-
-
-class PouleTeam(models.Model):
-    """ Stocke chaque ligne dans le tableau de statisque"""
-    team = models.ForeignKey(Team,
-                             on_delete=models.CASCADE,
-                             null=False,
-                             related_name='poule_team')
-    poule = models.ForeignKey(Poule,
-                              on_delete=models.CASCADE,
-                              null=False,
-                              related_name='poule_teams')
-    victory = models.SmallIntegerField(default=0)
-    points = models.SmallIntegerField(default=0)
-    defeat = models.SmallIntegerField(default=0)
-    null = models.SmallIntegerField(default=0)
-    red_cart = models.SmallIntegerField(default=0)
-    yellow_cart = models.SmallIntegerField(default=0)
-
-    def __str__(self):
-        return self.team.name + " " + self.poule.__str__()
-
-    

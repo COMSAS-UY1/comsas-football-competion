@@ -33,12 +33,12 @@
       
       {% if last_match %}
       <div class="d-flex team-vs">
-        <span class="score">{{ match.goal_team1}} : {{ match.goal_team2 }}</span>
+        <span class="score">{{ last_match.match.goal_team1}} : {{ last_match.match.goal_team2 }}</span>
         <div class="team-1 w-50">
           <div class="team-details w-100 text-center">
             <img src=" {{last_match.team1.logo.url}} " alt="Image" class="img-fluid">
-            <h3 class="text-uppercase">{{last_match.team1.name}} {% if last.macth.winner == last_match.team1 %} <small style="color: #ee1e46; font-weight: 600;">({% translate "victoire" %})</small> <i class="bi bi-hand-thumbs-up-fill"></i>
-              {% elif  last.macth.winner == last_match.team2 %}<small style="color: #000; font-weight: 600;">({% translate "défaite" %})</small>{% endif %} </h3>
+            <h3 class="text-uppercase">{{last_match.team1.name}} {% if last_match.match.winner == last_match.team1 %} <small style="color: #ee1e46; font-weight: 600;">({% translate "victoire" %})</small> <i class="bi bi-hand-thumbs-up-fill"></i>
+              {% elif  last_match.macth.winner == last_match.team2 %}<small style="color: #000; font-weight: 600;">({% translate "défaite" %})</small>{% endif %} </h3>
             <ul class="list-unstyled">
 
             </ul>
@@ -47,8 +47,8 @@
         <div class="team-2 w-50">
           <div class="team-details w-100 text-center">
             <img src=" {{last_match.team2.logo.url}} " alt="Image" class="img-fluid">
-            <h3 class="text-uppercase">{{last_match.team2.name}} {% if last.macth.winner == last_match.team2 %} <small style="color: #ee1e46; font-weight: 600;">({% translate "victoire" %})</small> <i class="bi bi-hand-thumbs-up-fill"></i>
-              {% elif  last.macth.winner == last_match.team1 %}<small style="color: #000; font-weight: 600;">({% translate "défaite" %})</small>{% endif %}</h3>
+            <h3 class="text-uppercase">{{last_match.team2.name}} {% if last.match.winner == last_match.team2 %} <small style="color: #ee1e46; font-weight: 600;">({% translate "victoire" %})</small> <i class="bi bi-hand-thumbs-up-fill"></i>
+              {% elif  last_match.match.winner == last_match.team1 %}<small style="color: #000; font-weight: 600;">({% translate "défaite" %})</small>{% endif %}</h3>
           </div>
         </div>
       </div>

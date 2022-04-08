@@ -1,6 +1,7 @@
 {% extends 'core/main.html' %}
 {% load static %}
 {% load i18n %}
+{% load gfm %}
 
 {% comment %} Title of the page {% endcomment %}
 {% block title %}
@@ -35,15 +36,15 @@
       <div class="col-lg-4 mb-4">
         <div class="custom-media d-block">
           <div style="height: 60vh;">
-            <a href="#">
+            <a href="{% url 'core:post' new.title|slugify new.id%}">
               <img src="{{new.image.url}}" alt="Image" class="img-fluid" style="object-fit: cover; height: 100%; width: 100%;">
             </a>
           </div>
           <div class="text">
             <span class="meta">{{new.add_on|date:"D d M Y"}}</span>
-            <h3 class="mb-4"><a href="{#% url 'core:news_detail' new.title|slugify new.id%}#">{{new.title|title|slice:'30'}}</a></h3>
-            <p>{{new.description|title|slice:'65'}}</p>
-            <p><a href="{#% url 'core:news_detail' new.title|slugify new.id%#}">Read more</a></p>
+            <h3 class="mb-4"><a href="{% url 'core:post' new.title|slugify new.id%}">{{new.title|title|slice:'30'}}</a></h3>
+            <p>{{new.description|gfm|title|slice:'65'}}</p>
+            <p><a href="{% url 'core:post' new.title|slugify new.id%}">Read more</a></p>
           </div>
         </div>
       </div>

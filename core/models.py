@@ -1,3 +1,5 @@
+from distutils.command.upload import upload
+from email.policy import default
 from django.db import models
 from django_tuieditor.models import MarkdownField
 from tournoi.models import Edition
@@ -35,6 +37,15 @@ class ContactInfo(models.Model):
         return self.name + ' ' + self.subject
 
 
+class Author(models.Model):
+    name = models.CharField(max_length=200)
+    image = models.ImageField(upload_to='author',
+                              default='author/avatar.png',
+                              null=True,
+                              blank=True)
+    description = MarkdownField(max_length=150, null=False, blank=False)
+
+
 class News(models.Model):
     image = models.ImageField(
         upload_to='actualites/',
@@ -46,12 +57,12 @@ class News(models.Model):
         blank=False,
     )
     description = MarkdownField(
-        max_length=150,
         null=False,
         blank=False,
     )
     edition = models.ForeignKey(Edition, models.CASCADE)
     add_on = models.DateField(auto_now=True)
+    author = models.ForeignKey(Author, models.CASCADE)
 
     def __str__(self):
         return self.title
