@@ -1,5 +1,5 @@
 from django.contrib import admin
-from tournoi.models import Edition, Player, Poule, Match, PouleTeam, Team, Goal
+from tournoi.models import Edition, Player, Poule, Match, Team, Goal, TeamMatch
 
 
 class EditionAdmin(admin.ModelAdmin):
@@ -8,6 +8,8 @@ class EditionAdmin(admin.ModelAdmin):
 
 class PlayerAdmin(admin.ModelAdmin):
     list_display = ["id", "name", "surname", "add_date"]
+    search_fields = ["id", "name", 'surname', 'matricule']
+    list_filter = ["team", 'edition', 'top_player']
 
 
 class PouleAdmin(admin.ModelAdmin):
@@ -15,27 +17,29 @@ class PouleAdmin(admin.ModelAdmin):
     search_fields = ["id", "name"]
 
 
-class PouleTeamAdmin(admin.ModelAdmin):
-    list_display = [
-        "id", "team", "poule", "points", "victory", "defeat", "null"
+class TeamMatchAdmin(admin.ModelAdmin):
+    list_display = ["id", "team1", "team2",
+                    "match", "edition"]
+    search_fields = [
+        "team1",
+        'team2',
     ]
-    search_fields = ["team", "poule", "victotry"]
-    list_filter = ["team", "poule"]
-
-
-populated_fields = ['']
+    list_filter = ["match", 'edition']
 
 
 class TeamAdmin(admin.ModelAdmin):
-    list_display = ["id", "name", "abreviation", "add_date", "logo"]
-    list_filter = ["abreviation"]
+    list_display = [
+        "id", "name", "abreviation", "add_date", "logo", 'victory', 'points',
+        'red_cart', 'yellow_cart', 'defeat', 'null'
+    ]
+    list_filter = ["abreviation", 'points', 'defeat']
     search_fields = ["name"]
 
 
 class MatchAdmin(admin.ModelAdmin):
     list_display = [
-        "id", "team1", "team2", "date_to_play", "stade_name", "goal_team1",
-        "goal_team2", "edition"
+        "id", "date_to_play", "stade_name", "goal_team1", "goal_team2",
+        "edition"
     ]
 
 
@@ -47,6 +51,6 @@ admin.site.register(Team, TeamAdmin)
 admin.site.register(Goal, GoalAdmin)
 admin.site.register(Edition, EditionAdmin)
 admin.site.register(Poule, PouleAdmin)
-admin.site.register(PouleTeam, PouleTeamAdmin)
+admin.site.register(TeamMatch, TeamMatchAdmin)
 admin.site.register(Match, MatchAdmin)
 admin.site.register(Player, PlayerAdmin)

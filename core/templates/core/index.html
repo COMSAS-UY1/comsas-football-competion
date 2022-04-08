@@ -42,28 +42,27 @@
   <div class="row">
     <div class="col-lg-12">
       {% if last_match %}
-        <div class="d-flex team-vs">
-          <span class="score">{{ match.goal_team1}} : {{ match.goal_team2 }}</span>
-          <div class="team-1 w-50">
-            <div class="team-details w-100 text-center">
-              <img src=" {{last_match.team1.logo.url}} " alt="Image" class="img-fluid">
-              <h3 class="text-uppercase">{{last_match.team1.name}} {% if last.macth.winner == last_match.team1 %} <small style="color: #ee1e46; font-weight: 600;">({% translate "victoire" %})</small> <i class="bi bi-hand-thumbs-up-fill"></i>
-                {% elif  last.macth.winner == last_match.team2 %}<small style="color: #000; font-weight: 600;">({% translate "défaite" %})</small>{% endif %} </h3>
-              <ul class="list-unstyled">
+      <div class="d-flex team-vs">
+        <span class="score">{{ last_match.match.goal_team1}} : {{ last_match.match.goal_team2 }}</span>
+        <div class="team-1 w-50">
+          <div class="team-details w-100 text-center">
+            <img src=" {{last_match.team1.logo.url}} " alt="Image" class="img-fluid">
+            <h3 class="text-uppercase">{{last_match.team1.name}} {% if last_match.match.winner == last_match.team1 %} <small style="color: #ee1e46; font-weight: 600;">({% translate "victoire" %})</small> <i class="bi bi-hand-thumbs-up-fill"></i>
+              {% elif  last_match.macth.winner == last_match.team2 %}<small style="color: #000; font-weight: 600;">({% translate "défaite" %})</small>{% endif %} </h3>
+            <ul class="list-unstyled">
 
-              </ul>
-            </div>
-          </div>
-          <div class="team-2 w-50">
-            <div class="team-details w-100 text-center">
-              <img src=" {{last_match.team2.logo.url}} " alt="Image" class="img-fluid">
-              <h3 class="text-uppercase">{{last_match.team2.name}} {% if last.macth.winner == last_match.team2 %} <small style="color: #ee1e46; font-weight: 600;">({% translate "victoire" %})</small> <i class="bi bi-hand-thumbs-up-fill"></i>
-                {% elif  last.macth.winner == last_match.team1 %}<small style="color: #000; font-weight: 600;">({% translate "défaite" %})</small>{% endif %}</h3>
-              
-            </div>
+            </ul>
           </div>
         </div>
-      {% endif %}
+        <div class="team-2 w-50">
+          <div class="team-details w-100 text-center">
+            <img src=" {{last_match.team2.logo.url}} " alt="Image" class="img-fluid">
+            <h3 class="text-uppercase">{{last_match.team2.name}} {% if last.match.winner == last_match.team2 %} <small style="color: #ee1e46; font-weight: 600;">({% translate "victoire" %})</small> <i class="bi bi-hand-thumbs-up-fill"></i>
+              {% elif  last_match.match.winner == last_match.team1 %}<small style="color: #000; font-weight: 600;">({% translate "défaite" %})</small>{% endif %}</h3>
+          </div>
+        </div>
+      </div>
+    {% endif %}
     </div>
   </div>
 </div>
@@ -78,26 +77,24 @@
     </div>
     <div class="row no-gutters">
 
-      {% for actu in news %}
-      <div class="col-md-4">
-        <div class="post-entry">
+      {% for new in news %}
+      <div class="col-lg-4 mb-4">
+        <div class="custom-media d-block">
           <div style="height: 60vh;">
             <a href="#">
-              <img src="{{actu.image.url}}" alt="Image" class="img-fluid" style="object-fit: cover; height: 100%; width: 100%;">
+              <img src="{{new.image.url}}" alt="Image" class="img-fluid" style="object-fit: cover; height: 100%; width: 100%;">
             </a>
           </div>
-          <div class="caption">
-            <div class="caption-inner">
-              <h3 class="mb-3 text-capitalize">{{actu.title|title}}</h3>
-              <p style="color: #e2e2e2;">
-                {{actu.description|gfm}}
-                <a href="">Read more</a>
-              </p>
-            </div>
-          </div> 
+          <div class="text">
+            <span class="meta">{{new.add_on|date:"D d M Y"}}</span>
+            <h3 class="mb-4"><a href="{#% url 'core:news_detail' new.title|slugify new.id%}#">{{new.title|title|slice:'30'}}</a></h3>
+            <p>{{new.description|title|slice:'65'}}</p>
+            <p><a href="{% url 'core:post' new.title|slugify new.id%}">Read more</a></p>
+          </div>
         </div>
       </div>
-      {% endfor %}
+      {% endfor %} 
+    </div>
 
     </div>
 
@@ -139,7 +136,7 @@
               {% for elt in classement_A %}
                 <tr>
                   <td>{{ forloop.counter }}</td>
-                  <td><strong class="text-white">{{elt.team.abreviation}}</strong></td>
+                  <td><strong class="text-white">{{elt.abreviation}}</strong></td>
                   
                   <td>{{elt.victory}}</td>
                   <td>{{elt.defeat}}</td>
@@ -184,7 +181,7 @@
               {% for elt in classement_B %}
                 <tr>
                   <td>{{ forloop.counter }}</td>
-                  <td><strong class="text-white">{{elt.team.abreviation}}</strong></td>
+                  <td><strong class="text-white">{{elt.abreviation}}</strong></td>
                   
                   <td>{{elt.victory}}</td>
                   <td>{{elt.defeat}}</td>
@@ -225,9 +222,9 @@
           <div class="text-center widget-vs-contents mb-4">
             <h4 class="text-capitalize">{% translate "Coupe du département" %}</h4>
             <p class="mb-5">
-              <span class="d-block">{{ next_match.date_to_play }}</span>
+              <span class="d-block">{{ next_match.match.date_to_play }}</span>
               <!-- span class="d-block">15:30 (GMT+1)</span   !-->
-              <strong class="text-primary">{{next_match.stade_name|title}}</strong>
+              <strong class="text-primary">{{next_match.match.stade_name|title}}</strong>
             </p>
   
             <!--div id="date-countdown2" class="pb-1"></div!-->

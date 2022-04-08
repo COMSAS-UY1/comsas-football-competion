@@ -1,6 +1,6 @@
 from pipes import Template
 from pprint import pp, pprint
-from django.shortcuts import redirect, render, HttpResponse
+from django.shortcuts import get_object_or_404, redirect, render, HttpResponse
 from django.db.models import Count
 from django.views import View
 from core.models import Contributor, GalleryImage, News, Gallery
@@ -101,5 +101,11 @@ class NewsView(View):
         return render(request, self.template_name, context)
 
 
-class InnerBlog(TemplateView):
+class DetailNew(View):
     template_name = "core/single.html"
+
+    def get(self, request, *args, **kwargs):
+        new = get_object_or_404(News, id=self.kwargs['id'])
+        news = News.objects.filter(edition__status='active')
+        context = {'new': new, 'news': news}
+        return render(request, self.template_name, context)

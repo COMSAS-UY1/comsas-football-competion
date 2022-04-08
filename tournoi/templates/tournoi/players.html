@@ -33,15 +33,15 @@
     </div>
 
    
-    {% for poule_team in  poule_teams %}
+    {% for team in  teams %}
     <div class="col-lg-6 mb-4">
       <div class="bg-light p-4 rounded">
         <div class="widget-body">
             <div class="widget-vs">
               <div class="d-flex align-items-center justify-content-around justify-content-between w-100">
                 <div class="team-1 text-center">
-                  <img src="{{poule_team.team.image.url}}" alt="Image">
-                  <h3 class="text-capitalize">{{poule_team.team.name}}</h3>
+                  <img src="{{team.logo.url}}" alt="Image">
+                  <h3 class="text-capitalize">{{team.name}}</h3>
                   
                 </div>
               </div>
@@ -79,15 +79,15 @@
             <h4 class="text-capitalize">{% translate "Statisqtiques de l'équipe" %}</h4>
             <div class="d-flex">
               <p class="mb-5 text-left">
-                <span class="d-block"><i class="bi bi-people-fill" style="font-size: 18pt; color: #e93a5d;"></i> {{poule_team.team.nb_players}} {% translate "joueurs enregistrés" %}</span>
-                <span class="d-block"><i class="bi bi-balloon-fill" style="font-size: 18pt; color: #e93a5d;"></i>  {% translate "buts inscris" %}</span>
-                <span class="d-block"><i class="bi bi-calendar2-check-fill" style="font-size: 18pt; color: #e93a5d;"></i> 0 {% translate "matchs joués" %}</span>
+                <span class="d-block"><i class="bi bi-people-fill" style="font-size: 18pt; color: #e93a5d;"></i> {{team.get_num_players}} {% translate "joueurs enregistrés" %}</span>
+                <span class="d-block"><i class="bi bi-balloon-fill" style="font-size: 18pt; color: #e93a5d;"></i> {{team.get_num_scored_goals}} {% translate "buts inscris" %}</span>
+                <span class="d-block"><i class="bi bi-calendar2-check-fill" style="font-size: 18pt; color: #e93a5d;"></i> {{team.get_num_played_matchs}} {% translate "matchs joués" %}</span>
              </p>
              <div class="w-25"></div>
              <p class="mb-5 text-left">
-              <span class="d-block"><i class="bi bi-table" style="font-size: 18pt; color: #e93a5d;">{{poule_team.get_poule_rank}}</i> {{poule_team.team.get_rang}}</span>
-               <span class="d-block"><i class="bi bi-file-fill" style="font-size: 18pt; color: #fffb00;"></i> {{poule_team.yellow_cart}} {% translate "cartons jaunes" %}</span>
-                <span class="d-block"><i class="bi bi-file-fill" style="font-size: 18pt; color: #ff0000;"></i> {{poule_team.red_cart}} {% translate "cartons rouges" %}</span>
+              <span class="d-block"><i class="bi bi-table" style="font-size: 14pt; color: #e93a5d;"> N : {{team.get_rang}} </i> {{team.poule.name}} </span>
+               <span class="d-block"><i class="bi bi-file-fill" style="font-size: 18pt; color: #fffb00;"></i> {{team.yellow_cart}} {% translate "cartons jaunes" %}</span>
+                <span class="d-block"><i class="bi bi-file-fill" style="font-size: 18pt; color: #ff0000;"></i> {{team.red_cart}} {% translate "cartons rouges" %}</span>
              </p>
             </div>
           </div>
