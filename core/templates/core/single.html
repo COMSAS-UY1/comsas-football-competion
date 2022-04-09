@@ -41,11 +41,11 @@
         <hr style="background-color: rgba(255, 255, 255, 0.3);">
         <div class="bottom-left" style="display: flex;">
           <div class="author-img">
-            <img src="{% static 'images/avatar.png' %}" alt="" >
+            <img src="{{new.author.image.url}}" alt="" >
           </div>
           <div class="author-text">
-            <h5>Dejon Fah Joel Xavier</h5>
-            <small class="">Lorem ipsum dolor sit amet consectetur adipisicing elit.</small>
+            <h5>{{new.author.name}}</h5>
+            <small class="">{{new.author.description}}</small>
           </div>
         </div>
       </div>
