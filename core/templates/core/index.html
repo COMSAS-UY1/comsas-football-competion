@@ -21,6 +21,7 @@
         <p>
           {% translate "Ce n'est pas toujours une affaire de machines. On s'y connait aussi au foot. Encore ... " %}
         </p>
+        <div id="dateCount" style="display: none;">2022/04/14</div>
         <div id="date-countdown"></div>
         <p>
           {% translate "Jusqu'au lancement officiel du championnat." %}
@@ -227,7 +228,9 @@
               <strong class="text-primary">{{next_match.match.stade_name|title}}</strong>
             </p>
   
-            <!--div id="date-countdown2" class="pb-1"></div!-->
+            <small>{% translate "Prochain match dans:" %}</small>
+            <div id="dateCount2" style="display: none;">2022/04/14</div>
+            <div id="date-countdown2" class="pb-1"></div>
           </div>
         </div>
       </div>
