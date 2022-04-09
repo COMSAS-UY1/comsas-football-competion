@@ -963,6 +963,7 @@ h1, h2, h3, h4, h5,
   .footer-section .widget img{
     width: 75%;
     float: left;
+    text-align: center;
   }
   .footer-section .widget h3 {
     color: #fff;
@@ -985,14 +986,17 @@ h1, h2, h3, h4, h5,
     .footer-section .widget{
       align-items: center;
       justify-content: center;
+      text-align: center;
+      margin: 10% 0 5% 0;
     }
-    .footer-section .widget img{
-      width: 50%;
-      margin-bottom: 10%;
+    .footer-section .widget .img-foot{
+      width: 100%;
     }
-    /* .footer-section .widget h6{
-      display: none;
-    } */
+
+    .footer-section .widget .img-foot > img{
+      width: inherit;
+      text-align: center;
+    }
   }
 
 .custom-nav a {
