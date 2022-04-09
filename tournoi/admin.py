@@ -18,8 +18,7 @@ class PouleAdmin(admin.ModelAdmin):
 
 
 class TeamMatchAdmin(admin.ModelAdmin):
-    list_display = ["id", "team1", "team2",
-                    "match", "edition"]
+    list_display = ["id", "team1", "team2", "match", "edition"]
     search_fields = [
         "team1",
         'team2',
@@ -29,11 +28,11 @@ class TeamMatchAdmin(admin.ModelAdmin):
 
 class TeamAdmin(admin.ModelAdmin):
     list_display = [
-        "id", "name", "abreviation", "add_date", "logo", 'victory', 'points',
-        'red_cart', 'yellow_cart', 'defeat', 'null'
+        "id", "name", 'poule', "abreviation", "add_date", "logo", 'victory',
+        'points', 'red_cart', 'yellow_cart', 'defeat', 'null'
     ]
-    list_filter = ["abreviation", 'points', 'defeat']
-    search_fields = ["name"]
+    list_filter = ["abreviation", 'points', 'defeat', 'poule']
+    search_fields = ["name", 'poule']
 
 
 class MatchAdmin(admin.ModelAdmin):
