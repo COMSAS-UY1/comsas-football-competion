@@ -1,11 +1,15 @@
 from pyexpat import model
 from django.contrib import admin
-from core.models import News, GalleryImage, Gallery, Contributor
+from core.models import Author, News, GalleryImage, Gallery, Contributor
 
 
 class NewsAdmin(admin.ModelAdmin):
     list_display = ['id', 'title', 'edition']
     search_fields = ['title']
+
+class AuthorAdmin(admin.ModelAdmin):
+    list_display = ['id', 'name', 'description']
+    search_fields = ['name']
 
 
 class ContributorAdmin(admin.ModelAdmin):
@@ -25,5 +29,6 @@ class GalleryAdmin(admin.ModelAdmin):
 
 
 admin.site.register(News, NewsAdmin)
+admin.site.register(Author, AuthorAdmin)
 admin.site.register(Gallery, GalleryAdmin)
 admin.site.register(Contributor, ContributorAdmin)
