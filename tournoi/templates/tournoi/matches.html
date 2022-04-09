@@ -90,11 +90,13 @@
           <div class="text-center widget-vs-contents mb-4">
             <h4 class="text-capitalize">{% translate "Coupe du département" %}</h4>
             <p class="mb-5">
-              <span class="d-block">{{ next_match.date_to_play }}</span>
-              <strong class="text-primary">{{next_match.stade_name|title}}</strong>
+              <span class="d-block">{{ next_match.match.date_to_play }}</span>
+              <strong class="text-primary">{{next_match.match.stade_name|title}}</strong>
             </p>
 
-             <!--div id="date-countdown2" class="pb-1"></div!-->
+            <small>{% translate "Prochain match dans:" %}</small>
+            <div id="dateCount2" style="display: none;">{{next_match.match.date_to_play|date:"SHORT_DATE_FORMAT"}}</div>
+            <div id="date-countdown2" class="pb-1"></div>
           </div>
         </div>
       </div>
