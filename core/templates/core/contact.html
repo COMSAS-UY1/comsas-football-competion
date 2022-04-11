@@ -15,9 +15,9 @@
       <div class="col-lg-9 mx-auto text-center">
         <h1 class="text-white">{% translate "Contactez Nous" %}</h1>
         <p>
-          {% translate "Pour tous vos soucis, suggestions, question et imcomprehensions durant ce 
+          Pour tous vos soucis, suggestions, question et imcomprehensions durant ce 
           championnat veuillez remplir le formulaire suivant pour nous laisser un message, 
-          ou alors contactez-nous directement." %}
+          ou alors contactez-nous directement.
         </p>
         {% comment %} Output message according to criteria {% endcomment %}
         {% for msg in messages %}
@@ -43,17 +43,34 @@
           {% csrf_token %}
           <div class="form-group">
             {{form.name}}
+            {% for error in form.name.errors %}
+									<span> {{ error }} </span>
+								{% endfor %}
           </div>
           <div class="form-group d-flex">
             {{form.email}}
+            
             &ThickSpace;
             {{form.phone}}
+            
           </div>
+          {% for error in form.email.errors %}
+            <span> {{ error }} </span>
+          {% endfor %}
+          {% for error in form.phone.errors %}
+            <span> {{ error }} </span>
+          {% endfor %}
           <div class="form-group">
             {{form.subject}}
+            {% for error in form.subject.errors %}
+            <span> {{ error }} </span>
+          {% endfor %}
           </div>
           <div class="form-group">
             {{form.message}}
+            {% for error in form.message.errors %}
+            <span> {{ error }} </span>
+          {% endfor %}
           </div>
           <div class="form-group">
             <input type="submit" class="btn btn-primary py-3 px-5" value="Envoyer">
@@ -65,7 +82,7 @@
         <ul class="list-unstyled">
           <li class="mb-2">
             <strong class="text-white d-block">Email</strong>
-            <a href="mailto: info@comsas.club">info@comsas.club</a>
+            <a href="mailto: info@comsas.club">contact@comsas.club</a>
           </li>
           <li class="mb-2">
             <strong class="text-white d-block">

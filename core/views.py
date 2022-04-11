@@ -32,38 +32,30 @@ class ContactView(View):
             message = form.cleaned_data['message']
 
             # Additional fields
-            msg = "Si vous recevez ce mail c'est que votre message a bien été envoyé et est en cours de traitement. Voici les détails de votre message:..." + "\n\nNom Complet: " + name + "\nNuméro de téléphone : " + str(
-                phone
-            ) + "\n\nMessage Envoyé : " + message + "\n\n\nMerci de nous avoir contacté. Nous espérons vous revoir très bientôt.\n\nTel : [blank]\nEmail : [blank]\n\nEcrivez nous à propos de tout ce que vous voulez, a n'importe quel moment comme bon vous semble!"
-            subjectEmail = subject + " <" + f'{email}' + ">"
+            messsage = f"\n\nNouveau message sur coupe.comsas.club : Emetteur: {name}\n\nAdresse: {email} Message:{message}"
+            subjectEmail = f'{subject}From <{email}>'
 
             # Uncomment this later to send email to required address
-            try:
-                send_mail(
-                    subjectEmail,  #subject
-                    msg,  #message
-                    email,  #from email
-                    ['joelfah2003@gmail.com', email],  #to email
-                )
-            except BadHeaderError:
-                return HttpResponse('Invalid header found')
-
-            # Save message in Database
-            # form.save()
+            # try:
+            #     send_mail(
+            #         subjectEmail,  #subject
+            #         message,  #message
+            #         email,  #from email
+            #             ,  #to email
+            #     )
+            # except BadHeaderError:
+            #     message.error(request, 'Désolé, Nous avons rencontré un problème lors de l\'envoi de votre reponse. Veuillez réessayer plustard.')
 
             # Test if form data was saved and output corresponding flash message to confirm message placement or not.
             try:
                 form.save()
                 message_out_success = format_html(
                     # f'Thanks for contacting us, <strong> {name} </strong> ! Your message has been sent successfully. You will be email a copy at <strong> {email} </strong> !'
-                    f'Cher(e) <b>{name}</b>, merci de nous avoir contacté. Votre message a bien été envoyé. Vous allez recevoir une copie à l\'adresse <b>{email}</b> !'
+                    f'Votre message a été envoyé avec succès. Merci de nous avoir contacté,'
                 )
                 messages.success(request, message_out_success)
             except:
-                message_out_error = format_html(
-                    f'Désolé, <b>{name}</b> ! Nous avons rencontré un problème lors de l\'envoi de votre reponse. Veuillez remplir à nouveau le formulaire.'
-                )
-                messages.error(request, message_out_error)
+                messages.error(request, 'Désolé, Nous avons rencontré un problème lors de l\'envoi de votre reponse. Veuillez réessayer plustard.')
 
             # Redidrect to the same page with message output.
             return redirect('core:contact')
