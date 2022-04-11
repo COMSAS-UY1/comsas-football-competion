@@ -413,8 +413,7 @@ h1, h2, h3, h4, h5,
           margin-top: 0px;
           visibility: visible;
           opacity: 1; }
-    .site-navbar .site-navigation .site-menu.site-menu-dark > li > a {
-      color: #000; }
+
 
 .site-mobile-menu {
   width: 300px;
@@ -623,6 +622,13 @@ h1, h2, h3, h4, h5,
     @media (max-width: 991.98px) {
       .hero h1 {
         font-size: 2.5rem; } }
+        @media screen and (width: 708px){
+          .hero h1{
+            font-size: 2rem;
+            margin-top: 10%;
+            padding-top: 15px;
+          }
+        }
   .hero p {
     color: rgba(255, 255, 255, 0.7); }
 
@@ -957,6 +963,7 @@ h1, h2, h3, h4, h5,
   .footer-section .widget img{
     width: 75%;
     float: left;
+    text-align: center;
   }
   .footer-section .widget h3 {
     color: #fff;
@@ -973,6 +980,22 @@ h1, h2, h3, h4, h5,
   @media (max-width: 768px){
     .footer-section .row{
       display: flex;
+    }
+  }
+  @media (max-width: 425px){
+    .footer-section .widget{
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      margin: 10% 0 5% 0;
+    }
+    .footer-section .widget .img-foot{
+      width: 100%;
+    }
+
+    .footer-section .widget .img-foot > img{
+      width: inherit;
+      text-align: center;
     }
   }
 
@@ -1225,6 +1248,57 @@ h1, h2, h3, h4, h5,
 }
 
 /*--------------------------------------------------------------
+# Inner Blog Post
+--------------------------------------------------------------*/
+.first-section{
+  -webkit-overflow-scrolling: inherit;
+}
+
+.first-section p.lead{
+  font-size: x-large;
+  font-weight: bold;
+}
+
+.first-section p{
+  text-align: justify;
+}
+
+.first-section .bottom-left{
+  padding: 0 10px 0 0;
+}
+
+.first-section .bottom-left .author-img{
+  border: #ee1e46 4px solid;
+  padding: 5px;
+  border-radius: 50%;
+}
+
+.first-section .bottom-left .author-img img{
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+
+.first-section .bottom-left .author-text{
+  margin-left: 20px;
+}
+
+.first-section p > a > img{
+  height: 50vh; 
+  width: 100%; 
+  object-fit: cover;
+  transition: transform 0.3s ease-in;
+}
+
+.first-section p > a > img:hover{
+  transform: scale(1.019);
+}
+
+.first-section .sidebar-box{
+  text-align: center;
+}
+/*--------------------------------------------------------------
 # Portfolio
 --------------------------------------------------------------*/
 .portfolio .portfolio-item {
@@ -1401,9 +1475,20 @@ h1, h2, h3, h4, h5,
 	margin-bottom: 50px;
 }
 
+.speaker-item .si-pic {
+  width:100%;
+}
+
 .speaker-item .si-pic img {
+  width: 100%;
 	min-width: 100%;
 	border-radius: 2px;
+  transition: all 0.3s ease-in;
+}
+
+.speaker-item .si-pic img:hover{
+  transform: scale(1.1);
+  box-shadow: -5px 5px 15px rgb(238, 30, 70, 0.5);
 }
 
 .speaker-item .si-text .si-title {

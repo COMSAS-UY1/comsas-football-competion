@@ -251,9 +251,13 @@ jQuery(document).ready(function($) {
 	};
 	siteStellar();
 
+	// Get date from HTML document
+	var dateCount = document.getElementById("dateCount").textContent;
+
 	var siteCountDown = function() {
 
-		$('#date-countdown').countdown('2022/04/04', function(event) {
+		$('#date-countdown').countdown(dateCount, function(event) {
+			
 		  var $this = $(this).html(event.strftime(''
 		    + '<span class="countdown-block"><span class="label">%w</span> weeks </span>'
 		    + '<span class="countdown-block"><span class="label">%d</span> days </span>'
@@ -265,9 +269,12 @@ jQuery(document).ready(function($) {
 	};
 	siteCountDown();
 
+	// Get date from HTML document
+	var dateCount2 = document.getElementById("dateCount2").textContent;
+
 	var siteCountDownNextMatch = function() {
 
-		$('#date-countdown2').countdown('2022/09/02', function(event) {
+		$('#date-countdown2').countdown(dateCount2, function(event) {
 		  var $this = $(this).html(event.strftime(''
 		    + '<span class="countdown-block"><span class="label">%w</span> weeks </span>'
 		    + '<span class="countdown-block"><span class="label">%d</span> days </span>'
