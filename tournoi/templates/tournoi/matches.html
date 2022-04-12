@@ -88,7 +88,7 @@
           </div>
 
           <div class="text-center widget-vs-contents mb-4">
-            <h4 class="text-capitalize">{% translate "Coupe du département" %}</h4>
+            <h4 class="text-capitalize">{{next_match.match.title|title|default_if_none:'Coupe du département'}}</h4>
             <p class="mb-5">
               <span class="d-block">{{ next_match.match.date_to_play }}</span>
               <strong class="text-primary">{{next_match.match.stade_name|title}}</strong>
@@ -135,7 +135,7 @@
               {% for elt in classement_A %}
                 <tr>
                   <td>{{ forloop.counter }}</td>
-                  <td><strong class="text-white">{{elt.team.abreviation}}</strong></td>
+                  <td><strong class="text-white">{{elt.abreviation}}</strong></td>
                   
                   <td>{{elt.victory}}</td>
                   <td>{{elt.defeat}}</td>
@@ -223,11 +223,11 @@
               </div>
 
               <div class="text-center widget-vs-contents mb-4">
-                <h4>Coupe du chef de departement</h4>
+                <h4>{{match.match.title|title|default_if_none:'Coupe du département'}}</h4>
                 <p class="mb-5">
-                  <span class="d-block">{{match.date_to_play}}</span>
+                  <span class="d-block">{{match.match.date_to_play}}</span>
                   
-                  <strong class="text-primary">{{match.stade_name}}</strong>
+                  <strong class="text-primary">{{match.match.stade_name}}</strong>
                 </p>
               </div>
           </div>
