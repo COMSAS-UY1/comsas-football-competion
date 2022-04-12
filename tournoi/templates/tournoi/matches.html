@@ -180,7 +180,7 @@
               {% for elt in classement_B %}
                 <tr>
                   <td>{{ forloop.counter }}</td>
-                  <td><strong class="text-white">{{elt.team.abreviation}}</strong></td>
+                  <td><strong class="text-white">{{elt.abreviation}}</strong></td>
                   
                   <td>{{elt.victory}}</td>
                   <td>{{elt.defeat}}</td>
@@ -227,7 +227,7 @@
                 <p class="mb-5">
                   <span class="d-block">{{match.date_to_play}}</span>
                   
-                  <strong class="text-primary">{{match.stade}}</strong>
+                  <strong class="text-primary">{{match.stade_name}}</strong>
                 </p>
               </div>
           </div>
