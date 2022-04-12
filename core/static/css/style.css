@@ -10,6 +10,13 @@ body {
   background-color: #222831;
   font-size: 16px; }
 
+.footLogo {
+  max-width: 75% ;
+  max-height: 40% ;
+}
+.footD{
+  max-width: 50px;
+}
 ::-moz-selection {
   background: #000;
   color: #fff; }
@@ -207,7 +214,8 @@ h1, h2, h3, h4, h5,
 
 @media (max-width: 991.98px) {
   .img-md-fluid {
-    max-width: 100%; } }
+    max-width: 100%; }
+  }
 
 @media (max-width: 991.98px) {
   .display-1, .display-3 {
@@ -992,7 +1000,7 @@ h1, h2, h3, h4, h5,
     .footer-section .widget .img-foot{
       width: 100%;
     }
-
+    
     .footer-section .widget .img-foot > img{
       width: inherit;
       text-align: center;
@@ -1539,4 +1547,9 @@ h1, h2, h3, h4, h5,
   .speaker-item .si-text .si-title {
 		padding-top: 30px;
 	}
+
+  .footLogo{
+    max-width: 25%;
+    padding-bottom: 2rem;
+  }
 }
