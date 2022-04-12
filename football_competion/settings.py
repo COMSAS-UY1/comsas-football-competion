@@ -1,4 +1,3 @@
-
 # from django.utils.translation import ugettext_lazy as _
 import os
 import environ  # Initialise environment variables
@@ -18,7 +17,7 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DJANGO_DEBUG')
 
-ALLOWED_HOSTS = ['coupe.comsas.club', 'www.coupe.comsas.club', '185.207.251.182']
+ALLOWED_HOSTS = ['coupe.comsas.club', 'www.coupe.comsas.club', '127.0.0.1']
 
 CSRF_TRUSTED_ORIGINS = ['https://coupe.comsas.club']
 # Application definition
