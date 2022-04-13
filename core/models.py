@@ -1,5 +1,3 @@
-from distutils.command.upload import upload
-from email.policy import default
 from django.db import models
 from django_tuieditor.models import MarkdownField
 from tournoi.models import Edition
@@ -44,6 +42,9 @@ class Author(models.Model):
                               null=True,
                               blank=True)
     description = MarkdownField(max_length=150, null=False, blank=False)
+
+    def __str__(self) -> str:
+        return self.name
 
 
 class News(models.Model):

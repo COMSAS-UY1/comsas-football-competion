@@ -102,7 +102,7 @@ class Match(models.Model):
     title = models.CharField(max_length=50, default=None, null=True)
 
     def __str__(self):
-        return "(" + self.edition.name + ")" + "(" + self.state + ")"
+        return f'{self.title} {self.state} {self.date_to_play}'
 
     @property
     def score(self):

@@ -41,9 +41,9 @@
             </a>
           </div>
           <div class="text">
-            <span class="meta">{{new.add_on|date:"D d M Y"}}</span>
-            <h3 class="mb-4"><a href="{% url 'core:post' new.title|slugify new.id%}">{{new.title|title|slice:'30'}}</a></h3>
-            <p>{{new.description|gfm|title|slice:'65'}}</p>
+            <span class="meta">{{new.add_on|date:"D d M Y"}}</span> 
+            <h3 class="mb-4"><a href="{% url 'core:post' new.title|slugify new.id%}">{{new.title|title}}</a></h3>
+            <p>{{new.description|gfm|slice:'165'}}...</p>
             <p><a href="{% url 'core:post' new.title|slugify new.id%}">Read more</a></p>
           </div>
         </div>
