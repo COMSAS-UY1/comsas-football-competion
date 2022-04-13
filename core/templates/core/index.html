@@ -19,12 +19,15 @@
       <div class="col-lg-5 ml-auto mt-5 mt-lg-0 pt-5 pt-lg-0">
         <h1 class="text-white">Coupe du Département <span style="color: #ee1e46;">Info</span><span style="color: transparent; -webkit-text-stroke-width: 2px; -webkit-text-stroke-color: #fff;">rmatique</span></h1>
         <p>
-          {% translate "Ce n'est pas toujours une affaire de machines. On s'y connait aussi au foot. Encore ... " %}
+          {% translate "Ce n'est pas toujours une affaire de machines. On s'y connait aussi au foot." %}
         </p>
-        <div id="dateCount" style="display: none;">2022/04/14</div>
+        <p>
+         Prochain match dans ...
+        </p>
+        <div id="dateCount" style="display: none;">{{next_match.match.date_to_play|date:"SHORT_DATE_FORMAT"}}</div>
         <div id="date-countdown"></div>
         <p>
-          {% translate "Jusqu'au lancement officiel du championnat." %}
+         
         </p>
         <p>
           <a href="#latest-news" class="btn btn-primary py-3 px-4 mr-3">{% translate "Découverte" %}</a>
