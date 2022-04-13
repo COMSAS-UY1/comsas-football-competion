@@ -1,6 +1,7 @@
 {% extends 'core/main.html' %}
 {% load static %}
 {% load i18n %}
+{% load gfm %}
 
 <!-- Block Title -->
 {% block title %}
@@ -52,7 +53,7 @@
                                     <a href="{{person.github}}"><i class="bi bi-github"></i></a>
                                 </div>
                                 <p>
-                                    {% blocktrans %} {{person.description}} {% endblocktrans %}
+                                    {{person.description|gfm}} 
                                 </p>
                             </div>
                         </div>
