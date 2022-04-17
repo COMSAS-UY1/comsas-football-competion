@@ -257,19 +257,19 @@
     </div>
 
 
-    <div class="owl-4-slider owl-carousel">
+    <div class="owl-4-slider owl-carousel" id='top_players'>
       {% for player in top_players %}
         <div class="item">
           <div class="video-media">
-            <img src=" {{player.photo.url}} " alt="{{player.name}}" class="img-fluid">
-            {% comment %} <a href="" class="d-flex play-button align-items-center" data-fancybox>
+            <img src=" {{player.photo.url}} " alt="Image" class="img-fluid">
+            <a href="{{player.photo.url}}" class="d-flex play-button align-items-center" data-fancybox>
               <span class="icon mr-3">
-                <span class="icon-play"></span>
+                <span >{{player.dossard}}</span>
               </span>
               <div class="caption">
                 <h3 class="m-0">{{player.name|title}}</h3>
               </div>
-            </a> {% endcomment %}
+            </a>
           </div>
         </div>
        {% endfor %}
