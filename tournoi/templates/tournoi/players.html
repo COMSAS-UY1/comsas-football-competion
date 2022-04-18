@@ -79,7 +79,7 @@
             <h4 class="text-capitalize">{% translate "Statisqtiques de l'équipe" %}</h4>
             <div class="d-flex">
               <p class="mb-5 text-left">
-                <span class="d-block"><i class="bi bi-people-fill" style="font-size: 18pt; color: #e93a5d;"></i> {{team.get_num_players}} {% translate "joueurs enregistrés" %}</span>
+                <span class="d-block"><i class="bi bi-people-fill" style="font-size: 18pt; color: #e93a5d;"></i> {{team.get_num_players}} {% translate "joueurs enregistrés" %} </span>
                 <span class="d-block"><i class="bi bi-balloon-fill" style="font-size: 18pt; color: #e93a5d;"></i> {{team.get_num_scored_goals}} {% translate "buts inscris" %}</span>
                 <span class="d-block"><i class="bi bi-calendar2-check-fill" style="font-size: 18pt; color: #e93a5d;"></i> {{team.get_num_played_matchs}} {% translate "matchs joués" %}</span>
              </p>
@@ -116,14 +116,14 @@
     </div>
 
 
-    <div class="owl-4-slider owl-carousel">
+    <div class="owl-4-slider owl-carousel" id='top_players'>
       {% for player in top_players %}
         <div class="item">
           <div class="video-media">
             <img src=" {{player.photo.url}} " alt="Image" class="img-fluid">
-            <a href="" class="d-flex play-button align-items-center" data-fancybox>
+            <a href="{{player.photo.url}}" class="d-flex play-button align-items-center" data-fancybox>
               <span class="icon mr-3">
-                <span class="icon-play"></span>
+                <span >{{player.dossard}}</span>
               </span>
               <div class="caption">
                 <h3 class="m-0">{{player.name|title}}</h3>

@@ -75,8 +75,8 @@ class Team(models.Model):
 
     def get_num_played_matchs(self):
         return TeamMatch.objects.filter(
-            Q(team1__id=self.id) | Q(team2__id=self.id)
-            & Q(match__state=MatchState.finish)).count()
+            Q(team1__id=self.id) | Q(team2__id=self.id),
+            match__state=MatchState.finish).count()
 
     def get_num_scored_goals(self):
         return Goal.objects.filter(player__team=self.id).count()
@@ -150,6 +150,7 @@ class Player(models.Model):
     """Player"""
     name = models.CharField(max_length=50, null=False)
     surname = models.CharField(max_length=50, null=True, blank=True)
+    dossard = models.IntegerField(default=1)
     matricule = models.CharField(max_length=20,
                                  null=True,
                                  blank=True,

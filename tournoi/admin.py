@@ -7,7 +7,7 @@ class EditionAdmin(admin.ModelAdmin):
 
 
 class PlayerAdmin(admin.ModelAdmin):
-    list_display = ["id", "name", "surname", "add_date"]
+    list_display = ["id", "name", "surname", "add_date", 'dossard']
     search_fields = ["id", "name", 'surname', 'matricule']
     list_filter = ["team", 'edition', 'top_player']
 
