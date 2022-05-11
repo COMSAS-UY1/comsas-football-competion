@@ -4,7 +4,7 @@ certifi==2021.10.8
 cffi==1.15.0
 charset-normalizer==2.0.12
 cmarkgfm==0.8.0
-Django==3.2
+Django==3.2.13
 django-environ==0.8.1
 django-gunicorn==0.1.1
 django-rosetta==0.9.8
