@@ -31,7 +31,7 @@
   <div class="row">
     <div class="col-lg-12">
       
-      {% if last_match %}
+    {% if last_match %}
       <div class="d-flex team-vs">
         <span class="score">{{ last_match.match.goal_team1}} : {{ last_match.match.goal_team2 }}</span>
         <div class="team-1 w-50">
@@ -52,6 +52,8 @@
           </div>
         </div>
       </div>
+
+      
     {% endif %}
       </div>
     </div>
@@ -111,17 +113,6 @@
           <table class="table custom-table">
             <thead>
               <tr>
-                {% comment %} 
-                  Normalement la traduction en anglais devrait aussi changer les lettres ci dessous comme suit.
-                  Fr ------ En
-                  R  =====> R
-                  J  =====> P
-                  V  =====> W
-                  N  =====> D
-                  D  =====> L
-                  PTS  =====> PTS
-                {% endcomment %}
-
                 <th>R</th>
                 <th>{% translate "Équipe" %}</th>
                 
@@ -156,17 +147,6 @@
           <table class="table custom-table">
             <thead>
               <tr>
-                {% comment %} 
-                  Normalement la traduction en anglais devrait aussi changer les lettres ci dessous comme suit.
-                  Fr ------ En
-                  R  =====> R
-                  J  =====> P
-                  V  =====> W
-                  N  =====> D
-                  D  =====> L
-                  PTS  =====> PTS
-                {% endcomment %}
-
                 <th>R</th>
                 <th>{% translate "Équipe" %}</th>
                 
@@ -232,12 +212,51 @@
               </div>
           </div>
         </div>
-      {% endfor %}
-          
-        
-      
-      
+      {% endfor %} 
     </div>
+
+
+    <!-- Matchs Precedents -->
+      <div class="row">
+        <div class="col-12 title-section">
+          <h2 class="heading">{% translate "Précédents Matchs" %}</h2>
+        </div>
+        {% for match in last_matchs %}
+          <div class="col-lg-6 mb-4">
+            <div class="bg-light p-4 rounded">
+              <div class="widget-body">
+                  <div class="widget-vs">
+                    <div class="d-flex align-items-center justify-content-around justify-content-between w-100">
+                      <div class="team-1 text-center">
+                        <img src=" {{match.team1.logo.url}} " alt="{{match.team1.name}}">
+                        <h3>{{match.team1.name}}</h3>
+                      </div>
+                      <div>
+                        <span class="vs"><span><span class="score">{{ match.match.goal_team1}} : {{ match.match.goal_team2 }}</span></span></span>
+                      </div>
+                      <div class="team-2 text-center">
+                        <img src=" {{match.team2.logo.url}} " alt="{{match.team2.name}}">
+                        <h3>{{match.team2.name}}</h3>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="text-center widget-vs-contents mb-4">
+                  <h4>{{match.match.title|title|default_if_none:'Coupe du département'}}</h4>
+                  <p class="mb-5">
+                    <span class="d-block">{{match.match.date_to_play}}</span>
+                    
+                    <strong class="text-primary">{{match.match.stade_name}}</strong>
+                  </p>
+                </div>
+            </div>
+          </div>
+        {% endfor %} 
+      </div>
+    <!--  Fin Matchs Precedents -->
+
+    
   </div>
 </div> <!-- .site-section -->
 

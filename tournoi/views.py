@@ -77,6 +77,8 @@ class MatchView(View):
         pouleB = current_edition.poules.filter(name='Poule B').first()
         classement_A = pouleA.teams.all().order_by("-points")
         classement_B = pouleB.teams.all().order_by("-points")
+        top_players = current_edition.players.filter(
+            top_player=True).order_by("dossard")
 
         context = {
             "current_edition": current_edition,
@@ -88,6 +90,8 @@ class MatchView(View):
             "played_matches": played_matches,
             "next_match": next_matchs.first(),
             "last_match": played_matches.first(),
+            "last_matchs": played_matches,
+            "top_players": top_players,
         }
         return render(request, self.template_name, context)
 
@@ -101,7 +105,24 @@ class TeamView(View):
         teams = Team.objects.all()
 
         top_players = current_edition.players.filter(
-            top_player=True).order_by("-add_date")
+            top_player=True).order_by("dossard")
 
-        context = {"top_players": top_players, 'teams': teams}
+        passeurs = current_edition.players.all().order_by('-nb_pass')[:5]
+        # get all scorers in the current edition
+        goals = Goal.objects.exclude(
+            goal_type=GoalType.CSC,
+            match__edition__status='active').values("player").annotate(
+                nbgoal=Count("id"),
+                nbmatch=Count("match")).order_by("-nbgoal", "match")
+        for i, elt in enumerate(goals):
+
+            goals[i]["player"] = Player.objects.filter(
+                id=goals[i]["player"]).first()
+
+        context = {
+            "top_players": top_players,
+            'teams': teams,
+            'goals': goals,
+            'passeurs': passeurs
+        }
         return render(request, self.template_name, context)

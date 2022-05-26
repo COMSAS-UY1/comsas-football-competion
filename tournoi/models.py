@@ -169,6 +169,9 @@ class Player(models.Model):
                              null=False,
                              on_delete=models.CASCADE,
                              related_name='players')
+    # provisoire
+    nb_match = models.IntegerField(default=3)
+    nb_pass = models.IntegerField(default=0)
 
     def __str__(self):
         return self.name + "(" + self.surname + ")(" + self.matricule + ")"
@@ -177,6 +180,7 @@ class Player(models.Model):
     def total_goals(self):
         """return number of scored goals"""
         return self.goals.all().count()
+    
 
 
 class GoalType(models.TextChoices):

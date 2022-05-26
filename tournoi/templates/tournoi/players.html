@@ -29,6 +29,70 @@
 <div class="container">
   <div class="row">
     <div class="col-12 title-section">
+      <h2 class="heading">{% translate "Classement Joueurs" %}</h2>
+    </div>
+    <div class="col-lg-6">
+      <div class="col-12 title-section">
+        <h2 class="heading" id="latest-news">{% translate "Meilleurs Buteurs" %}</h2>
+      </div>
+      <div class="widget-next-match">
+        <table class="table custom-table">
+          <thead>
+            <tr>
+              <th>Rang</th>
+              <th>{% translate "Noms" %}</th>
+              <th>Nb buts</th>
+              <th>Nb matchs</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for elt in goals %}
+              <tr>
+                <td>{{ forloop.counter }}</td>
+                <td><strong class="text-white">{{elt.player.surname}}</strong></td>
+                <td>{{elt.nbgoal}}</td>
+                <td>{{elt.player.nb_match}}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="col-lg-6">
+      <div class="col-12 title-section">
+        <h2 class="heading" id="latest-news">{% translate "Meilleurs Passeurs" %}</h2>
+      </div>
+      <div class="widget-next-match">
+        <table class="table custom-table">
+          <thead>
+            <tr>
+              <th>Rang</th>
+              <th>{% translate "Noms" %}</th>
+              <th>Nb passes</th>
+              <th>Nb matchs</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for elt in passeurs %}
+              <tr>
+                <td>{{ forloop.counter }}</td>
+                <td><strong class="text-white">{{elt.surname}}</strong></td>
+                <td>{{elt.nb_pass}}</td>
+                <td>{{elt.nb_match}}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <br>
+  <br>
+
+  <div class="row">
+    <div class="col-12 title-section">
       <h2 class="heading">{% translate "Equipes" %}</h2>
     </div>
 
@@ -93,11 +157,13 @@
           </div>
         
       </div>
-    </div>
+  </div>
   {% endfor %}
    
     
   </div>
+
+
 </div>
 
 <div class="site-section">
